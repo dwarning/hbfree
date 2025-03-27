@@ -1,0 +1,1246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<meta >
+                                                                                             
+  
+    
+   
+   
+<title> HbFree v. 0.1 \\
+User's Guide </title>
+ 
+<h1 align="center">HbFree v. 0.1 <br>
+User's Guide  </h1>
+
+<p>
+
+<h3 align=center>Gennady Serdyuk </h3>
+
+<p>
+
+<h3 align=center>19-Sept-2000. Last modification 29-Oct-2019 </h3>
+
+
+
+<p>
+       <h2><a name="tth_sEc1">
+1</a>&nbsp;&nbsp;Copyright and License</h2>
+
+<p>
+
+This software is released under GPL version 2
+<p>
+This documentation is released under Free Doucumentation License ver. 1.2
+<p>
+Copyright (C) 1996-2004, Gennady Serdyuk. All rights reserved
+
+<p>
+
+       <h2><a name="tth_sEc2">
+2</a>&nbsp;&nbsp;Introduction </h2>
+
+<p>
+<i><font size="-1">This is still pre-release of documentation, so some items may
+be not finished or not clear. Pls, let me know about that.</font></i><font size="-1">
+<p>
+</font>HbFree is a package of programs, which is intended for simulation of radio-frequency
+and microwave (RF&amp;MW) (selective) analog non-autonomous nonlinear circuits
+in frequency domain. Used 2-dimensional representation allows precisely simulate
+circuits under quasi-harmonic excitation. It may be suitable to analyze electronic
+circuits, which behavior is essentially depends on nonlinear properties of electronic
+devices circuit consists of. There are power amplifiers, mixers, modulators,
+detectors, etc. 
+
+<p>
+Circuits may contain linear components (resistors, capacitors, inductors, transmission
+lines) and nonlinear (diodes and MESFETs).
+
+<p>
+Program implements piecewise harmonic balance (HB) technique, which is quite
+widely used in RF&amp;MW CAD industry.
+
+<p>
+HbFree uses own input file format, but is equipped with translator, which can
+translate SPICE files (with minor changes) to simulator's input file format.
+
+<p>
+HbFree package consists of translator, simulator, utilities and documentation. 
+
+<p>
+       <h2><a name="tth_sEc3">
+3</a>&nbsp;&nbsp;Theoretic Background</h2>
+
+<p>
+Harmonic balance technique is derived from circuit description equation (it
+is system of nonlinear ordinary differential equations, in general): 
+
+<p>
+
+<center>  <i>f</i>&nbsp;(<i>t</i>,<i>x</i>,[(<i>dx</i>)/(<i>dt</i>)],..,[(<i>d</i><sup><i>k</i></sup><i>x</i>)/(<i>dt</i><sup><i>k</i></sup>)]) = <i>a</i>(<i>t</i>)+<i>l</i>(<i>t</i>,<i>x</i>,[(<i>dx</i>)/(<i>dt</i>)],..,[(<i>d</i><sup><i>k</i></sup><i>x</i>)/(<i>dt</i><sup><i>k</i></sup>)])+<i>n</i>(<i>t</i>,<i>x</i>,[(<i>dx</i>)/(<i>dt</i>)],..,[(<i>d</i><sup><i>k</i></sup><i>x</i>)/(<i>dt</i><sup><i>k</i></sup>)]) = 0  
+<p>
+</center>where:
+
+<p>
+
+<dl compact="compact"><dt><b></b></dt>
+	<dd> [ <i>a</i>(<i>t</i>) ]- circuit excitation
+<dt><b></b></dt>
+	<dd> [ <i>l</i>(<i>t</i>,<i>x</i>,[(<i>dx</i>)/(<i>dt</i>)],..,[(<i>d</i><sup><i>k</i></sup><i>x</i>)/(<i>dt</i><sup><i>k</i></sup>)]) ]- linear differential
+operator
+<dt><b></b></dt>
+	<dd> [ <i>n</i>(<i>t</i>,<i>x</i>,[(<i>dx</i>)/(<i>dt</i>)],..,[(<i>d</i><sup><i>k</i></sup><i>x</i>)/(<i>dt</i><sup><i>k</i></sup>)]) ]- general nonlinear differential
+operator
+<dt><b></b></dt>
+	<dd> [ <i>k</i> ]- maximum derivative order
+<dt><b></b></dt>
+	<dd> [ <i>t</i> ]- time
+</dl>
+<p>
+By applying Fourier transformation to it, it is possible to transfer the first
+equation to frequency domain. 
+
+<p>
+
+<center>  <i>F</i><sup><i>n</i></sup>(<font face="symbol">w</font
+>,<i>X</i><sup><i>n</i></sup>) = <i>A</i>(<font face="symbol">w</font
+>)+<i>L</i>(<i>k</i>,<font face="symbol">w</font
+>)*<i>X</i><sup><i>n</i></sup>+<i>N</i>(<font face="symbol">w</font
+>,<i>X</i><sup><i>n</i></sup>) = 0  
+<p>
+</center>for  <i>n</i> = 0,+<font face="symbol">¥</font
+> ;
+
+<p>
+Where  <i>X</i><sup><i>n</i></sup>  -  <i>n</i> -th harmonic (complex).
+
+<p>
+Using of Fourier transformation implies fundamental assumption about periodic
+processes in system. In the case of nonautonomous circuit excitations  <i>A</i>(<i>t</i>) 
+should be periodic. After Furrier transformation have been applied system equations
+formulated at every frequency in the circuit - namely basic frequencies (frequencies
+of excitations) and high-order frequencies (harmonics and combinations, if excitation
+is multitone). These nonlinear equations have to be solved to obtain result
+- amplitudes and phases of variables. 
+
+<p>
+Frequency-domain formulation is native for linear elements - lumped and distributed.
+Contrary, it is hard enough to represent most distributed elements in time domain.
+It is the first advantage of the harmonic balance approach vs. direct time-domain
+integration of system equations. The second is explicitiness of solution. If
+time-domain integration of circuit equation is used, it is necessary to over
+the transient process (for high quality circuits it may takes hundreds of periods),
+detect steady state (for mixers period of intermediate frequency may exceeds
+thousands of periods of local oscillator or signal frequency) and make Fourier
+transformation of resulting solution. If period is taken improperly, then certain
+errors in results will occur. In case of harmonic balance amplitudes and phases
+are the direct results of solution process.
+
+<p>
+     <h3><a name="tth_sEc3.1">
+3.1</a>&nbsp;&nbsp;HaBala Features</h3>
+
+<p>
+The node voltages basis is used to formulate harmonic balance equations. This
+implies some restrictions onto available elements and/or values of parameters.
+E.g. resistors should not be equal to zero, voltage sources should have internal
+resistance, etc. It may violate results (in strict sense), but, practically,
+all parameters can be set to values, that resultiong error can be neglected.
+
+<p>
+Some special efforts was made in the field of global convergence of used nonlinear
+equations solution method. Two main approaches was tested - using the <i>a-priory</i>
+information about ``working point'' of the nonlinearities and applying
+modifications to Newton process (namely - linear search along Newton direction,
+as it was described in []). The second approach delivers better robastness
+and convergence speed.
+
+<p>
+       <h2><a name="tth_sEc4">
+4</a>&nbsp;&nbsp;2-dimensional frequency</h2>
+
+<p>
+HB approach is used to simulate non-autonomous processes in nonlinear circuits.
+
+<p>
+In the HB approach it is assumed, that circuit is driven with several periodic
+sources. 
+
+<p>
+Consider simple nonlinear circuit, which is diven by sinusoidel source with
+frequency F1. Steady state respone of such circuit will be periodical (with
+the same period as excitation) but will contain (precisely - infinite) number
+of harmonic members with frequencies n*F1. We can put correspondent frequencies
+on the X axis and amplitudes on the Y axis. Thus we obtain spectrum of responce
+as at Fig. .
+
+<p>
+
+<p>
+<a name="tth_fIg1">
+</a> 
+<center> *0.8!<img src="pics/grid1d.gif" alt="pics/grid1d.gif"> 
+<p>
+</center><center>Figure 1: <a name="fig:1d">
+</a>1-dimensional frequency grid and correspondent spectre.</center>
+
+<p>
+
+<p>
+And now consider, that circuit is driven by two sinusoidal sources with frequencies
+F1 and 2*F1. We can use the same representation - second excitation will coinside
+with second harmonic of fundamental (F1) exciation.
+
+<p>
+But things are not so simple in general. Assume, that second frequency is independent
+to F1. This is usuall in mixers and power amplifiers under two-tone exciation.
+In this case specrum became more complicated - not only harmonics, but combination
+frequencies are present in responce. And we can see as at the Fig.
+. 
+
+<p>
+
+<p>
+<a name="tth_fIg2">
+</a> 
+<center> *0.8!<img src="pics/grid.gif" alt="pics/grid.gif"> 
+<p>
+</center><center>Figure 2: <a name="fig:2d">
+</a>2-Dimensional frequency grid and spectre.</center>
+
+<p>
+
+<p>
+It is possible to represent this case as 2-dimensional. Essential frequencies
+are represented onto frequency plane as solid crosses. In this case fundamentals
+have coordinates (0,1) and (1,0), DC have usual coordinate (0,0) and all harmonics
+of first fundamental have coordinates (n,0), n=2.. <font face="symbol">¥</font
+>. Compare with
+representation 1-tone spectre onto 2-dimensional plane ( Fig. <a href="#fig:1d">1</a>.)
+
+<p>
+HaBala uses 2-dimesional representation of the spectre, present into the circuit.
+To specify circuit responce, it is necessary to set F1 and F2 and to list pairs
+of integers of all combinations, which are assumed as nonzero.
+
+<p>
+       <h2><a name="tth_sEc5">
+5</a>&nbsp;&nbsp;Package Structure</h2>
+
+<p>
+Package consists of several programs, which should interact in a certain way.
+
+<p>
+Flowchart Fig.  is intended to explain main components of
+Package.
+
+<p>
+
+<p>
+<a name="tth_fIg3">
+</a> 
+<center> *0.9!<img src="pics/flowchart.png" alt="pics/flowchart.png"> 
+<p>
+</center><center>Figure 3: <a name="fig:flowchart">
+</a> HbFree flowchart</center>
+
+<p>
+
+<p>
+``hb'' (also called ``HaBala'' or HABALA - means HArmonic BALAnce)
+is the central part of package. It is HB simulator itself. As it uses own circuit
+description format (which definition is not included in the documentation),
+translator to this format is provided. This translator (named ``s2h'')
+translates SPICE circuit description into intermediate representation, suitable
+for HABALA. To provide additional data, necessary for proper translation of
+SPICE circuit to HABALA input, translator configuration file is used. During
+translation variables names are changed. To restore initial variables names,
+which was changed by translator, ``hnr'' program is used.
+
+<p>
+S2h translator produces three useful files. The first one is the intermediate
+circuit description file will be used by simulator immediately after translation.
+The second one - ``spice-habala'' node table will be used later to restore
+initial node names. The third - log - should be rewieved in case translation
+errors - see ``Translator'' section.
+
+<p>
+HABALA produces two files as output. The first one is the log file, which contains
+information about solution process and results. It should be reviewed after
+simulation to detect the reason - why simulation was finished. Iterative procedure
+is used to solve the system of HB equations; it may coverge to solution, but
+may do not. More precisely it will be described in ``Translator'' section.
+
+<p>
+``hbf'' script (or executable - depending on the system) describes the
+way components should be integrated.
+
+<p>
+       <h2><a name="tth_sEc6">
+6</a>&nbsp;&nbsp;Task Description</h2>
+
+<p>
+Task description consists of circuit description and regime description. Both
+parts may be mixed into one file.
+
+<p>
+The first line of file is treated as task name.
+
+<p>
+Each line started with ``*'' is treated as comment line.
+
+<p>
+Each line started with ``+'' is treated as previous line continuation.
+
+<p>
+Circuit description is almost conform to SPICE input landuage with some restrictions.
+
+<p>
+Many SPICE directives ( they started with ``.'' in the first position
+of the line) are ignored. As HbFree is intended for HB simulation, so usual
+SPICE's analisys types (.AC, .DC, .DISTO, .NOICE, .OP, .PZ, .SENS, .TF and .TRAN)
+are not supported and correspondent directives will be ignored. SPICE directive
+.OPTIONS will be ignored too. 
+
+<p>
+Supported directives are: 
+
+<p>
+.SUBCKT - subcircuit definition 
+
+<p>
+.ENDS - end subcircuit definition
+
+<p>
+.END - end file 
+
+<p>
+.INCLUDE - include file
+
+<p>
+.MODEL - model definition
+
+<p>
+New directive .HB is added to describe main parameters of simulation (circuit
+regime), if many .HB directives are denoted, only last directive will be used.
+New directive .HB_OPTIONS is added to describe additional simulation parameters
+(desired precision tolerances, etc.). 
+
+<p>
+Unfortunately, do not all SPICE devices are implemented. More, HB simulation
+program (named ``hb'' or ``HaBala'') was designed independently,
+so it have own model library. Compatibility between SPICE and HABALA models
+is described in respective sections.
+
+<p>
+     <h3><a name="tth_sEc6.1">
+6.1</a>&nbsp;&nbsp;Circuit Description</h3>
+
+<p>
+Circuit may contain usual types of elements: R, L, C, I, V, T, O, D, Z.
+
+<p>
+Values may be followed by scaling suffixes - f, p, n, u, m, mil, K, Meg, G,
+T
+
+<p>
+Nodes in element description can be denoted as numbers or as strings.
+
+<p>
+.MODEL directive is used to define model of the element.
+
+<p>
+.SUBCKT / .ENDS directives are used to define subcircuit.
+
+<p>
+     <h3><a name="tth_sEc6.2">
+6.2</a>&nbsp;&nbsp;Directives</h3>
+
+<p>
+There are two aditional directives to set circuits regime and paremeters of
+solution process: .HB and .HB_OPTIONS
+
+<p>
+      <h4><a name="tth_sEc6.2.1">
+6.2.1</a>&nbsp;&nbsp;<a name="hb-directive">
+</a>HB directive</h4>
+
+<p>
+.HB directive looks like this:
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+.HB&nbsp;F1=&lt;f1&#62;&nbsp;F2=&lt;f2&#62;&nbsp;n01&nbsp;n02&nbsp;n11&nbsp;n12&nbsp;n21&nbsp;n22&nbsp;n31&nbsp;n32&nbsp;...&nbsp;nxx
+</dl>
+e.g.:
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+.HB&nbsp;F1=1.5&nbsp;F2=0&nbsp;&nbsp;0&nbsp;0&nbsp;&nbsp;1&nbsp;0&nbsp;&nbsp;2&nbsp;0&nbsp;&nbsp;3&nbsp;0&nbsp;&nbsp;4&nbsp;0&nbsp;&nbsp;5&nbsp;0&nbsp;&nbsp;
+
+<p>
++&nbsp;6&nbsp;0&nbsp;&nbsp;7&nbsp;0&nbsp;&nbsp;8&nbsp;0&nbsp;&nbsp;9&nbsp;0&nbsp;
+</dl>
+describes 1-dimensional frequency grid (DC + 9 harmonics).
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+.HB&nbsp;F1=1.5G&nbsp;F2=1.57G&nbsp;0&nbsp;0&nbsp;&nbsp;1&nbsp;0&nbsp;&nbsp;0&nbsp;1&nbsp;
+
+<p>
++&nbsp;0&nbsp;2&nbsp;&nbsp;1&nbsp;1&nbsp;&nbsp;2&nbsp;0&nbsp;&nbsp;1&nbsp;-1&nbsp;
+
+<p>
++&nbsp;0&nbsp;3&nbsp;&nbsp;1&nbsp;2&nbsp;&nbsp;2&nbsp;1&nbsp;&nbsp;3&nbsp;0&nbsp;&nbsp;2&nbsp;-1&nbsp;&nbsp;1&nbsp;-2&nbsp;
+
+<p>
++&nbsp;0&nbsp;4&nbsp;&nbsp;1&nbsp;3&nbsp;&nbsp;2&nbsp;2&nbsp;&nbsp;3&nbsp;1&nbsp;&nbsp;4&nbsp;0&nbsp;&nbsp;3&nbsp;1&nbsp;
+</dl>
+This directive sets two-dimensional frequency grid with 19 points on plane.
+
+<p>
+      <h4><a name="tth_sEc6.2.2">
+6.2.2</a>&nbsp;&nbsp;HB_OPTIONS directive</h4>
+
+<p>
+It looks like the following:
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+.HB_OPTIONS&nbsp;PAR1=&lt;value1&#62;&nbsp;PAR2=&lt;value2&#62;&nbsp;...&nbsp;PAR3=&lt;value3&#62;
+</dl>
+Possible parameter names, values and their meanings are the same as in the Translator
+Configuration File .
+
+<p>
+     <h3><a name="tth_sEc6.3">
+6.3</a>&nbsp;&nbsp;<a name="translator-config">
+</a>Translator Configuration File</h3>
+
+<p>
+For proper translation of SPICE input file into HaBala representation additional
+parameters should be specified. They are gathered into Translator configuration
+file. 
+
+<p>
+All parameters may be divided onto two groups. The first group consists of parameters,
+which are necessary to complete elements description, the second - default values
+to control the solution process. 
+
+<p>
+Translator configuration file have the following look:
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+*&nbsp;commnet&nbsp;line
+
+<p>
+*&nbsp;may&nbsp;
+
+<p>
+PARAMETER&nbsp;=&nbsp;value
+
+<p>
+...
+
+<p>
+*&nbsp;another&nbsp;one&nbsp;comment
+
+<p>
+PARAMETER&nbsp;=&nbsp;value
+</dl>
+If some parameter have been defined twice, only last definition is valid.
+
+<p>
+Available parameters are defined in the following sections.
+
+<p>
+      <h4><a name="tth_sEc6.3.1">
+6.3.1</a>&nbsp;&nbsp;L,C, and V Parasitics</h4>
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+Rl&nbsp;=&nbsp;0.01
+
+<p>
+Gc&nbsp;=&nbsp;1.e-5
+
+<p>
+Ri&nbsp;=&nbsp;0.001
+</dl>
+
+<p>
+      <h4><a name="tth_sEc6.3.2">
+6.3.2</a>&nbsp;&nbsp;Diode additional parameters</h4>
+
+<p>
+In addition to ``.MODEL'' parameters, several paremeters are specified
+into Translator Configuration File:
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+U0=0.5&nbsp;
+
+<p>
+DU=0.1
+</dl>
+These parameters control solution process under certain circumstances. Do not
+change them (or simply delete from file - defaults will be used)
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+k_Diode_f0=0.8
+</dl>
+This parameter sets the linearization point of C(u) characteristic. Linearization
+point =VJ * k_Diode_f0. Value of k_Diode_f0 should be &lt; 1.
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+Rsmin=1.0
+</dl>
+Lower boundary of RS. Should be &#62;0.
+
+<p>
+      <h4><a name="tth_sEc6.3.3">
+6.3.3</a>&nbsp;&nbsp;MESFET additional parameters</h4>
+
+<p>
+Some default and boundary values for MESFET model transformation are specified
+in configuration file too. These parameters mostly described in section .
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MESFET_RDMIN=0.1
+</dl>
+Minumum available value of RD
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MESFET_RSMIN=0.1
+</dl>
+Minumum available value of RS
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MESFET_RG=0.1
+</dl>
+Default value of Rg; Value of Rg = R2
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MESFET_CDS=0.0
+</dl>
+Value of drain-source capacitance C13
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MESFET_IS0=0.0
+</dl>
+Value of saturation current of gate-source Schottkey diode
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MESFET_N=1.0
+</dl>
+Define emission coeficient of gate-source Schottkey diode.
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MESFET_RDS=1.E09
+</dl>
+Drain-Source parasitic; default = 1.E09
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MESFET_RGS=1.E09
+</dl>
+Gate-source parasitic; default = 1.E09
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MESFET_UBOUND=0.52
+
+<p>
+MESFET_STEPM=0.12
+</dl>
+Parameters for <i>a-priori</i> Newton method globalization (it is possible
+to delete them from file and use default values from inside the ``s2h''
+translator).
+
+<p>
+      <h4><a name="tth_sEc6.3.4">
+6.3.4</a>&nbsp;&nbsp;Solution control parameters</h4>
+
+<p>
+
+<ul>
+<li> Frequency comparison precision
+</ul>
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+EPSIW&nbsp;=&nbsp;1.e-5
+</dl>
+(real, default=1.e-5). Some circuit elements (sources) have frequency as a parameter.
+From the other hand - in directive .HB will be set frequency grid (set of harmonics)
+and oscillating sources shold be distributed onto this frequency grid. Namely
+- each source will be assigned onto certain frequency of this frequency grid
+(see Fig. <a href="#fig:2d">2</a>) if their frequencies are equal. As exact equality is
+impossible over real numbers - EPSIW is the relative precision of comparison. 
+
+<p>
+
+<ul>
+<li> Required precision of solution
+</ul>
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+EPSSOL&nbsp;=&nbsp;1.e-6
+</dl>
+(real, default=1.e-6). Required precision of solution. It is a half of quadratic
+norm of imbalance in Amperes. If half of square root of sum of squares of all
+imbalances is less than EPSSOL it is assumed the solution have found. 
+
+<p>
+
+<ul>
+<li> Minimal allowed step
+</ul>
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+EPSDU&nbsp;=&nbsp;1.e-6
+</dl>
+(real, default=1.e-6). Minimum possible correction of node voltages. If half
+of quadratic norm of correction vector is less than EPSDU - it is assumed that
+model properties are poor and convergence is too slow to continue solution.
+Note: IT IS NOT A VALID SOLUTION. ONLY IMBALANCE DEFINES NEARNESS OF TRUE SOLUTION.
+
+<p>
+
+<ul>
+<li> Local minimum tolerance
+</ul>
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+EPSMIN&nbsp;=&nbsp;1.e-7
+</dl>
+(real, default=1.e-7). Parameter used to disclose local minimum of the system
+of nonlinear equation (if task F=0 is interpreted as min{F <sup><i>t</i></sup> *F}
+). It is better to set it to a quite low value - e.g. to 1.e-12 or 1.e-18.
+
+<p>
+
+<ul>
+<li> Maximum allowed step
+</ul>
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MAXDU&nbsp;=&nbsp;0
+</dl>
+(real, default=0). Maximum possible node voltage correction of Newton method
+(l2-norm of correction vector). 0- not checked.
+
+<p>
+
+<ul>
+<li> Iterations limit
+</ul>
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+LIMIT&nbsp;=&nbsp;500
+</dl>
+(integer, default=500). Maximum quantity of iterations of Newton method. Integer.
+Is set to 500. 
+
+<p>
+
+<ul>
+<li> Globalization method used
+</ul>
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+MGLOB&nbsp;=&nbsp;1&nbsp;
+</dl>
+(integer, default=1). Strategy of globalization of Newton method setting. 0
+- no strategy chosen, 1 - used linear search in Newton direction (better).
+
+<p>
+
+<ul>
+<li> A-priory globalization
+</ul>
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+IAPR&nbsp;=&nbsp;0
+</dl>
+(integer, default=0). Usage of heuristic method of Newton step limitation (it
+do not allow voltage drop over diode junction be larger then 1V).
+0 - No, 1 - Yes. 
+
+<p>
+
+<ul>
+<li> FFT Length
+</ul>
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+KNC&nbsp;=&nbsp;32
+</dl>
+(integer, power of 2, default=32). Length of one-dimensional FFT. 
+
+<p>
+The following variables switches print mode in HaBala:
+
+<p>
+
+<ul>
+<li> Switches of extended output
+</ul>
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+KPRLEN&nbsp;=&nbsp;0
+</dl>
+Switch output regime of circuit reading part of program: 0 - print nothing,
+1 - print main messages, 2 - print a lot. (default = 1); 
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+KPRSRT&nbsp;=&nbsp;0
+</dl>
+Switch output regime of circuit nodes sorting part: 0 - print nothing, 1 - print
+main messages, 2 - print a lot. (default = 0); 
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+KPRNKR&nbsp;=&nbsp;0
+</dl>
+Switch output regime of grid generation part : 0 - print nothing, 1 - print
+main messages, 2 - print a lot. (default = 0); 
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+KPRLIN&nbsp;=&nbsp;0
+</dl>
+Switch output regime of linear subcircuit solution: 0 - print nothing, 1 - print
+main messages, 2 - print a lot. (default = 0); 
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+KPRSOL&nbsp;=&nbsp;0
+</dl>
+Switch output regime of solving of nonlinear equations: 0 - print nothing, 1
+- print main messages, 2 - print a lot. (default = 0); 
+
+<p>
+       <h2><a name="tth_sEc7">
+7</a>&nbsp;&nbsp;Available Elements </h2>
+
+<p>
+     <h3><a name="tth_sEc7.1">
+7.1</a>&nbsp;&nbsp;R, L, C </h3>
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+RXXXX&nbsp;node1&nbsp;node2&nbsp;value
+
+<p>
+CXXXX&nbsp;node1&nbsp;node2&nbsp;value
+</dl>
+Translated into the parallel capacor C and conductance G.
+
+<p>
+G value is described into translator configuration file.
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+LXXXX&nbsp;node1&nbsp;node2&nbsp;value
+</dl>
+Translated into the series inductor L and resistor R.
+
+<p>
+R value is described into translator configuration file.
+
+<p>
+     <h3><a name="tth_sEc7.2">
+7.2</a>&nbsp;&nbsp;Sources </h3>
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+VXXXX&nbsp;N+&nbsp;N-&nbsp;[[DC/TRAN]&nbsp;DCVALUE]&nbsp;[AC&nbsp;ACVALUE&nbsp;[ACPHASE]]&nbsp;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PULSE(..)|SIN&nbsp;(..)|EXP(..)|PWL(..)|SFFM(..)]
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[DISTOF1&nbsp;F1MAG&nbsp;[F1PHASE]]&nbsp;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[DISTOF2&nbsp;F2MAG&nbsp;[F2PHASE]]&nbsp;
+
+<p>
+IXXXX&nbsp;N+&nbsp;N-&nbsp;[[DC]&nbsp;DCVALUE]&nbsp;[AC&nbsp;ACVALUE&nbsp;[ACPHASE]]&nbsp;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PULSE(..)|SIN&nbsp;(..)|EXP(..)|PWL(..)|SFFM(..)]
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[DISTOF1&nbsp;F1MAG&nbsp;[F1PHASE]]&nbsp;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[DISTOF2&nbsp;F2MAG&nbsp;[F2PHASE]]&nbsp;
+</dl>
+N+ and N- are positive and negative nodes.
+
+<p>
+AC section is ignored by translator
+
+<p>
+PULSE, SIN, EXP, PWL and SFFM sections are ignored by translator, but parameters
+should be enclosed into parenthesis.
+
+<p>
+DC/RAN value will be assumed as value of DC source.
+
+<p>
+DISTOF1 value (and phase) will be assumed as value of frequency F1 (see .HB
+directive <a href="#hb-directive">6.2.1</a>), and DISTOF2 - respectively F2. Voltages and
+currents are effective (not maximum - in contrast to SPICE). Phases are in degrees.
+
+<p>
+Voltage sources assumed have internal (parasitic) resistance Ri (see Transator
+Configuration File <a href="#translator-config">6.3</a>) 
+
+<p>
+     <h3><a name="tth_sEc7.3">
+7.3</a>&nbsp;&nbsp;Lossless Transmission Line </h3>
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+TXXXX&nbsp;N1&nbsp;N2&nbsp;N3&nbsp;N4&nbsp;Z0=VALUE&nbsp;[TD=DELAY&nbsp;|&nbsp;F=FREQ&nbsp;NL=NORMLEN]
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IC=...]
+</dl>
+N1 and N2 are nodes of port 1, N3 and N4 - port 2. 
+
+<p>
+TD or F and NL should be specified.
+
+<p>
+In Translator Configuration File one more parameter is specified. It is Rline
+- series resistance of line in ``short circuit'' resonance'' (resistance
+to ground of 1/4-wavelength stub at resonance frequency).
+
+<p>
+     <h3><a name="tth_sEc7.4">
+7.4</a>&nbsp;&nbsp;Lossy Transmission Line </h3>
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+OXXXX&nbsp;N1&nbsp;N2&nbsp;N3&nbsp;N4&nbsp;MODELNAME
+
+<p>
+.MODEL&nbsp;&lt;MODELNAME&#62;&nbsp;LTRA&nbsp;R=&lt;val&#62;&nbsp;[L=&lt;val&#62;&nbsp;G=&lt;val&#62;]&nbsp;C=&lt;val&#62;&nbsp;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[LEN=&lt;val&#62;]
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[OTHER_PARAMS]
+</dl>
+Lossy transmission line is translated into LOSSLESS transmission line - so R
+and G are assumed 0.
+
+<p>
+The reason is HABALA feature. It have model of lossless line and models for
+strip/microstrip lines, but not have model for lossy line. As model of lossy
+transmission line will be implemented in HABALA, it will be reflected in this
+guide.
+
+<p>
+L and C values should be specified.
+
+<p>
+LEN assumed =1 if not specified.
+
+<p>
+OTHER_PARAMS are ignored.
+
+<p>
+     <h3><a name="tth_sEc7.5">
+7.5</a>&nbsp;&nbsp;Diode </h3>
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+DXXX&nbsp;NA&nbsp;NC&nbsp;DIODEMODEL
+
+<p>
+.MODEL&nbsp;DIODEMODEL&nbsp;D&nbsp;IS=&lt;val&#62;&nbsp;RS=&lt;val&#62;&nbsp;N=&lt;val&#62;&nbsp;TT=&lt;val&#62;&nbsp;CJ0=&lt;val&#62;&nbsp;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VJ=&lt;val&#62;&nbsp;M=&lt;val&#62;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[OTHER_PARAMS]
+
+<p>
+
+<p>
+<a name="tth_fIg4">
+</a> 
+<center> *0.7!<img src="pics/diod.gif" alt="pics/diod.gif"> 
+<p>
+</center><center>Figure 4: <a name="fig:diode">
+</a> Diode model.</center>
+
+<p>
+
+<p>
+</dl>The model of diode is implemented in HABALA is shown at Fig <a href="#fig:diode">4</a>.
+Main formulaes of the model are the following:
+
+<p>
+
+<center>  <i>i</i>(<i>u</i>) = <i>I</i><sub><i>so</i></sub>&#183;(<i>e</i><sup><font face="symbol">a</font
+><sub><i>s</i></sub><i>u</i></sup><font face="symbol">-</font
+>1) ;
+<p>
+</center>
+<center>  <i>C</i>(<i>u</i>) = [(<i>C</i><sub><i>j</i>0</sub>)/(<font face="symbol">Ö</font>{1<font face="symbol">-</font
+>[(<i>u</i>)/(<font face="symbol">f</font
+>)]})] ;
+<p>
+</center>It is quite similar to SPICE's dide model. To translate SPICE model to HABALA,
+the following transformations and assumtions are made:
+
+<p>
+<center> 
+<table border="1">
+<tr><td align="center">SPICE parameter</td><td align="center">HABALA parameter</td><td width="19">Notes</td></tr><tr><td>
+<tr><td align="center">IS</td><td align="center"> <i>I</i><sub><i>s</i>0</sub> = <i>IS</i>*<i>AREA</i> </td><td width="19"></td></tr>
+<tr><td align="center">RS</td><td align="center"> <i>Rs</i> = [(<i>RS</i>)/(<i>AREA</i>)] </td><td width="19">&#62;Rsmin</td></tr>
+<tr><td align="center">N</td><td align="center"> <font face="symbol">a</font
+><sub><i>s</i></sub> = [(<i>q</i>)/((<i>k</i>&#183;<i>T</i>&#183;<i>N</i>))] = [36.6676/(<i>N</i>)] </td><td width="19"></td></tr>
+<tr><td align="center">TT</td><td align="center">-</td><td width="19">assumed = 0</td></tr>
+<tr><td align="center">CJO</td><td align="center"> <i>C</i><sub><i>j</i>0</sub> = <i>CJ</i>0&#183;<i>AREA</i> </td><td width="19"></td></tr>
+<tr><td align="center">Vj</td><td align="center"> <font face="symbol">f</font
+> = <i>V</i><sub><i>j</i></sub> </td><td width="19"></td></tr>
+<tr><td align="center">M</td><td align="center">-</td><td width="19">assumed = 0.5</td></tr>
+<tr><td align="center"></td><td align="center"> <i>C</i><sub><i>p</i></sub> = 0 </td><td width="19"></td></tr>
+<tr><td align="center"></td><td align="center"> <i>L</i><sub><i>s</i></sub> = 0 </td><td width="19"></td></tr></table>
+
+<p>
+</center>OTHER_PARAMS are ignored.
+
+<p>
+In addition several paremeters are set into Translator Configuration File:
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+U0=0.5&nbsp;
+
+<p>
+DU=0.1
+</dl>
+These parameters control solution process under certain circumstances. Do not
+change them (or simply delete from file - defaults will be used)
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+k_Diode_f0=0.8
+</dl>
+This parameter sets the linearization point of C(u) characteristic. Linearization
+point =VJ * k_Diode_f0. Value of k_Diode_f0 should be &lt; 1.
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+Rsmin=1.0
+</dl>
+Lower boundary of RS. Should be &#62;0.
+
+<p>
+     <h3><a name="tth_sEc7.6">
+7.6</a>&nbsp;&nbsp;<a name="MESFET_model">
+</a>MESFET .</h3>
+
+<p>
+
+<dl compact="compact">    <dt><b></b></dt>
+	<dd>
+ZXXXX&nbsp;ND&nbsp;NG&nbsp;NS&nbsp;MNAME
+
+<p>
+.MODEL&nbsp;MNAME&nbsp;(NMF&nbsp;|&nbsp;PMF)&nbsp;VTO=&lt;val&#62;&nbsp;BETA=&lt;val&#62;&nbsp;B=&lt;val&#62;&nbsp;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALPHA=&lt;val&#62;&nbsp;LAMBDA=&lt;val&#62;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RD=&lt;val&#62;&nbsp;RS=&lt;val&#62;&nbsp;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGS=&lt;val&#62;&nbsp;CGD=&lt;val&#62;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PB=&lt;val&#62;
+
+<p>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[OTHER_PARAMS]
+</dl>
+The modified Curtice []model is implemented in HABALA simulator. It
+scematics is shown at Fig. . 
+
+<p>
+
+<p>
+<a name="tth_fIg5">
+</a> 
+<center> *1!<img src="pics/mesfet1.gif" alt="pics/mesfet1.gif"> 
+<p>
+</center><center>Figure 5: <a name="fig:MESFET">
+</a>MESFET model is implemented in HABALA</center>
+
+<p>
+
+<p>
+Main formulaes of the model are:
+<p>
+
+<br clear="all"><table border="0" width="100%"><tr><td>
+<table align="center"><tr><td nowrap="nowrap" align="center">
+<i>I</i><sub><i>s</i></sub> = <font face="symbol">b</font
+>&#183;(<i>u</i><sub>1</sub><font face="symbol">-</font
+><i>U</i><sub><i>th</i></sub>)<sup>2</sup>&#183;(1+<font face="symbol">l</font
+>&#183;<i>u</i><sub>2</sub>)&#183;tanh(<font face="symbol">a</font
+>&#183;<i>u</i><sub>2</sub>)</td></tr></table>
+</td></tr></table>
+
+
+
+<p>
+
+<br clear="all"><table border="0" width="100%"><tr><td>
+<table align="center"><tr><td nowrap="nowrap" align="center">
+<i>i</i>(<i>u</i>1) = <i>I</i><sub>0</sub>&#183;(<i>e</i><sup><font face="symbol">a</font
+><sub><i>s</i></sub>&#183;<i>u</i><sub>1</sub></sup><font face="symbol">-</font
+>1)</td></tr></table>
+</td></tr></table>
+
+
+
+<p>
+
+<br clear="all"><table border="0" width="100%"><tr><td>
+<table align="center"><tr><td nowrap="nowrap" align="center">
+<i>C</i><sub>23</sub>(<i>u</i><sub>1</sub>) = </td><td nowrap="nowrap" align="center">
+<i>C</i><sub>230</sub><hr noshade="noshade"><table border="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">
+<font face="symbol" size="+2">&nbsp;&nbsp;æ<br>&nbsp;ú<br>
+Ö<br>
+</font></td><td nowrap="nowrap" align="center">
+<hr noshade="noshade"><table border="0"><tr><td nowrap="nowrap" align="center">
+1<font face="symbol">-</font
+></td><td nowrap="nowrap" align="center">
+<i>u</i><sub>1</sub><hr noshade="noshade"><font face="symbol">f</font
+><br></td></tr></table>&nbsp;<br></td></tr></table></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+<p>
+It is diffrent from Statz model [], so translations are used.
+
+<p>
+<center> 
+<table border="1">
+<tr><td align="center">SPICE parameter</td><td align="center">HABALA parameter</td><td>Notes</td></tr><tr><td>
+<tr><td align="center">VTO</td><td align="center"> <i>V</i><sub><i>th</i></sub> = <font face="symbol">-</font
+><i>VTO</i> </td><td></td></tr>
+<tr><td align="center">BETA</td><td align="center"> <font face="symbol">b</font
+> = <i>BETA</i>*<i>AREA</i> </td><td></td></tr>
+<tr><td align="center">B</td><td align="center">-</td><td>assumed B=1</td></tr>
+<tr><td align="center">ALPHA</td><td align="center"> <font face="symbol">a</font
+> = <i>ALPHA</i> </td><td></td></tr>
+<tr><td align="center">LAMBDA</td><td align="center"> <font face="symbol">l</font
+> = <i>LAMBDA</i> </td><td></td></tr>
+<tr><td align="center">RD</td><td align="center"> <i>R</i><sub>1</sub> = <i>RD</i>/<i>AREA</i> </td><td> <i>RD</i> <font face="symbol">³</font
+> MESFET_RDMIN  <sup>1</sup> )</td></tr>
+<tr><td align="center">RS</td><td align="center"> <i>R</i><sub>3</sub> = <i>RD</i>/<i>AREA</i> </td><td> <i>RS</i> <font face="symbol">³</font
+> MESFET_RSMIN  <sup>1</sup> )</td></tr>
+<tr><td align="center">CGS</td><td align="center"> <i>C</i><sub>230</sub> = <i>CGS</i> </td><td> <sup>2</sup> )</td></tr>
+<tr><td align="center">CGD</td><td align="center"> <i>C</i><sub>12</sub> = <i>CGD</i> </td><td>constant  <sup>2</sup> )</td></tr>
+<tr><td align="center">PB</td><td align="center"> <font face="symbol">f</font
+> = <i>PB</i> </td><td></td></tr>
+<tr><td align="center"></td><td align="center"> <i>R</i><sub>2</sub> = <i>MESFET</i>_<i>RG</i> </td><td>MESFET_RG  <sup>1</sup> )</td></tr>
+<tr><td align="center"></td><td align="center"> <i>C</i><sub>13</sub> = <i>MESFET</i>_<i>CDS</i> </td><td>MESFET_CDS  <sup>1</sup> ),  <sup>2</sup> )</td></tr>
+<tr><td align="center"></td><td align="center"> <i>I</i><sub>0</sub> = <i>MESFET</i>_<i>IS</i>0 </td><td>MESFET_IS0  <sup>1</sup> ),  <sup>2</sup> )</td></tr>
+<tr><td align="center"></td><td align="center"> <font face="symbol">a</font
+><i>s</i> = [(<i>q</i>)/((<i>k</i>&#183;<i>T</i>&#183;<i>MESFET</i>_<i>N</i>))] = [36.6676/(<i>MESFET</i>_<i>N</i>)] </td><td>MESFET_N  <sup>1</sup> )</td></tr>
+<tr><td align="center"></td><td align="center"> <i>R</i><sub>31</sub> = <i>MESFET</i>_<i>RDS</i> </td><td>MESFET_RDS  <sup>1</sup> )</td></tr>
+<tr><td align="center"></td><td align="center"> <i>R</i><sub>23</sub> = <i>MESFET</i>_<i>RGS</i> </td><td>MESFET_RGS  <sup>1</sup> )</td></tr><tr><td>
+<tr><td colspan="3">  <sup>1</sup> ) parameter is defined in config file</td></tr>
+<tr><td colspan="3">  <sup>2</sup> ) parameter should be dependent on AREA, but it is not implemented.</td></tr></table>
+
+<p>
+</center>       <h2><a name="tth_sEc8">
+8</a>&nbsp;&nbsp;Limitations </h2>
+
+<p>
+     <h3><a name="tth_sEc8.1">
+8.1</a>&nbsp;&nbsp;<a name="harm-num">
+</a>Number of Harmonics</h3>
+
+<p>
+Number of hamonics should not be larger than 20. 
+
+<p>
+     <h3><a name="tth_sEc8.2">
+8.2</a>&nbsp;&nbsp;Task Size</h3>
+
+<p>
+Owerall task size should not be larger than 180 complex variables. 
+
+<p>
+Task size TS=NN*HN, where:
+
+<p>
+NN - total number of nonlinear nodes. Note, that each diode yields 2 nonlinear
+nodes, each MESFET - 3;
+
+<p>
+HN - number of harmonics in .HB directive (see <a href="#harm-num">8.1</a>).
+
+<p>
+     <h3><a name="tth_sEc8.3">
+8.3</a>&nbsp;&nbsp;Elements Quantity </h3>
+
+<p>
+Elements quantity is not limited explicitly. Limitations are derived from the
+following:
+
+<p>
+Maximum number of parameters = 1000;
+
+<p>
+Maximum number of units to store information about elements = 1000;
+
+<p>
+       <h2><a name="tth_sEc9">
+9</a>&nbsp;&nbsp;Additional Information</h2>
+
+<p>
+       <h2><a name="tth_sEc10">
+10</a>&nbsp;&nbsp;Bugs</h2>
+
+<p>
+       <h2><a name="tth_sEc11">
+11</a>&nbsp;&nbsp;Contact Information</h2>
+
+<p>
+Gennady Serdyuk,  
+<p>
+Ukraine, Kiev, 
+<p>
+04112, Parkovo Syretskaya, St., 6, apt 78
+<p>
+E-mail: gserdyuk@gmail.com
+<p>
+ph/fax: 380 66 741-2842;
+<p>
+http://www.gserdyuk.com
+<p>
+<h2>References</h2>
+<dl compact="compact">
+<dt>[]</dt><dd>J. E. Dennis, Jr. and Robert B. Schnabel, ``Numerical Methods for Unconstrained
+Optimization and Nonlinear Equations''.
+<dt>[]</dt><dd>W.R.Curtice, ``A MESFET Model for Use on the Design of GaAs Integrated Circuits'',
+IEEE Trans. Microwave Theory Tech., vol. MTT-28, No5, May 1980, pp. 448-456.
+<dt>[]</dt><dd>H.Statz et al., ``GaAs FET Device and Circuit Simulation in SPICE'', IEEE
+Trans. On Electron Devices, Vol. 34, Number 2, February, 1987, pp. 160-169</dl>
+
+<p>
+
+
+</html>

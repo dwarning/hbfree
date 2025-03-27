@@ -1,0 +1,314 @@
+
+Pass 1 ...
+... pass 1 done.
+Pass 1: errors not found, no warnings.
+Pass 2 ...
+#WI2-2001:  file di2.ckt, end of line 14: 
+	For element 'd1' value of parameter 'RS' in model 'sd' set to default value 1:
+d1  1 2 sd
+          ^
+#WI2-2001:  file di2.ckt, end of line 14: 
+	For element 'd1' value of parameter 'N' in model 'sd' set to default value 1:
+d1  1 2 sd
+          ^
+#WI2-2001:  file di2.ckt, end of line 14: 
+	For element 'd1' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d1  1 2 sd
+          ^
+#WI2-2001:  file di2.ckt, end of line 14: 
+	For element 'd1' value of parameter 'VJ' in model 'sd' set to default value 1:
+d1  1 2 sd
+          ^
+Pass 2: errors not found, total 4 warnings.
+... pass 2 done.
+Code generation complete.
+.@w1f1sIterate Circuit Equations.@w1f1e
+
+
+
+
+ ******************************************************************************
+ ***********    HABALA MW&RF HARMONIC BALANCE SIMULATION PROGRAM    ***********
+ *************** (ex-CHANES 0791) HABALA v.0.2 , r.1, 02-june-00 ***************
+ ********** (c) Gennady Serdyuk, 1988-2000, e-mail: gserdyuk@mail.ru**********
+ ******************************************************************************
+
+ *******************************************************************************
+ *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA **
+ *******************************************************************************
+ *******************************************************************************
+ *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA **
+ *******************************************************************************
+
+      COMMON CIRCUIT PARAMETERS:
+     SUBSTRAT DIELECTRIC PERMITTIVITY       =  0.96000E+01
+     CONDUCTOR MAGNETIC PERMEABILITY               =  0.10000E+01
+     CONDUCTOR MATERIAL RESISTIVITY               =  0.57000E+08
+     SUBSTRAT DIELECTRIC TANGENT DELTA         =  0.10000E-03
+ *******************************************************************************
+ *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA **
+ *******************************************************************************
+   INKOOR: ENTERED
+   INKOOR: KNC=   64 KNCMIN=  16 KNCMAX=  128
+.@w1f2sIteration.@w1f2e
+.@w1f3s    1.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =180.0897
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.1000000E+01
+               1-DIMENSIONAL SEARCH: 
+                  FNOR=0.170081E+27,  LAMBDA=0.100000E+00
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.289271E+00.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.353553E+00.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    2.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =179.9774
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.1000002E+01
+               1-DIMENSIONAL SEARCH: 
+                  FNOR=0.138230E+27,  LAMBDA=0.100000E+00
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.260343E+00.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.318197E+00.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    3.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =171.9110
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.1010269E+01
+               1-DIMENSIONAL SEARCH: 
+                  FNOR=0.130796E+21,  LAMBDA=0.100000E+00
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.234283E+00.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.286342E+00.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    4.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =140.3670
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.1299792E+01
+               1-DIMENSIONAL SEARCH: 
+                  FNOR=0.175141E+07,  LAMBDA=0.100000E+00
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.210843E+00.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.257546E+00.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    5.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =135.6760
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.1399461E+01
+               1-DIMENSIONAL SEARCH: 
+                  FNOR=0.649699E+01,  LAMBDA=0.100000E+00
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.189753E+00.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.238617E+00.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    6.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =133.4782
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.1455136E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.152217E-01.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.240431E+00.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    7.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =101.5655
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.5009841E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.552053E-02.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.155892E-01.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    8.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =106.0839
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.3621321E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.196080E-02.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.714418E-02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    9.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =108.4572
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.3167711E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.665665E-03.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.519737E-02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s   10.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =106.6934
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.3492289E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.212349E-03.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.398342E-02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s   11.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  = 97.6284
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.7581954E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.611257E-04.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.464661E-02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s   12.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  = 93.0759
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.1892603E+02
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.112415E-04.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.349691E-02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s   13.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  = 92.0586
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.2848434E+02
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.580929E-06.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.110805E-02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s   14.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  = 91.9196
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.3059510E+02
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.177778E-08.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.635724E-04.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s   15.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  = 91.8833
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.3119948E+02
+.@w2f1s
+SUCCESS.
+  AT    15-TH ITERATION CONVERGED TO SOLUTION    
+  WITH RESIDUAL <= 0.184642E-13 ( < 0.100000E-11 )
+  1/2 OF SQUARED L-2 NORM OF RESIDUAL =0.343247E-26
+.@w2f1e
+     FREQUENCY   1 COMBINATION(  0,  0) VALUE      0.000000E+00
+  U(  1)=-.323008E-04 0.000000E+00
+  U(  2)=0.323169E+00 0.000000E+00
+  U(  3)=0.323008E+00 0.000000E+00
+  U(  4)=-.355308E-03 0.000000E+00
+     FREQUENCY   2 COMBINATION(  0,  1) VALUE      0.110000E+09
+  U(  1)=-.243392E-04 -.499963E+00
+  U(  2)=-.507358E-01 -.437198E-01
+  U(  3)=0.540316E-01 0.450634E-01
+  U(  4)=-.249365E-03 -.499588E+00
+     FREQUENCY   3 COMBINATION(  0,  2) VALUE      0.220000E+09
+  U(  1)=0.175110E-04 0.339225E-04
+  U(  2)=-.246877E-01 0.960891E-02
+  U(  3)=-.299458E-01 0.129131E-01
+  U(  4)=0.192621E-03 0.373147E-03
+     FREQUENCY   4 COMBINATION(  0,  3) VALUE      0.330000E+09
+  U(  1)=0.303305E-04 0.311894E-05
+  U(  2)=-.231499E-02 0.110223E-01
+  U(  3)=0.262916E-02 -.187472E-01
+  U(  4)=0.333635E-03 0.343083E-04
+     FREQUENCY   5 COMBINATION(  1,  0) VALUE      0.100000E+09
+  U(  1)=-.208742E-05 -.499970E+00
+  U(  2)=0.303753E-02 -.299564E+00
+  U(  3)=-.307172E-02 0.299714E+00
+  U(  4)=-.459555E-05 -.499667E+00
+     FREQUENCY   6 COMBINATION(  1,  1) VALUE      0.210000E+09
+  U(  1)=0.246104E-04 0.178949E-04
+  U(  2)=-.337071E-01 0.327532E-01
+  U(  3)=-.348306E-01 0.349450E-01
+  U(  4)=0.270715E-03 0.196844E-03
+     FREQUENCY   7 COMBINATION(  1,  2) VALUE      0.320000E+09
+  U(  1)=0.269144E-04 -.918873E-05
+  U(  2)=0.439416E-02 0.193329E-01
+  U(  3)=-.624739E-02 -.235534E-01
+  U(  4)=0.296058E-03 -.101076E-03
+     FREQUENCY   8 COMBINATION(  1, -3) VALUE     -0.230000E+09
+  U(  1)=-.862589E-05 -.184632E-04
+  U(  2)=-.642056E-02 0.386396E-02
+  U(  3)=-.112411E-01 0.576331E-02
+  U(  4)=-.948848E-04 -.203095E-03
+     FREQUENCY   9 COMBINATION(  1, -2) VALUE     -0.120000E+09
+  U(  1)=-.235748E-04 -.653181E-05
+  U(  2)=-.277709E-02 0.166689E-01
+  U(  3)=0.416371E-02 -.204145E-01
+  U(  4)=-.259323E-03 -.718499E-04
+     FREQUENCY  10 COMBINATION(  1, -1) VALUE     -0.100000E+08
+  U(  1)=-.226421E-04 0.165434E-04
+  U(  2)=0.306223E-01 0.297390E-01
+  U(  3)=0.316800E-01 0.317816E-01
+  U(  4)=-.249063E-03 0.181977E-03
+     FREQUENCY  11 COMBINATION(  2,  0) VALUE      0.200000E+09
+  U(  1)=0.507156E-05 0.179981E-06
+  U(  2)=-.523761E-01 -.260051E-02
+  U(  3)=-.523498E-01 -.261064E-02
+  U(  4)=0.557871E-04 0.197980E-05
+     FREQUENCY  12 COMBINATION(  2,  1) VALUE      0.310000E+09
+  U(  1)=0.767734E-05 -.271606E-05
+  U(  2)=0.211815E-02 0.124929E-01
+  U(  3)=-.242978E-02 -.130688E-01
+  U(  4)=0.844508E-04 -.298767E-04
+     FREQUENCY  13 COMBINATION(  2, -2) VALUE     -0.200000E+08
+  U(  1)=0.685990E-05 0.709362E-05
+  U(  2)=0.435637E-02 -.520267E-02
+  U(  3)=0.560901E-02 -.622525E-02
+  U(  4)=0.754589E-04 0.780298E-04
+     FREQUENCY  14 COMBINATION(  2, -1) VALUE      0.900001E+08
+  U(  1)=0.633922E-05 0.793355E-06
+  U(  2)=-.420247E-03 -.964596E-02
+  U(  3)=0.276104E-03 0.101534E-01
+  U(  4)=0.697314E-04 0.872691E-05
+     FREQUENCY  15 COMBINATION(  3,  0) VALUE      0.300000E+09
+  U(  1)=-.410118E-07 0.294133E-05
+  U(  2)=0.139930E-02 -.276870E-01
+  U(  3)=-.140908E-02 0.277010E-01
+  U(  4)=-.451130E-06 0.323546E-04
+     FREQUENCY  16 COMBINATION(  3,  1) VALUE      0.410000E+09
+  U(  1)=0.357053E-05 -.920756E-06
+  U(  2)=0.457554E-03 0.576179E-02
+  U(  3)=0.574754E-03 0.603196E-02
+  U(  4)=0.392758E-04 -.101283E-04
+     FREQUENCY  17 COMBINATION(  3, -1) VALUE      0.190000E+09
+  U(  1)=-.415883E-05 -.491944E-06
+  U(  2)=0.309834E-03 0.627608E-02
+  U(  3)=0.217294E-03 0.661158E-02
+  U(  4)=-.457472E-04 -.541138E-05
+     FREQUENCY  18 COMBINATION(  4,  0) VALUE      0.400000E+09
+  U(  1)=-.584710E-06 0.766907E-07
+  U(  2)=0.642806E-02 -.313530E-03
+  U(  3)=0.642523E-02 -.310588E-03
+  U(  4)=-.643181E-05 0.843598E-06
+     FREQUENCY  19 COMBINATION(  4,  1) VALUE      0.510000E+09
+  U(  1)=0.374682E-06 0.381453E-06
+  U(  2)=-.695826E-03 0.478339E-03
+  U(  3)=0.721037E-03 -.512450E-03
+  U(  4)=0.412151E-05 0.419598E-05
+     FREQUENCY  20 COMBINATION(  4, -1) VALUE      0.290000E+09
+  U(  1)=0.286276E-06 -.596145E-06
+  U(  2)=-.946429E-03 -.273772E-03
+  U(  3)=0.992141E-03 0.304924E-03
+  U(  4)=0.314904E-05 -.655760E-05
+Time elapsed:    0.72000; User:    0.67000 System:    0.05000

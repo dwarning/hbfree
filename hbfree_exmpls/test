@@ -1,0 +1,32 @@
+#!/bin/bash
+
+SIMUL=hbfree
+
+echo di1.ckt
+$SIMUL di1.ckt
+
+echo di2.ckt
+$SIMUL di2.ckt 
+
+echo di3.ckt
+$SIMUL di3.ckt 
+
+
+echo di5.ckt
+$SIMUL di5.ckt
+echo ""
+echo "Do not panic, it is OK - see examples.readme"
+echo ""
+
+echo " Now larger tasks .."
+echo di6.ckt
+$SIMUL di6.ckt
+
+echo di7.ckt
+$SIMUL di7.ckt
+
+echo di8.ckt
+$SIMUL di8.ckt
+
+rm -f NUL
+./compare

@@ -1,0 +1,8 @@
+Installation 
+1) run 
+$ make 
+in habala directory 
+
+2)  run 
+# make install
+in habala directory as root

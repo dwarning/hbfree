@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SIMUL=hbfree
+
+rm -f *.elems *.nodes *.chan *.hbl
+rm -f NUL

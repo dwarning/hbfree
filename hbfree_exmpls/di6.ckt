@@ -1,0 +1,43 @@
+spice test 4-diode bridge circuit 
+* 4-diode circuit under 2-tone excitation
+* "t" transmission line included  
+* large LO signal
+*
+*
+*
+*
+
+
+vs  1 0  ac 1v sin (0 21.21 100Meg 0 0) 
++              sin (0 0.2828 110Meg 0 0) 
++              distof1 15 distof2 0.2
+
+*t1  1 0 2 0 z0=50 f=100MEG nl=0.5 
+rr 1 2 2
+
+d1 2 3 sd
+d2 4 2 sd
+d3 0 3 sd
+d4 4 0 sd
+
+rl  3 4  1k
+
+
+.model sd d is=1e-9 tt=0 m=0.5
+
+* .ac dec 5 10 10k 
+.tran 0.2n 500n 0 0.2n
+
+.hb f1=100e6 f2=110e6 
++ 0 0 0 1 
++ 1 -1 1 0 1 1 
++ 2 -1 2 0 2 1 
++ 3 -1 3 0 3 1 
++ 4 -1 4 0 4 1 
++ 5 -1 5 0 5 1 
++ 6 0 7 0
+
+.hb_options epsiw=1.e-6 epssol=1.e-12 epsdu=1.e-9 limit=50
+
+
+.end

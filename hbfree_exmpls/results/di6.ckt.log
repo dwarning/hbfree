@@ -1,0 +1,393 @@
+
+Pass 1 ...
+... pass 1 done.
+Pass 1: errors not found, no warnings.
+Pass 2 ...
+#WI2-2001:  file di6.ckt, end of line 18: 
+	For element 'd1' value of parameter 'RS' in model 'sd' set to default value 1:
+d1 2 3 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 18: 
+	For element 'd1' value of parameter 'N' in model 'sd' set to default value 1:
+d1 2 3 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 18: 
+	For element 'd1' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d1 2 3 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 18: 
+	For element 'd1' value of parameter 'VJ' in model 'sd' set to default value 1:
+d1 2 3 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 19: 
+	For element 'd2' value of parameter 'RS' in model 'sd' set to default value 1:
+d2 4 2 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 19: 
+	For element 'd2' value of parameter 'N' in model 'sd' set to default value 1:
+d2 4 2 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 19: 
+	For element 'd2' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d2 4 2 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 19: 
+	For element 'd2' value of parameter 'VJ' in model 'sd' set to default value 1:
+d2 4 2 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 20: 
+	For element 'd3' value of parameter 'RS' in model 'sd' set to default value 1:
+d3 0 3 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 20: 
+	For element 'd3' value of parameter 'N' in model 'sd' set to default value 1:
+d3 0 3 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 20: 
+	For element 'd3' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d3 0 3 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 20: 
+	For element 'd3' value of parameter 'VJ' in model 'sd' set to default value 1:
+d3 0 3 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 21: 
+	For element 'd4' value of parameter 'RS' in model 'sd' set to default value 1:
+d4 4 0 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 21: 
+	For element 'd4' value of parameter 'N' in model 'sd' set to default value 1:
+d4 4 0 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 21: 
+	For element 'd4' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d4 4 0 sd
+         ^
+#WI2-2001:  file di6.ckt, end of line 21: 
+	For element 'd4' value of parameter 'VJ' in model 'sd' set to default value 1:
+d4 4 0 sd
+         ^
+Pass 2: errors not found, total 16 warnings.
+... pass 2 done.
+Code generation complete.
+.@w1f1sIterate Circuit Equations.@w1f1e
+
+
+
+
+ ******************************************************************************
+ ***********    HABALA MW&RF HARMONIC BALANCE SIMULATION PROGRAM    ***********
+ *************** (ex-CHANES 0791) HABALA v.0.2 , r.1, 02-june-00 ***************
+ ********** (c) Gennady Serdyuk, 1988-2000, e-mail: gserdyuk@mail.ru**********
+ ******************************************************************************
+
+ *******************************************************************************
+ *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA **
+ *******************************************************************************
+ *******************************************************************************
+ *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA **
+ *******************************************************************************
+
+      COMMON CIRCUIT PARAMETERS:
+     SUBSTRAT DIELECTRIC PERMITTIVITY       =  0.96000E+01
+     CONDUCTOR MAGNETIC PERMEABILITY               =  0.10000E+01
+     CONDUCTOR MATERIAL RESISTIVITY               =  0.57000E+08
+     SUBSTRAT DIELECTRIC TANGENT DELTA         =  0.10000E-03
+ *******************************************************************************
+ *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA **
+ *******************************************************************************
+   INKOOR: ENTERED
+   INKOOR: KNC=   64 KNCMIN=  32 KNCMAX=   64
+.@w1f2sIteration.@w1f2e
+.@w1f3s    1.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =101.2219
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.5161806E+01
+               1-DIMENSIONAL SEARCH: 
+                  FNOR=0.115512+205,  LAMBDA=0.100000E+00
+                  FNOR=0.222615E+51,  LAMBDA=0.500000E-01
+                  FNOR=0.324178E+16,  LAMBDA=0.250000E-01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.487736E+01.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.103906E+02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    2.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  = 91.2670
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.4693879E+02
+               1-DIMENSIONAL SEARCH: 
+                  FNOR=0.872676+204,  LAMBDA=0.100000E+00
+                  FNOR=0.173940E+51,  LAMBDA=0.500000E-01
+                  FNOR=0.265830E+16,  LAMBDA=0.250000E-01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.475541E+01.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.103637E+02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    3.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  = 91.4597
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.4054348E+02
+               1-DIMENSIONAL SEARCH: 
+                  FNOR=0.523813E+78,  LAMBDA=0.100000E+00
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.427920E+01.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.100683E+02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    4.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  = 91.5419
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.3831603E+02
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.405551E-01.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.594904E+01.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    5.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =101.7961
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.4912854E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.132645E-01.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.142846E-01.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    6.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =104.2939
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.4065004E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.409629E-02.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.135981E-01.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    7.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =102.8601
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.4510920E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.834991E-03.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.750970E-02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    8.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =103.6607
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.4250240E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.557785E-04.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.174598E-02.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s    9.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =104.4285
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.4027752E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.377001E-06.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.105083E-03.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s   10.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =102.3441
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.4697099E+01
+.@w1f4sResidual.@w1f4e
+.@w1f5s0.616852E-10.@w1f5e
+.@w1f6sStep.@w1f6e
+.@w1f7s0.130297E-05.@w1f7e
+
+.@w1f2sIteration.@w1f2e
+.@w1f3s   11.@w1f3e
+
+ * IN CURRENT POINT ANGLE BTWN. GRAD. AND CORR.  =101.1397
+ ** LOWER ESTIM. JACOBIAN CONDIT. NUMBER = 0.5199582E+01
+.@w2f1s
+SUCCESS.
+  AT    11-TH ITERATION CONVERGED TO SOLUTION    
+  WITH RESIDUAL <= 0.177636E-14 ( < 0.100000E-11 )
+  1/2 OF SQUARED L-2 NORM OF RESIDUAL =0.203281E-29
+.@w2f1e
+     FREQUENCY   1 COMBINATION(  0,  0) VALUE      0.000000E+00
+  U(  1)=-.125719E-16 0.000000E+00
+  U(  2)=-.264010E-15 0.000000E+00
+  U(  3)=0.645539E+01 0.000000E+00
+  U(  4)=-.645539E+01 0.000000E+00
+  U(  5)=-.645539E-02 0.000000E+00
+  U(  6)=-.646185E+01 0.000000E+00
+  U(  7)=-.645539E-02 0.000000E+00
+  U(  8)=-.646185E+01 0.000000E+00
+     FREQUENCY   2 COMBINATION(  0,  1) VALUE      0.110000E+09
+  U(  1)=-.734558E-06 -.199977E+00
+  U(  2)=-.732891E-06 -.199523E+00
+  U(  3)=-.366445E-06 -.997617E-01
+  U(  4)=-.366445E-06 -.997617E-01
+  U(  5)=-.732474E-06 -.199410E+00
+  U(  6)=-.366862E-06 -.998752E-01
+  U(  7)=-.416758E-09 -.113459E-03
+  U(  8)=-.366029E-06 -.996483E-01
+     FREQUENCY   3 COMBINATION(  1,  0) VALUE      0.100000E+09
+  U(  1)=-.550928E-04 -.149986E+02
+  U(  2)=-.549865E-04 -.149699E+02
+  U(  3)=-.274933E-04 -.748496E+01
+  U(  4)=-.274933E-04 -.748496E+01
+  U(  5)=-.549600E-04 -.149628E+02
+  U(  6)=-.275198E-04 -.749212E+01
+  U(  7)=-.265566E-07 -.716039E-02
+  U(  8)=-.274667E-04 -.747780E+01
+     FREQUENCY   4 COMBINATION(  1,  1) VALUE      0.210000E+09
+  U(  1)=0.391379E-18 -.271258E-19
+  U(  2)=0.821897E-17 -.569641E-18
+  U(  3)=-.625242E-01 0.465186E-06
+  U(  4)=0.625242E-01 -.465186E-06
+  U(  5)=0.625242E-04 -.465186E-09
+  U(  6)=0.625867E-01 -.465652E-06
+  U(  7)=0.625242E-04 -.465186E-09
+  U(  8)=0.625867E-01 -.465652E-06
+     FREQUENCY   5 COMBINATION(  1, -1) VALUE     -0.100000E+08
+  U(  1)=-.319172E-18 0.161827E-19
+  U(  2)=-.670261E-17 0.339836E-18
+  U(  3)=0.625242E-01 -.585818E-08
+  U(  4)=-.625242E-01 0.585818E-08
+  U(  5)=-.625242E-04 0.585818E-11
+  U(  6)=-.625867E-01 0.586404E-08
+  U(  7)=-.625242E-04 0.585818E-11
+  U(  8)=-.625867E-01 0.586404E-08
+     FREQUENCY   6 COMBINATION(  2,  0) VALUE      0.200000E+09
+  U(  1)=0.488138E-21 0.112897E-20
+  U(  2)=0.102509E-19 0.237083E-19
+  U(  3)=-.296154E+01 0.217568E-04
+  U(  4)=0.296154E+01 -.217568E-04
+  U(  5)=0.296154E-02 -.217568E-07
+  U(  6)=0.296450E+01 -.217786E-04
+  U(  7)=0.296154E-02 -.217568E-07
+  U(  8)=0.296450E+01 -.217786E-04
+     FREQUENCY   7 COMBINATION(  2,  1) VALUE      0.310000E+09
+  U(  1)=0.281923E-10 0.354074E-05
+  U(  2)=0.592038E-09 0.743556E-04
+  U(  3)=0.296019E-09 0.371778E-04
+  U(  4)=0.296019E-09 0.371778E-04
+  U(  5)=0.733000E-09 0.920593E-04
+  U(  6)=0.155058E-09 0.194741E-04
+  U(  7)=-.140962E-09 -.177037E-04
+  U(  8)=0.436981E-09 0.548815E-04
+     FREQUENCY   8 COMBINATION(  2, -1) VALUE      0.900001E+08
+  U(  1)=-.218056E-11 -.354074E-05
+  U(  2)=-.457917E-10 -.743556E-04
+  U(  3)=-.228959E-10 -.371778E-04
+  U(  4)=-.228958E-10 -.371778E-04
+  U(  5)=-.566945E-10 -.920593E-04
+  U(  6)=-.119931E-10 -.194741E-04
+  U(  7)=0.109028E-10 0.177037E-04
+  U(  8)=-.337986E-10 -.548815E-04
+     FREQUENCY   9 COMBINATION(  3,  0) VALUE      0.300000E+09
+  U(  1)=0.323196E-09 0.230348E-04
+  U(  2)=0.678711E-08 0.483730E-03
+  U(  3)=0.339355E-08 0.241865E-03
+  U(  4)=0.339355E-08 0.241865E-03
+  U(  5)=0.840309E-08 0.598904E-03
+  U(  6)=0.177758E-08 0.126691E-03
+  U(  7)=-.161598E-08 -.115174E-03
+  U(  8)=0.500953E-08 0.357039E-03
+     FREQUENCY  10 COMBINATION(  3,  1) VALUE      0.410000E+09
+  U(  1)=0.167400E-18 -.482545E-19
+  U(  2)=0.351541E-17 -.101334E-17
+  U(  3)=-.172101E-01 0.254540E-06
+  U(  4)=0.172101E-01 -.254540E-06
+  U(  5)=0.172101E-04 -.254540E-09
+  U(  6)=0.172273E-01 -.254795E-06
+  U(  7)=0.172101E-04 -.254540E-09
+  U(  8)=0.172273E-01 -.254795E-06
+     FREQUENCY  11 COMBINATION(  3, -1) VALUE      0.190000E+09
+  U(  1)=-.102394E-18 0.152247E-19
+  U(  2)=-.215027E-17 0.319718E-18
+  U(  3)=0.172101E-01 -.128108E-06
+  U(  4)=-.172101E-01 0.128108E-06
+  U(  5)=-.172101E-04 0.128108E-09
+  U(  6)=-.172273E-01 0.128236E-06
+  U(  7)=-.172101E-04 0.128108E-09
+  U(  8)=-.172273E-01 0.128236E-06
+     FREQUENCY  12 COMBINATION(  4,  0) VALUE      0.400000E+09
+  U(  1)=-.540290E-18 -.176812E-20
+  U(  2)=-.113461E-16 -.371306E-19
+  U(  3)=-.454896E+00 0.670185E-05
+  U(  4)=0.454896E+00 -.670185E-05
+  U(  5)=0.454896E-03 -.670185E-08
+  U(  6)=0.455351E+00 -.670856E-05
+  U(  7)=0.454896E-03 -.670185E-08
+  U(  8)=0.455351E+00 -.670856E-05
+     FREQUENCY  13 COMBINATION(  4,  1) VALUE      0.510000E+09
+  U(  1)=0.113330E-09 0.787327E-05
+  U(  2)=0.237994E-08 0.165339E-03
+  U(  3)=0.118997E-08 0.826693E-04
+  U(  4)=0.118997E-08 0.826693E-04
+  U(  5)=0.294659E-08 0.204705E-03
+  U(  6)=0.623317E-09 0.433030E-04
+  U(  7)=-.566652E-09 -.393663E-04
+  U(  8)=0.175662E-08 0.122036E-03
+     FREQUENCY  14 COMBINATION(  4, -1) VALUE      0.290000E+09
+  U(  1)=-.554901E-10 -.787327E-05
+  U(  2)=-.116529E-08 -.165339E-03
+  U(  3)=-.582646E-09 -.826693E-04
+  U(  4)=-.582646E-09 -.826693E-04
+  U(  5)=-.144274E-08 -.204705E-03
+  U(  6)=-.305195E-09 -.433030E-04
+  U(  7)=0.277450E-09 0.393663E-04
+  U(  8)=-.860096E-09 -.122036E-03
+     FREQUENCY  15 COMBINATION(  5,  0) VALUE      0.500000E+09
+  U(  1)=0.185951E-08 0.943001E-04
+  U(  2)=0.390497E-07 0.198030E-02
+  U(  3)=0.195248E-07 0.990151E-03
+  U(  4)=0.195248E-07 0.990151E-03
+  U(  5)=0.483472E-07 0.245180E-02
+  U(  6)=0.102273E-07 0.518651E-03
+  U(  7)=-.929754E-08 -.471501E-03
+  U(  8)=0.288224E-07 0.146165E-02
+     FREQUENCY  16 COMBINATION(  5,  1) VALUE      0.610000E+09
+  U(  1)=0.315081E-18 -.221118E-18
+  U(  2)=0.661669E-17 -.464347E-17
+  U(  3)=-.592056E-02 0.129388E-06
+  U(  4)=0.592056E-02 -.129388E-06
+  U(  5)=0.592056E-05 -.129388E-09
+  U(  6)=0.592648E-02 -.129518E-06
+  U(  7)=0.592056E-05 -.129388E-09
+  U(  8)=0.592648E-02 -.129518E-06
+     FREQUENCY  17 COMBINATION(  5, -1) VALUE      0.390000E+09
+  U(  1)=-.134590E-18 0.355735E-20
+  U(  2)=-.282638E-17 0.747044E-19
+  U(  3)=0.592056E-02 -.858935E-07
+  U(  4)=-.592056E-02 0.858935E-07
+  U(  5)=-.592056E-05 0.858935E-10
+  U(  6)=-.592648E-02 0.859794E-07
+  U(  7)=-.592056E-05 0.858935E-10
+  U(  8)=-.592648E-02 0.859794E-07
+     FREQUENCY  18 COMBINATION(  6,  0) VALUE      0.600000E+09
+  U(  1)=-.513907E-18 0.159617E-19
+  U(  2)=-.107921E-16 0.335195E-18
+  U(  3)=-.115265E+00 0.257121E-05
+  U(  4)=0.115265E+00 -.257121E-05
+  U(  5)=0.115265E-03 -.257121E-08
+  U(  6)=0.115380E+00 -.257378E-05
+  U(  7)=0.115265E-03 -.257121E-08
+  U(  8)=0.115380E+00 -.257378E-05
+     FREQUENCY  19 COMBINATION(  7,  0) VALUE      0.700001E+09
+  U(  1)=0.116031E-07 0.431305E-03
+  U(  2)=0.243664E-06 0.905740E-02
+  U(  3)=0.121832E-06 0.452870E-02
+  U(  4)=0.121832E-06 0.452870E-02
+  U(  5)=0.301679E-06 0.112139E-01
+  U(  6)=0.638168E-07 0.237218E-02
+  U(  7)=-.580153E-07 -.215652E-02
+  U(  8)=0.179847E-06 0.668522E-02
+Time elapsed:    5.58000; User:    5.55000 System:    0.03000

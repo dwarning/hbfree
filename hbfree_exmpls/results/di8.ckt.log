@@ -1,0 +1,135 @@
+
+Pass 1 ...
+... pass 1 done.
+Pass 1: errors not found, no warnings.
+Pass 2 ...
+#WI2-2001:  file di8.ckt, end of line 17: 
+	For element 'd1' value of parameter 'RS' in model 'sd' set to default value 1:
+d1 2 3 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 17: 
+	For element 'd1' value of parameter 'N' in model 'sd' set to default value 1:
+d1 2 3 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 17: 
+	For element 'd1' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d1 2 3 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 17: 
+	For element 'd1' value of parameter 'VJ' in model 'sd' set to default value 1:
+d1 2 3 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 18: 
+	For element 'd2' value of parameter 'RS' in model 'sd' set to default value 1:
+d2 4 2 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 18: 
+	For element 'd2' value of parameter 'N' in model 'sd' set to default value 1:
+d2 4 2 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 18: 
+	For element 'd2' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d2 4 2 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 18: 
+	For element 'd2' value of parameter 'VJ' in model 'sd' set to default value 1:
+d2 4 2 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 19: 
+	For element 'd3' value of parameter 'RS' in model 'sd' set to default value 1:
+d3 5 3 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 19: 
+	For element 'd3' value of parameter 'N' in model 'sd' set to default value 1:
+d3 5 3 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 19: 
+	For element 'd3' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d3 5 3 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 19: 
+	For element 'd3' value of parameter 'VJ' in model 'sd' set to default value 1:
+d3 5 3 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 20: 
+	For element 'd4' value of parameter 'RS' in model 'sd' set to default value 1:
+d4 4 5 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 20: 
+	For element 'd4' value of parameter 'N' in model 'sd' set to default value 1:
+d4 4 5 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 20: 
+	For element 'd4' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d4 4 5 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 20: 
+	For element 'd4' value of parameter 'VJ' in model 'sd' set to default value 1:
+d4 4 5 sd
+         ^
+#WI2-2001:  file di8.ckt, end of line 24: 
+	For element 'd5' value of parameter 'RS' in model 'sd' set to default value 1:
+d5 6 7  sd 
+           ^
+#WI2-2001:  file di8.ckt, end of line 24: 
+	For element 'd5' value of parameter 'N' in model 'sd' set to default value 1:
+d5 6 7  sd 
+           ^
+#WI2-2001:  file di8.ckt, end of line 24: 
+	For element 'd5' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d5 6 7  sd 
+           ^
+#WI2-2001:  file di8.ckt, end of line 24: 
+	For element 'd5' value of parameter 'VJ' in model 'sd' set to default value 1:
+d5 6 7  sd 
+           ^
+#WI2-2001:  file di8.ckt, end of line 25: 
+	For element 'd6' value of parameter 'RS' in model 'sd' set to default value 1:
+d6 6 7  sd
+          ^
+#WI2-2001:  file di8.ckt, end of line 25: 
+	For element 'd6' value of parameter 'N' in model 'sd' set to default value 1:
+d6 6 7  sd
+          ^
+#WI2-2001:  file di8.ckt, end of line 25: 
+	For element 'd6' value of parameter 'CJ0' in model 'sd' set to default value 0:
+d6 6 7  sd
+          ^
+#WI2-2001:  file di8.ckt, end of line 25: 
+	For element 'd6' value of parameter 'VJ' in model 'sd' set to default value 1:
+d6 6 7  sd
+          ^
+Pass 2: errors not found, total 24 warnings.
+... pass 2 done.
+Code generation complete.
+.@w1f1sIterate Circuit Equations.@w1f1e
+
+
+
+
+ ******************************************************************************
+ ***********    HABALA MW&RF HARMONIC BALANCE SIMULATION PROGRAM    ***********
+ *************** (ex-CHANES 0791) HABALA v.0.2 , r.1, 02-june-00 ***************
+ ********** (c) Gennady Serdyuk, 1988-2000, e-mail: gserdyuk@mail.ru**********
+ ******************************************************************************
+
+ *******************************************************************************
+ *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA **
+ *******************************************************************************
+ *******************************************************************************
+ *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA **
+ *******************************************************************************
+
+      COMMON CIRCUIT PARAMETERS:
+     SUBSTRAT DIELECTRIC PERMITTIVITY       =  0.96000E+01
+     CONDUCTOR MAGNETIC PERMEABILITY               =  0.10000E+01
+     CONDUCTOR MATERIAL RESISTIVITY               =  0.57000E+08
+     SUBSTRAT DIELECTRIC TANGENT DELTA         =  0.10000E-03
+ *******************************************************************************
+ *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA *** HABALA **
+ *******************************************************************************
+   INKOOR: ENTERED
+   INKOOR: KNC=   64 KNCMIN= 128 KNCMAX=  128
+  too many variables:
+  Harmonics:  20, Nodes:  10, Total:  200
+  Allowed: 180

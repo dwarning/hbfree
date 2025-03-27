@@ -1,0 +1,36 @@
+#!/bin/bash
+# 
+# simple hbfree running script
+#
+# Gennady Serdyuk, 2004 
+# gserdyuk@mail.ru
+# GPL
+#
+
+CONFIG=/etc/s2h.cfg
+
+INFILE=$1
+
+INBASE=`basename $INFILE`
+OUT_CH=$INBASE.chan
+
+ELEMS=$INBASE.elems
+NODES=$INBASE.nodes
+
+s2h -c$CONFIG -m$ELEMS -n$NODES $INFILE $OUT_CH
+ERR_CD=$?
+
+if test $ERR_CD -gt 1; then
+    echo "ERROR(S) DURING TRANSLATION. EXITING"
+    exit $ERR_CD
+fi
+
+OUT_HBL=$INBASE.hbl
+
+hbl $OUT_CH |tee $OUT_HBL
+ERR_CD1=$?
+
+if test $ERR_CD1 -gt 0; then
+    echo "ERROR(S) DURING TRANSLATION. EXITING"
+    exit $ERR_CD1
+fi

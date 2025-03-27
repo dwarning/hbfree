@@ -1,0 +1,10 @@
+
+Pass 1 ...
+#ER1-5543:  file di5.ckt, line 15, pos 15: 
+	Error in Lossless Transmission Line 't1':
+t1  2 0 out 0 0 z0=50 f=100MEG nl=0.5 
+              ^
+... pass 1 done.
+Pass 1: total 1 errors found, no warnings.
+
+#FE1-9901: Errors found on pass 1
