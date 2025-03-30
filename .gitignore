@@ -12,6 +12,9 @@ chanes/SPAGged
 chanes/*.log
 chanes/*.mod
 chanes/*.f90
+chanes/*.out
+chanes/*.htm
+chanes/_pf_data
 *.fig
 *.pf
 

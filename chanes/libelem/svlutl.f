@@ -20,7 +20,7 @@ C
 
       COMMON/SUBC/  YY(15,15),VJ(15)
       COMMON/SUBS/  SV(15,15)
-
+      DOUBLE PRECISION          M0
 
 C
 

@@ -14,17 +14,18 @@ C     נ/נ OנPEהEלEHיס MAX KOל-BA BX/BשX BEלי‏יH הלס נP-ס זץPרE
 C                  ( Bש‏יCלEHיס הלס INKOOR )
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      COMMON/POINT/M(1)/POINTR/NMPNT,NN,NP,LN,LP,NNPR,LENNTP
+      COMMON/POINT/MPOINT(1)
+      COMMON/POINTR/NMPNT,NN,NP,LN,LP,NNPR,LENNTP
 
 C
       NR=0
       NB=0
       IEND=NMPNT*20
       DO 10 I=1,IEND,20
-      ITY=M(I+5)
+      ITY=MPOINT(I+5)
       IF(ITY.NE.3) GO TO 10
-      NB=MAX0(M(I+17),NB)
-      NR=MAX0(M(I+18),NR)
+      NB=MAX0(MPOINT(I+17),NB)
+      NR=MAX0(MPOINT(I+18),NR)
    10 CONTINUE
       MAXSYN=MAX0(NR,NB,1)
       RETURN

@@ -6,7 +6,7 @@ C MAXKN - max number of frequencies ( almost all 20-th in this program
 C         is MAXKN
 C MAXKN1 - max size of extended frequency grid (for derivatives)
 C size W in common/blw1/ is MAXKN, size W1 - MAXKN1
-       integer MAXU_MD, MAXD_MD, MAXKN
+       integer MAXU_MD, MAXD_MD, MAXKN, MAXKN1
        parameter (MAXU_MD = 10)
        parameter (MAXD_MD = 10)
        parameter (MAXKN = 20)

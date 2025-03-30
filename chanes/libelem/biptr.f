@@ -37,7 +37,7 @@ C
      +              ZERO
 
 
-      CR(X) = DCMPLX(X,   0.0D0)
+c      CR(X) = DCMPLX(X,   0.0D0)
       CI(X) = DCMPLX(0.0D0,OM*X)
 
       ZERO = DCMPLX(0.0D0,0.0D0)

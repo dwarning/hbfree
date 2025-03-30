@@ -152,7 +152,7 @@ c need not to open channel 6 for aut - it is stdout. parse switches
                 print *,'HArmonic BALAnce simulator, ',                 
      +                  '(c) Gennady Serdyuk, 1989-2002',
      +                  ' gserdyuk@mail.ru'
-                return 
+c                return 
             else
                 print *,'unknown parameter', cl_param
             endif
