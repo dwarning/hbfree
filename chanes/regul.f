@@ -30,7 +30,7 @@ C$LARGE:DFDX,F
 C      n1=n+1
 C      do 20 i=1,n
 C      print 10, F(I),I,(dfdx(i,j),j=1,n1)
-C   10 format(2x,'REGUL : F=',E12.6,' DFDX(',I3,', J)=',(/3X,6(E12.6)))
+C   10 format(2x,'REGUL : F=',E13.6,' DFDX(',I3,', J)=',(/3X,6(E13.6)))
 C   20 continue
       
       RETURN

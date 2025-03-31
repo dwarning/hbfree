@@ -267,5 +267,5 @@ C***********************************************************************
      +OF EQUATIONS EXCEEDS MAXIMUM.'         /3X,' NUMBER OF NODES=',I5 
      +        /3X,' NUMBER OF FREQNCYS=',I5         /3X,' MAX SIZE=',I5 
      +  )
-C1232 FORMAT(2X,'ZNN(',I3,')=',E12.6,2X,E12.6)
+C1232 FORMAT(2X,'ZNN(',I3,')=',E13.6,2X,E13.6)
       END

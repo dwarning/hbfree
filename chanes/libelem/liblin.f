@@ -159,7 +159,7 @@ C     DEBUG                         SUBTRACE
 C
 C      WRITE(6, 40)  ((I,J,SUBY(I,J),J=1,2),I=1,2)
 C   40 FORMAT(2X,'LIBLIN EMF: '/
-C     *       2X,'   SUBY(',I3,',',I3,')=',E12.6,',',E12.6/)
+C     *       2X,'   SUBY(',I3,',',I3,')=',E13.6,',',E13.6/)
 
       RETURN
       END

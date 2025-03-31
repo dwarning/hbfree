@@ -128,7 +128,7 @@ C 9875 FORMAT(2X, ' #######  YY B TEST''E  ######  ')
 C       DO 465 II=1,M
 C       DO 465 JJJ=1,M
 C       WRITE(6, 9876) II,JJJ,YY(II,JJJ)
-C 9876 FORMAT(2X,' YY(',I3,',',I3,')=',2(2X,E12.6 ))
+C 9876 FORMAT(2X,' YY(',I3,',',I3,')=',2(2X,E13.6 ))
 C  465 CONTINUE
 C
 

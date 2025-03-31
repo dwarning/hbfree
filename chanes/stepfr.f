@@ -55,9 +55,9 @@ C     LIN.CONST.-ÊOPMÈPOBAHÈE
 C   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 C      WRITE(6,2)((III,JJJ,Y(III,JJJ),JJJ=1,KKK),III=1,KKK)
 C   1  FORMAT(2X,' Y   STEPFR ',I2,' KOL(1),KOL(2),KOL(3),KKK=',4I3)
-C   2  FORMAT(2X,'Y(',I3,',',I3,')=',1X,E12.6,1X,E12.6)
+C   2  FORMAT(2X,'Y(',I3,',',I3,')=',1X,E13.6,1X,E13.6)
 C      WRITE(6,3) (III, VJ(III),III=1,KKK)      
-C   3  FORMAT(2X,'STEPFR VJ(',I3,')=',E12.6,',',E12.6)
+C   3  FORMAT(2X,'STEPFR VJ(',I3,')=',E13.6,',',E13.6)
       
       IF(KOL(1).EQ.0) GO TO 10
       NF=1

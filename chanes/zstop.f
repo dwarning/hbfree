@@ -102,29 +102,29 @@ C   HéþEçO HE ðPOéúOûìO
                       PRINT    107, CONV,DUNOR,TERM
       RETURN
  101  FORMAT('     AT ',I5,' -TH ITERATION CONVERGED TO '/       '  SOLU
-     +TION WITH ERROR <= ',E12.6 ,' ( < ',E12.6,' )'/       '  1/2 OF SQ
-     +UARED L-2 NORM OF ERROR =',E12.6 )
- 102  FORMAT('     AT ',I5,' -T ITERATION MAX STEP=',E12.6,' ( <',E12.6,
-     +')'/       '  ERROR =',E12.6/       '  1/2 OF SQUARED L-2 NORM OF 
-     +ERROR =',E12.6)
+     +TION WITH ERROR <= ',E13.6 ,' ( < ',E13.6,' )'/       '  1/2 OF SQ
+     +UARED L-2 NORM OF ERROR =',E13.6 )
+ 102  FORMAT('     AT ',I5,' -T ITERATION MAX STEP=',E13.6,' ( <',E13.6,
+     +')'/       '  ERROR =',E13.6/       '  1/2 OF SQUARED L-2 NORM OF 
+     +ERROR =',E13.6)
  103  FORMAT('     AT ',I5,' -TH ITERATION CAN NOT MAKE GOOD STEP'/     
-     +  '  > ',E12.6/       '  1/2 OF SQUARED L-2 NORM OF ERROR =',E12.6
+     +  '  > ',E13.6/       '  1/2 OF SQUARED L-2 NORM OF ERROR =',E13.6
      +)
  104  FORMAT('     ITERATION LIMIT:',I4,' IS REACHED.'/       '  ERROR =
-     +',E12.6,'( > ',E12.6,' );'/       '  STEP =',E12.6,'( > ',E12.6,' 
+     +',E13.6,'( > ',E13.6,' );'/       '  STEP =',E13.6,'( > ',E13.6,' 
      +).')
  105  FORMAT('     AT ',I4,' ITERATION , IT IS MADE'/       '  5 STEPS O
-     +F LENGTH ',E12.6/       '  ERROR =',E12.6,' ( > ',E12.6,' ).')
+     +F LENGTH ',E13.6/       '  ERROR =',E13.6,' ( > ',E13.6,' ).')
  106  FORMAT('  IT IS LOCAL MINIMUM :  '/       '              ITERATION
      +                        ',I4/       '              GRADIENT OF ERR
-     +OR NORM        ',E12.6,                                           
-     +    '(<',E12.6 ,')'/       '              1/2 SQUARED  L-2 ERROR N
-     +ORM   ',E12.6/       '               ERROR                        
-     +',E12.6/       '               REQUIRED                     ',E12.
+     +OR NORM        ',E13.6,                                           
+     +    '(<',E13.6 ,')'/       '              1/2 SQUARED  L-2 ERROR N
+     +ORM   ',E13.6/       '               ERROR                        
+     +',E13.6/       '               REQUIRED                     ',E13.
      +6)
 
- 107  FORMAT(' ERROR  =',E12.6,', STEP=',E12.6,', SPEED OF DECREASING=' 
-     +      , E12.6)
+ 107  FORMAT(' ERROR  =',E13.6,', STEP=',E13.6,', SPEED OF DECREASING=' 
+     +      , E13.6)
 
 
 

@@ -49,7 +49,7 @@ C  נOיCK נOתידיך
 C  תAנOלHEHיE S-MATPידש
        S(I50,I40)=DCMPLX(P3(IPR),P3(IPI))
 C      PRINT 25,I50,I40,S(I50,I40)
-C  25 FORMAT(2X,'S(',I4,',',I4,')=',E12.6,2X,E12.6)
+C  25 FORMAT(2X,'S(',I4,',',I4,')=',E13.6,2X,E13.6)
    50  CONTINUE
    40  CONTINUE
 C

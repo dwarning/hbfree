@@ -245,11 +245,11 @@ C T.E.ECÏÈ ‚ÏOK È˙ KN1 ¸ÏEMEHTOB POÍ‰EH-EPEXO‰ÈM K CÏE‰ı‡˝EMı
    90 CONTINUE
 C      WRITE(6, 120) SUM1,EW,DIFF2,G,
 C     *              IM,DIFF1,IS,W(IS),SUM2,GI
-C  120 FORMAT(2X,'ZNEJAC: SUM1=',E12.6,',',E12.6,' EW=',E12.6,',',E12.6/
-C     *       2X,'        DIFF2=',E12.6,',',E12.6,' G=',E12.6,',',E12.6/
-C     *       2X,'       IM=',E12.6,',',E12.6,' DIFF1=',E12.6,',',E12.6/
-C     *       2X,'       W(',I5,')=',E12.6,' SUM2=',E12.6,',',E12.6/
-C     *       2X,'       GI=',E12.6,',',E12.6)
+C  120 FORMAT(2X,'ZNEJAC: SUM1=',E13.6,',',E13.6,' EW=',E13.6,',',E13.6/
+C     *       2X,'        DIFF2=',E13.6,',',E13.6,' G=',E13.6,',',E13.6/
+C     *       2X,'       IM=',E13.6,',',E13.6,' DIFF1=',E13.6,',',E13.6/
+C     *       2X,'       W(',I5,')=',E13.6,' SUM2=',E13.6,',',E13.6/
+C     *       2X,'       GI=',E13.6,',',E13.6)
       G=SUM1+EW*DIFF2
       GI=IM*DIFF1-W(IS)*SUM2
       IB1=IRB+NU2(KKI,1)

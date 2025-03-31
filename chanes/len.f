@@ -416,7 +416,7 @@ C  &&&&  χχοδ παςανετςοχ, ϊαδαχαενωθ πο 8-νυ λαξαμυ  &&&&&&&&&&
       READ(8,*,END=259,ERR=259) (YS(I),I=1,27)
   259 CONTINUE
       IF(KPRLEN.GE.3) WRITE(IP,25) (I,YS(I),I=1,27)
-   25 FORMAT(2X,'YS(',I4,')=',E12.6)  
+   25 FORMAT(2X,'YS(',I4,')=',E13.6)  
       DO 26 I=1,1500
       PAR(I)=YS(I)
    26 CONTINUE
@@ -806,8 +806,8 @@ C  76 FORMAT(2X,'IFF(6,KF)=',I3,' KF=',I3,' IKOL=',I3,' IFF(5,KF)=',I3)
 C     KOHTPOμψHAρ πEώATψ "PARAM"
       NPARA1=NPARAM-1+KOLPAR
       IF(KPRLEN.GE.1)WRITE(IP, 90) (PARAM(NN),NN=NPARAM,NPARA1)
-   90 FORMAT(22X,'PARAMETRS=',4(E11.5,',')/(32X,4(E11.5,',')))
-C    *      (32X,4(E11.5,','))/(32X,4(E11.5,','))/(32X,4(E11.5,',))/)
+   90 FORMAT(22X,'PARAMETRS=',4(E12.5,',')/(32X,4(E12.5,',')))
+C    *      (32X,4(E12.5,','))/(32X,4(E12.5,','))/(32X,4(E12.5,',))/)
       IF(KPRLEN.GE.3) WRITE(IP, 95) NPARAM,NPARA1
    95 FORMAT(22X,'IN ARRAY  "PARAM" FILLED ',           'POS. SINCE',I4,
      +' TO ',I4)
@@ -885,7 +885,7 @@ C     BωBOδ HA πEώATψ ιHζOPMAγιι πO NAMELIST/FRE/
       DO 127 IZ=1,KN
       FS=MN(1,IZ)*F(1)+MN(2,IZ)*F(2)
       IF(KPRLEN.GE.1) WRITE(IP, 126) IZ,MN(1,IZ), IZ,MN(2,IZ), FS
-  126 FORMAT(12X,'m',I2,' =',I3,',   n',I2,' =',I3,'   F = ',E12.6)
+  126 FORMAT(12X,'m',I2,' =',I3,',   n',I2,' =',I3,'   F = ',E13.6)
   127 CONTINUE
 
 C     ςασσνοτςιν σμυώακ δχυθ ξυμεχωθ ώαστοτ
