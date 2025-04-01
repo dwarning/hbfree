@@ -76,9 +76,11 @@ C             LENNTP - KOì-BO ðAPAMETPOB, OâýéX äìñ
 C                      BCEê CXEMù
 C
 C     HAþAìøHOE "OâHõìEHéE" MAC. MPOINT,NODEEL,PARAM
+      DO 3 II=1,500
+      MPOINT(II)=0
+      NODEEL(II)=0
+   3  CONTINUE
       DO 5 II=1,2000
-      IF(II.LE.500) MPOINT(II)=0
-      IF(II.LE.500) NODEEL(II)=0
       PARAM(II)=0.0D0
    5  CONTINUE
 C

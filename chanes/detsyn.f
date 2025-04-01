@@ -14,7 +14,7 @@ C     נ/נ OנPEהEלEHיס MAX KOל-BA BX/BשX BEלי‏יH הלס נP-ס זץPרE
 C                  ( Bש‏יCלEHיס הלס INKOOR )
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      COMMON/POINT/MPOINT(1)
+      COMMON/POINT/MPOINT(500)
       COMMON/POINTR/NMPNT,NN,NP,LN,LP,NNPR,LENNTP
 
 C
