@@ -6,6 +6,8 @@ spice2hbl/obj/shpars.c
 *.a
 hbl
 s2h
+hbl.exe
+s2h.exe
 
 *.bak
 chanes/SPAGged
