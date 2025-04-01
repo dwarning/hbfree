@@ -351,6 +351,7 @@ C     IF(KPRSOL.LE.1) GOTO 150
   129 CONTINUE
   130 CONTINUE
 
+      CALL wrtraw(ISIZE_MAXNODE,k123,Kn,W,s,pi,infile)
 
  1010 CONTINUE
  1020 CONTINUE
@@ -398,4 +399,83 @@ C      IF(KOLVAR.EQ.0)
   460 FORMAT(1X,79('*')/1X,7('*** hbfree '),'**'/1X,79('*'))
   480 FORMAT(10X,'SOLUTION OF NLN EQ. STARTED ')
 
+      END
+
+      SUBROUTINE wrtraw(Isize_maxnode,K123,Kn,W,S,Pi,Infile)
+C*** Start of declarations inserted by SPAG
+      INTEGER irc
+C*** End of declarations inserted by SPAG
+      INTEGER Isize_maxnode , K123 , Kn
+      DOUBLE PRECISION W(20) , wircpi , Pi
+      DOUBLE COMPLEX S(Isize_maxnode,20)
+      CHARACTER*256 Infile
+      INTEGER i, jrc , inend , ifend
+      CHARACTER*8 outfile
+
+      inend = 0
+      ifend = 0
+      DO i = 1 , 12
+         IF ( Infile(i:i).EQ.'.' ) inend = i
+         IF ( Infile(i:i).NE.' ' ) ifend = i
+      ENDDO
+      IF ( inend.EQ.0 ) THEN
+C        IF (ifend.GT.8) STOP ' NAME ZU LANG'
+         outfile(1:ifend) = Infile(1:ifend)
+         outfile(ifend+1:ifend+4) = '.raw'
+      ELSE
+C        IF (inend.GT.9) STOP ' NAME ZU LANG'
+         outfile(1:inend-1) = Infile(1:inend-1)
+         outfile(inend-4:inend) = '.raw'
+      ENDIF
+ 
+C      OPEN (15,FILE='di1.ckt.nodes',STATUS='OLD')
+C      DO i = 1 , 12
+C         READ (15,'(A20)',END=1500) line
+C         PRINT * , line
+C      ENDDO
+C 1500 CONTINUE
+
+      OPEN (16,FILE=outfile)
+ 
+      WRITE (16,'(A)') 'Title: spice test'
+      WRITE (16,'(A)') 'Date:  Wed Sep  6 18:56:32 2000'
+      WRITE (16,'(A)') 'Plotname:  Harmonic Balance Simulation'
+      WRITE (16,'(A)') 'Flags: complex'
+      WRITE (16,'(A,I4)') 'No. Variables: ' , K123 + 1
+      WRITE (16,'(A,I4)') 'No. Points: ' , 3*Kn
+      WRITE (16,'(A)') 'Command:  version 3f5'
+ 
+      WRITE (16,'(A)') 'Variables:'
+      WRITE (16,*) '     0    frequency    frequency'
+      DO i = 1 , K123
+         WRITE (16,140) i , i
+ 
+ 140     FORMAT (3X,I4,'    V(',I1,')    voltage')
+      ENDDO
+ 
+      WRITE (16,'(A)') 'Values:'
+      jrc = 0
+      DO irc = 1 , Kn
+         wircpi = W(irc)/(2.D0*Pi)
+         WRITE (16,150) jrc , wircpi , 0.0
+         DO i = 1 , K123
+            WRITE (16,160) 0.0 , 0.0
+         ENDDO
+         jrc = jrc + 1
+         WRITE (16,150) jrc , wircpi , 0.0
+         DO i = 1 , K123
+            WRITE (16,160) dreal(S(i,irc)) , dimag(S(i,irc))
+         ENDDO
+         jrc = jrc + 1
+         WRITE (16,150) jrc , wircpi , 0.0
+         DO i = 1 , K123
+            WRITE (16,160) 0.0 , 0.0
+         ENDDO
+         jrc = jrc + 1
+      ENDDO
+ 
+      CLOSE (16)
+ 150  FORMAT (1X,I4,4X,SP,E20.13,',',SP,E20.13)
+ 160  FORMAT (9X,SP,E20.13,',',SP,E20.13)
+ 
       END
