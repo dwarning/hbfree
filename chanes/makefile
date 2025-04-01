@@ -13,15 +13,17 @@ PROG	=	../hbl
 #-fbounds-check
 
 #gfortran
-#F77	=	gfortran
-#FFLAGS = -Wall -Wextra -Wuninitialized \
-#		-fdec-char-conversions \
-#		-malign-double \
-#		-std=legacy -O2
+F77	=	gfortran
+FFLAGS = -Wall -Wextra -Wuninitialized \
+		-g \
+		-malign-double \
+		-O \
+		-fdec-char-conversions \
+		-std=legacy
 
 #ifx (prep.: source /opt/intel/oneapi/setvars.sh)
-F77	=	ifx
-FFLAGS = -warn noerrors -O2
+#F77	=	ifx
+#FFLAGS = -warn noerrors -O2
 #FFLAGS = -g -check uninit
 #LDLAGS = -g -check uninit
 
