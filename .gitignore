@@ -8,6 +8,7 @@ hbl
 s2h
 hbl.exe
 s2h.exe
+*.log
 
 *.bak
 chanes/SPAGged
@@ -19,8 +20,21 @@ chanes/*.htm
 chanes/_pf_data
 *.fig
 *.pf
+_gxchk.htm
+gxchk.out
+_pf_data
+
+fpt
+chanes/fpt_output
 
 *.hbl
 *.chan
 *.elems
 *.nodes
+
+hbfree_exmpls/.spiceinit
+hbfree_exmpls/*.raw
+hbfree_exmpls/*.sp
+hbfree_exmpls/s2h.cfg
+hbfree_exmpls/hbfree
+hbfree_exmpls/mes1.*

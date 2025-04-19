@@ -13,13 +13,13 @@ C
 C MPOINT=
 C 'LIB0','LL0 ','    ','    ',?,2,12,4,0,?,1,?,2,?,?,0,0,0,0,0
 C NODEEL=
-C 'éMñ ',4,2,1,õúEì1,õúEì2,õúEì3,õúEì4,'    ',?,?,?
-C PARAM= R K.ú.,(- Oâýéê äìñ TéðA)
+C 'NAME', 4, 2, 1, NODE1, NODE2, NODE3, NODE4, '    ', ?, ?, ?
+C PARAM = R K.3., (- COMMON FOR TYPE)
 C        Z0,LENTH
 
-C      MOäEìø ìéHéé âEú ðOTEPø C HEúAúEMìEHHùM   õ1 0-I-------I-0 õ2
-C                 OâýéM ðPOBOäOM
-C                                                õ3 0-I-------I-0 õ4
+C      TRANSMISSION LINE MODEL WITHOUT LOSS WITH NON-BOUNDARY Y1 0-I-------I-0 Y2
+C                 WITH COMMON CURRENT FLOW
+C                                                             Y3 0-I-------I-0 Y4
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       DOUBLE PRECISION OM,P1,P2,P3
       DOUBLE PRECISION RSH,Z0,LENTH,TETA,C
@@ -27,8 +27,8 @@ C                                                õ3 0-I-------I-0 õ4
       COMMON/SUBC/YL(15,15),VJ(15)
       DOUBLE COMPLEX YL,VJ
       DOUBLE COMPLEX A,B
-C     ìéHéñ âEú ðOTEPø .ðAPAMETPù: R K.ú.,Z0,LENTH
-C         C=CKOPOCTø CBETA.
+C     TRANSMISSION LINE WITHOUT LOSS. PARAMETERS: R K.3., Z0, LENGTH
+C         C = CONSTANT CBETA.
       RSH=P2(1)
       Z0=P3(1)
       LENTH=P3(2)
@@ -57,7 +57,7 @@ C         C=CKOPOCTø CBETA.
       YL(4,3)= B
       YL(4,4)= A
 C
-C   BOúMOöHA úAMEHA A-B=-SIN(TETA/2.)/IM*Z0*COS(TETA/2.)
+C   POSSIBILITY OF CHANGE A-B = -SIN(TETA/2.) / IM * Z0 * COS(TETA/2.)
 C
       RETURN
 C     DEBUG INIT
@@ -68,14 +68,14 @@ C     DEBUG INIT
 C MPOINT=
 C 'LIB1','LL0 ','    ','    ',?,2,10,2,0,?,1,?,2,?,?,0,0,0,0,0
 C NODEEL=
-C 'éMñ ',4,2,1,õúEì1,õúEì2,'    ',?,?,?
-C PARAM= R K.ú.,(- Oâýéê äìñ TéðA)
+C 'NAME', 4, 2, 1, NODE1, NODE2, '    ', ?, ?, ?
+C PARAM = R K.3., (- COMMON FOR TYPE)
 C        Z0,LENTH
 
-C      MOäEìø ìéHéé âEú ðOTEPø C úAúEMìEHHùM     õ1 0-I-------I-0 õ2
-C                 OâýéM ðPOBOäOM
-C                                                   !-I-------I-!
-C                                                  _!_         _!_
+C      TRANSMISSION LINE MODEL WITHOUT LOSS WITH BOUNDARY Y1 0-I-------I-0 Y2
+C                 WITH COMMON CURRENT FLOW
+C                                                            !-I-------I-!
+C                                                           _!_         _!_
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       DOUBLE PRECISION OM,P1,P2,P3
       DOUBLE PRECISION RSH,Z0,LENTH,TETA,C
@@ -83,8 +83,8 @@ C                                                  _!_         _!_
       COMMON/SUBC/YL(15,15),VJ(15)
       DOUBLE COMPLEX YL,VJ
       DOUBLE COMPLEX A,B
-C     ìéHéñ âEú ðOTEPø .ðAPAMETPù: R K.ú.,Z0,LENTH
-C         C=CKOPOCTø CBETA.
+C     TRANSMISSION LINE WITHOUT LOSS. PARAMETERS: R K.3., Z0, LENGTH
+C         C = CONSTANT CBETA.
 
       RSH=P2(1)
       Z0=P3(1)

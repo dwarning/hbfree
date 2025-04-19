@@ -10,10 +10,10 @@ c
 
       SUBROUTINE INKOOR (MAXSYN,MNMAX,F1,F2,*,*)
 C
-C  *****  ץנOPסהO‏יBAHיE MACCיBOB MN י MN1,
-C  *****  תAנOלHEHיE KOOPהיHATHשX MACCיBOB,
-C  *****  נOלץ‏EHיE PACûיPEHHOך CETKי ‏ACTOT,
-C  *****  תAנOלHEHיE MACCיBOB WR י WS.
+C  *****  ORDERING OF ARRAYS MN AND MN1,  
+C  *****  FILLING THE COORDINATE ARRAYS,  
+C  *****  OBTAINING THE EXPANDED FREQUENCY GRID,  
+C  *****  FILLING THE ARRAYS WR AND WS.
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       include 'funcsize.i'
@@ -54,7 +54,7 @@ C take sizes from 'funcsize.i'
 
 
 
-C  *****  תAMEHA ‏ACTOT F1 י F2, ECלי F2=0
+C  *****  CHANGE OF FREQUENCIES F1 AND F2, IF F2 = 0
 
       DO 1010 I=1,KN
       IF (MN(2,I).NE.0) GO TO 1030
@@ -68,8 +68,8 @@ C  *****  תAMEHA ‏ACTOT F1 י F2, ECלי F2=0
       OMEGA2=OMEGA
       MEPHF=1
       FLGMNW=1
-C  *****  יCKלא‏EHיE OהיHAKOBשX HOMEPOB חAPMOHיK
-C  *****  י ץנלOTHEHיE CניCKA MN נOCלE יCKלא‏EHיס
+C  *****  EXCLUSION OF IDENTICAL ROWS OF THE MATRIX  
+C  *****  AND COMPRESSION OF THE LIST MN AFTER EXCLUSION
 C
  1030 I=2
  1040 IF(I.GT.KN) GO TO 1065
@@ -82,8 +82,8 @@ C
       MN(1,J)=MN(1,J+1)
  1060 MN(2,J)=MN(2,J+1)
       GO TO 1040
-C  *****  הOגABלEHיE נOCTOסHHOך COCTABלסא‎Eך,
-C  *****  ECלי OHA OTCץTCTBץET B CניCKE MN
+C  *****  ADDITION OF THE CONSTANT COMPONENT,  
+C  *****  IF IT IS ABSENT IN THE LIST MN
  1065 IF(MN(1,1).EQ.0.AND.MN(2,1).EQ.0) GO TO 1100
       DO 1080 I=1,KN
       MN(1,KN-I+2)=MN(1,KN-I+1)
@@ -123,15 +123,15 @@ C  *****  ECלי OHA OTCץTCTBץET B CניCKE MN
       CALL SORT (MN1,KN1)
       DO 73 I=1,KN1
    73 W1(I)=MN1(1,I)*OMEGA1+MN1(2,I)*OMEGA2
-C  *****  Bש‏יCלEHיE KOלי‏ECTBA HEHץלEBשX CTPOK
-C  *****  HA PACûיPEHHOך CETKE ‏ACTOT - KNR1
+C  *****  CALCULATION OF THE NUMBER OF NONZERO ROWS  
+C  *****  ON THE EXPANDED FREQUENCY GRID - KNR1
       KNR1=1
       IF (KN.LT.2) GO TO 2010
       DO 2000 I=2,KN1
       IF (MN1(1,I).EQ.MN1(1,I-1)) GO TO 2000
       KNR1=KNR1+1
  2000 CONTINUE
-C  *****  BשגOPKA חPAHיד MIN י MAX הלס KNC
+C  *****  SELECTION OF LIMITS MIN AND MAX FOR KNC
  2010 MNMAX=0
       ALOG2=DLOG10(2.D0)
       DO 2020 I=1,KN
@@ -145,11 +145,11 @@ C  *****  BשגOPKA חPAHיד MIN י MAX הלס KNC
      +0)/ALOG2)+1)
       IF (KNC.LE.KNCMIN) KNC=KNCMIN
       IF (KNC.GE.KNCMAX) KNC=KNCMAX
-C  *****  תAנOלHEHיE KOOPהיHATHשX MACCיBOB
+C  *****  FILLING THE COORDINATE ARRAYS
       CALL KOORD (MN,KR,KC,NNR,KNR,KN,KNC,IR,NDIM)
 
-C++++++++++++++++++++++++  יתםומומיס ןפ 12.05.91  ףועהאכ ח.ק.
-C                          ( קףוחן 3 יתםומומיס )
+C++++++++++++++++++++++++  CHANGES FROM 12.05.91  SERDYUK G.V.  
+C                          (TOTAL 3 CHANGES)
       ivald= krdchk (MN,KR,KC,NNR,KNR,KN,KNC,IR,NDIM)
       if(ivald.ne.0) then
                      write(6,5010) ivald
@@ -157,10 +157,10 @@ C                          ( קףוחן 3 יתםומומיס )
       endif
 C ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-C  *****  תAנOלHEHיE KOOPהיHATHשX MACCיBOB
-C  *****  הלס PACûיPEHHOך CETKי ‏ACTOT
+C  *****  FILLING THE COORDINATE ARRAYS  
+C  *****  FOR THE EXPANDED FREQUENCY GRID
       CALL KOORD (MN1,KR1,KC1,NNR1,KNR1,KN1,KNC,NDIM,NDIM1)
-C++++++++++++++++++++++++  יתםומומיס ןפ 12.05.91  ףועהאכ ח.ק.
+C++++++++++++++++++++++++  CHANGES FROM 12.05.91  SERDYUK G.V.
       ivald1=krdchk (MN1,KR1,KC1,NNR1,KNR1,KN1,KNC,NDIM,NDIM1)
       if(ivald1.ne.0) then
                      write(6,5020)ivald1
@@ -168,7 +168,7 @@ C++++++++++++++++++++++++  יתםומומיס ןפ 12.05.91  ףועהאכ ח.ק.
       endif
 C ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       IF(NNR(KNR).EQ.1.AND.MEPHF.EQ.2) MEPHF=1
-C  *****  תAנOלHEHיE MACCיBOB WR י WS
+C  *****  FILLING THE ARRAYS WR AND WS
       DO 120 I=1,KN
       I1=MN(1,I)
       I2=MN(2,I)
@@ -197,17 +197,17 @@ C  *****  תAנOלHEHיE MACCיBOB WR י WS
       RETURN
 C     DEBUG INIT(W,OMEGA1,OMEGA2,MN)
 C----------------------------------------------------------------------
-C  *****  PAתMEPHOCTר MN1 נPEBשûAET MAKCיMץM
+C  *****  THE SPREAD OF MN1 EXCEEDS THE MAXIMUM
   200 CONTINUE
       RETURN 1
 C----------------------------------------------------------------------
-C  *****  PAתMEPHOCTר נPEOגPAתOBAHיס זץPרE
-C  *****  גOלרûE BEPXHEחO נPEהEלרHOחO תHA‏EHיס
+C  *****  THE SPREAD OF THE TRANSFORMATION OF THE FOURIER
+C  *****  EXCEEDS THE UPPER LIMIT VALUE
 C
   250 MNMAX=KNCMAX/4
 
       RETURN 2
-C++++++++++++++++++++++++  יתםומומיס ןפ 12.05.91  ףועהאכ ח.ק.
+C++++++++++++++++++++++++  CHANGES FROM 12.05.91  SERDYUK G.V.
  5010 format(2x,' INKOOR: ERROR OF REPRESENTATION OF MAIN GRID.',       
      +   ' CODE =',i3)
  5020 format(2x,' INKOOR: ERROR OF REPRESENTATION OF AUX  GRID.',       

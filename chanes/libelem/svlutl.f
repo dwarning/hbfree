@@ -11,8 +11,8 @@ c
        SUBROUTINE SVUTL(OM,P1,L1,P2,L2,P3,L3,N)
 C
 C
-C     MOδEμψ Mπμ - CBρϊAHHωX μιHικ C πOTEPρMι,νιλςο-
-C     πομοσλοχωθ μιξικ  ι σοεδιξεξιε μεξ
+C     MODEL OF STRIPLINE - COUPLED LINES WITH LOSSES, MICRO-
+C     STRIP LINES AND CONNECTION OF LINES
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       DIMENSION     P1(L1),P2(L2),P3(L3)
@@ -47,10 +47,10 @@ C
       CC = 2.99D+8
       M0 = 1.256637D-06
 
-C      χωβοςλα όμενεξ
-C   λϊ-STL1=5;
-C   θθ-STL=4;
-C   σλαώελ-STL=9;
+C      SELECTION OF ELEMENTS
+C   KZ-STL1=5;
+C   XX-STL=4;
+C   JUMP-STL=9;
 C
 C
 C
@@ -58,10 +58,10 @@ C
       IF(SKL1.EQ.5.D0) GO TO 20
       IF(SKL1.EQ.9.D0) GO TO 30
       PRINT 40,SKL1
-  40  FORMAT('  ξελοςςελτξωκ λοδ όμενεξτα :',E12.5,'οσταξοχ')
+  40  FORMAT('  INCORRECT ELEMENT CODE :',E12.5,'STOP')
       STOP
 
-C      ςαϊονλξυτωκ ϋμεκ
+C      OPEN CIRCUIT
 10    IF(OM.EQ.0.D0)GO TO 500
        I=-1
       CALL BET11(OM,CC,BETT,PI,W,H,ER)
@@ -70,7 +70,7 @@ C      ςαϊονλξυτωκ ϋμεκ
       CALL TEST(N)
       GO TO 50
 
-C      λοςοτλοϊανλξυτωκ ϋμεκ
+C      SHORT-CIRCUIT LINE
 20    IF(OM.EQ.0.D0) GO TO 501
       I=1
       CALL BET11(OM,CC,BETT,PI,W,H,ER)
@@ -79,7 +79,7 @@ C      λοςοτλοϊανλξυτωκ ϋμεκ
       CALL TEST(N)
       GO TO 50
 
-C      σλαώολ χομξοχοηο σοπςοτιχμεξιρ
+C      JUMP IN WAVE IMPEDANCE
 30    CALL  STEPSC(ZO1,ZO2)
       N=2
       CALL TEST(N)
@@ -111,7 +111,7 @@ C      ENDIF
       RETURN
       END
 
-C      ςασώετ ϋμεκ
+C      CALCULATION OF THE LINE
       SUBROUTINE SHLEYF(I,Z0S,BETT,FL,W,H,ER)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       COMMON/SUBS/SV(15,15)
@@ -126,7 +126,7 @@ C      ςασώετ ϋμεκ
       RETURN
       END
 
-C       ςασώετ χομξοχοηο σοπςοτιχμεξιρ
+C       CALCULATION OF WAVE IMPEDANCE
       SUBROUTINE Z0MPL(Z,W,H,ER)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       WH=W/H
@@ -138,7 +138,7 @@ C       ςασώετ χομξοχοηο σοπςοτιχμεξιρ
       RETURN
       END
 
-C      ςασώετ όζζελτιχξοκ διόμελτςιώεσλοκ ποστορξξοκ
+C      CALCULATION OF EFFECTIVE DIELECTRIC CONSTANT
       SUBROUTINE EREFF(W,H,ER,ERE)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       WH=W/H
@@ -146,7 +146,7 @@ C      ςασώετ όζζελτιχξοκ διόμελτςιώεσλοκ ποστορξξοκ
       RETURN
       END
 
-C      σλαώολ χομξοχοηο σοπςοτιχμεξιρ
+C      JUMP IN WAVE IMPEDANCE
       SUBROUTINE STEPSC(Z1,Z2)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       COMMON/SUBS/ SV(15,15)

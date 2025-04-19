@@ -20,20 +20,20 @@ C
 C***********************************************************************
 C
 C
-C    AAAAA  !!     BOúMOöHO õBEìéþEHéE YEL é NOY äO 900 HO TOçäA B XOäE
-C   A    A  !!     I/O âõäET ðPOéCXOäéTø OâMEH 2-Mñ úAðéCñMé
-C  A     A  !!     !!!-äìéHA úAðéCé<=äìéHE äOPOöKé=7040 âAêT
+C    AAAAA  !!     POSSIBLE INCREASE OF YEL AND NOY UP TO 900, BUT THEN
+C   A    A  !!     DURING I/O THERE WILL BE EXCHANGE IN 2 RECORDS
+C  A     A  !!     !!!-RECORD LENGTH <= TRACK LENGTH = 7040 BYTES
 C  AAAAAAA  !!
 C  A     A         ...'NREC...=>...'2*NREC-1...
 C  A     A  !!
 C
 C
-C        OðEPAãéé VY=CABS... é VJR=CABS... MOöHO éCKìàþéT
-C     Oâ'ñBéB : EQUIVALENCE((Y(1,1),RY(1,1,1)),(VJ(1),RJR(1,1))
-C               REAL RY(2,100,100),RJR(2,100)
+C        OPERATIONS VY = CABS... AND VJR = CABS... CAN BE EXCLUDED
+C     BY DECLARING: EQUIVALENCE((Y(1,1),RY(1,1,1)),(VJ(1),RJR(1,1))
+C                   REAL RY(2,100,100), RJR(2,100)
 C
-C    é B TEKCTE : IF(RJR(1,I).EQ.0.0.AND.RJR(2,I).EQ.0.0) GO TO 10
-C             IF(RY(1,II,I).EQ.0.0.AND.RY(2,II,I).EQ.0.0) GO TO 20
+C    AND IN CODE: IF(RJR(1,I).EQ.0.0 .AND. RJR(2,I).EQ.0.0) GO TO 10
+C                 IF(RY(1,II,I).EQ.0.0 .AND. RY(2,II,I).EQ.0.0) GO TO 20
 C
 c$LARGE: VJ,Y
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
@@ -81,7 +81,7 @@ C      write (6,*) 'Y matrix at ENTRY =1 '
 C*********************************************************************
       ENTRY PACK2(NREC,Y,VJ,ISIZE_MAXNODE)
 C
-C     BXOä äìñ õðAKOBKé é úAðéCé MATPéãù Y,BEKTOPA J âEú õðAKOBKé
+C     INPUT FOR PACKING AND WRITING MATRIX Y, VECTOR J WITHOUT PACKING
       ENTRY=2
       IF=KOL(1)+KOL(2)+1
       IE=KOL(1)+KOL(2)+KOL(3)
@@ -112,7 +112,7 @@ C     IF(VY     .EQ.0.0 ) GO TO 20
       KPKY(ENTRY,NREC)=K-1
 C      print *,'WR: ENTRY, NREC, KPKY =',ENTRY, NREC, KPKY
       
-C     COâCTBEHHO úAðéCø
+C     ACTUAL WRITE OPERATION
 
 C      print *,'YEL, NOY, NOY: WRITING'
 C      DO I=1,50
@@ -134,7 +134,7 @@ C     IF(ENTRY.EQ.2) WRITE(2'NREC)YEL,NOY,VJ  !! REC=20 !!
 C********************************************************************
       ENTRY DPACK1(NREC,Y,VJ,ISIZE_MAXNODE)
 C
-C     BXOä äìñ þTEHéñ é PACðAKOBKé VJ & Y
+C     ENTRY POINT FOR READING AND UNPACKING VJ & Y
 C
       ENTRY=1
   121 CONTINUE    
@@ -147,7 +147,7 @@ C 121 READ(1'NREC,ERR=120)YEL,NOY,VJ
 C**********************************************************************
       ENTRY DPACK2(NREC,Y,VJ,ISIZE_MAXNODE)
 C
-C     þTEHéE Y é PACðAKOBKA
+C     READING Y AND UNPACKING
 C
       ENTRY=2
 C      print *, 'DPACK2: NREC: ', NREC

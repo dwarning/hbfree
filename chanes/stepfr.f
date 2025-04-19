@@ -10,12 +10,12 @@ c
 
       SUBROUTINE STEPFR (OM,NREC,Y,VJ,ISIZE_MAXNODE)
 C*********************************************************************
-C* נ/נ זOPMיPOBAHיס י PEהץKדיי MHOחOנOלאCHיKA ליHEךHOך נOהCXEMש י    *
-C*                      OPחAHיתAדיי יX I/O HA DA                     *
+C* Subroutine for forming and reduction of multi-channel linear      *
+C* subsystem and organizing their I/O on the DA.                     *
 C*                                                                   *
 C*********************************************************************
 
-C יתםומומיו ןפ 30.01.91 .  ףםןפעיפו MAIN
+C Change from 30.01.91. See MAIN
 C$LARGE: BUFFER
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       COMMON/MATY/  BUFFER (6000),BUFLEN
@@ -32,8 +32,8 @@ C$LARGE: BUFFER
       LOGICAL        NAL(4)
       DOUBLE PRECISION           OM
 
-C יתםומומיו ןפ 30.01.91 .  ףםןפעיפו MAIN
-C  קףפעןוממשו זץמכדיי הלס ימהוכףבדיי:
+C Change from 30.01.91. See MAIN
+C Built-in functions for indexing:
       IFIND1(I,M,NU)=(I+(M-1)*NU)
       IFIND2(I,J,M,NU,MF)=NU*MF+I+(J-1)*NU+(M-1)*NU*NU
 
@@ -42,7 +42,7 @@ C  קףפעןוממשו זץמכדיי הלס ימהוכףבדיי:
 C @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
       KKK=KOL(1)+KOL(2)+KOL(3)
 
-C     OגHץלEHיE MATPידש Y י BEKTOPA VJ
+C Initialization of the matrices Y and the vector VJ
       CALL ZINY(Y,VJ,ISIZE_MAXNODE)
 C      print *,'after ZINY'
 C      print *,(VJ(ikkk),ikkk=1,20)
@@ -63,12 +63,12 @@ C   3  FORMAT(2X,'STEPFR VJ(',I3,')=',E13.6,',',E13.6)
       NF=1
       NEND=KOL(1)
       N=KOL(1)+KOL(2)+KOL(3)
-C  PEהץKדיס Y
+C  Reduction Y
       CALL LUSLV (Y,DY,N,NF,NEND,FLAG)
 
 C  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-C  PEהץKדיס VJ
+C  Reduction VJ
       CALL LUFRW (Y,VJ,DY,N,NF,NEND,FLAG)
 
 C  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -79,27 +79,27 @@ C      enddo
 C120   format (2x,'(',1x,e12.5,1x,e12.5,')')
 
 
-C     ץנAKOBKA י תAניCר MATPידש Y י BEKTOPA VJ HA DA
+C Packing and writing of matrix Y and vector VJ to DA
    10 CALL PACK1 (NREC,Y,VJ,ISIZE_MAXNODE)
       GO TO 20
 C**********************************************************************
       ENTRY DOUBLE(OM,NREC)
 C**********************************************************************
-C* BXOה B נ/נ הלס נOBTOPHOחO זOPMיPOBAHיס (נPי BAPריPOBAHיי יתMEHסEMשX*
-C*                      üלEMEHTOB)                                    *
+C*                                                                    *
+C* Entry in subroutine for reformation (when modifying elements)      *
 C*                                                                    *
 C**********************************************************************
 
-C     OגHץלEHיE Y
+C Initialization of Y
       CALL ZINY(Y,VJ,ISIZE_MAXNODE)
-C   ‏TEHיE C DA י PACנAKOBKA CזOPMיPOBAHHשX Y י VJ ית CONST.-üלEMEHTOB
+C Reading from DA and unpacking the formatted Y and VJ from constant elements
       CALL DPACK1(NREC,Y,VJ,ISIZE_MAXNODE)
 
 
 
    20 IF(.NOT.NAL(2)) GO TO 30
 
-C     LIN.VAR.-זOPMיPOBAHיE
+C Linear Variable - Initialization
       CALL VLFORM(OM,Y,VJ,ISIZE_MAXNODE)
 
 C@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -108,18 +108,18 @@ C@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
       NF=KOL(1)+1
       NEND=KOL(1)+KOL(2)
       N=KOL(1)+KOL(2)+KOL(3)
-C  PEהץKדיס נOלHOך MATPידש LIN.-נOהCXEMש
+C Reduction of the full matrix LIN.-subsystem
       CALL LUSLV (Y,DY,N,NF,NEND,FLAG)
 
 C @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-C  PEהץKדיס נOלHOחO BEKTOPA תAהAא‎יX TOKOB LIN.-נOהCXEMש
+C Reduction of the full vector of the given currents in the LIN.-subsystem
       CALL LUFRW (Y,VJ,DY,N,NF,NEND,FLAG)
 
 
 C @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-C  נPיBEהEHיE MATPידש Y K KAHOHי‏ECKOMץ Bיהץ
+C Transformation of matrix Y to canonical form
    30 CONTINUE
       N=KOL(1)+KOL(2)+KOL(3)
       NF=KOL(1)+KOL(2)+1
@@ -127,8 +127,8 @@ C  נPיBEהEHיE MATPידש Y K KAHOHי‏ECKOMץ Bיהץ
 
 C @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-C   הEלEHיE נOנOלAM BEKTOPA תAהAא‎יX
-C  TOKOB (IF(OMEGA.NE.0.)). CBסתAHO C BיהOM הנז.
+C Execution of the operation for setting the input values
+C (IF(OMEGA.NE.0.)). Linked with the DPF.
 C
 C
       K123=KOL(1)+KOL(2)+KOL(3)
@@ -137,25 +137,25 @@ C
    90 VJ(JJ)=VJ(JJ)/2.D0
    80 CONTINUE
 
-C  ץנAKOBKA י תAניCר Y HA Mה
+C Packing and writing Y to MD
       CALL PACK2 (NREC,Y,VJ,ISIZE_MAXNODE)
 
-C  נEPECשלKA PEת-TA ז-ך י PEהץKדיך B /MATY/-גלOK,XPAHס‎יך Y י J
-C  PEהץדיPOBAHHOך ליHEךHOך נOהCXEMש HA BCEX ‏ACTOTAX
+C Transfer of result to the function and reductions in the /MATY/ block, 
+C storing Y and J. Reduced linear subckt of the entire frequency range.
       K3=KOL(3)
       K12=KOL(1)+KOL(2)
       DO 70 KI=1,K3
       IND1=KI+K12
 
-C  יתםומומיו ןפ 30.01.91    יתםומיל ףועהאכ ח.ק.
-C      JR(KI,NREC)=VJ(IND1)       **** ףפבעשך קבעיבמ
+C Change from 30.01.91, modified by Serdyuk G.V.
+C      JR(KI,NREC)=VJ(IND1)       **** OLD VERSION
       BUFFER( IFIND1(KI,NREC,K3) )=VJ(IND1)
 
       DO 70 KJ=1,K3
       IND2=K12+KJ
 
-C  יתםומומיו ןפ 30.01.91    יתםומיל ףועהאכ ח.ק.
-C      YR(KJ,KI,NREC)=Y(IND2,IND1)   **** ףפבעשך קבעיבמ
+C Change from 30.01.91, modified by Serdyuk G.V.
+C      YR(KJ,KI,NREC)=Y(IND2,IND1)   **** OLD VERSION
       ILOCAL=IFIND2(KJ,KI,NREC,K3,KN)
       IF (ILOCAL.GT.BUFLEN) GOTO 100
       BUFFER( ILOCAL )=Y(IND2,IND1)

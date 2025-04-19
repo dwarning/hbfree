@@ -11,9 +11,9 @@ c
 
       SUBROUTINE SORTUZ
 
-C     BAPיAHT גEת BKל. חPAHי‏HשX ץתלOB B CיCT. ץP-ך.
-C              CTשKץETCס C TEKץ‎יMי TEKCTAMי
-C                 OCT. MOהץלEך.
+C  VARIANT WITHOUT FIXED. BOUNDARY NODES IN SYSTEM. UPPER. 
+C              STICKS WITH CURRENT TEXTS
+C                 IN MODULES.
 C
 C
 
@@ -38,7 +38,7 @@ C      COMMON/POINTR/  NMPNT,NNODE,NPARAM,LENNOD,LENPAR,NNETPR,LENNTP
       DIMENSION NAME(4)
 
 
-C     HA‏.  ץCTAHOBKי     **********************************************
+C  BEGINNING. BOUNDARY CONDITIONS *****************************************
 
       KOL(1)=0
       KOL(2)=0
@@ -57,7 +57,7 @@ C     HA‏.  ץCTAHOBKי     **********************************************
       NOUZ(J)=0
    02 INOUZ1(J)=0
 
-C     DO  נO BCEM TינAM üל-TOB          *****     *****     *****
+C  DO FOR ALL TYPES OF ELEMENTS          *****     *****     *****
 
       IE10=NMPNT*20
       DO 01 I10=1,IE10,20
@@ -71,31 +71,30 @@ C     DO  נO BCEM TינAM üל-TOB          *****     *****     *****
       NAME(3)=MPOINT(I10+2)
       NAME(4)=MPOINT(I10+3)
       ITYP=MPOINT(I10+5)
-C     DO    נO üל-TAM BHץTPי TינA       *****     *****     *****
+C  DO FOR ELEMENTS WITHIN THE TYPE RANGE     *****     *****     *****
       IE11=MPOINT(I10+4)
       DO 17 I11=1,IE11
 
-C     AהPEC  üל-TA B  NODEEL            *****     *****     *****
+C  ADDRESS OF ELEMENT IN NODEEL          *****     *****     *****
       NATADR=NFIRST+(I11-1)*NLEN
 
-C     IF  üל-T  HEליHEךHשך:             *****     *****     *****
+C  IF THE ELEMENT IS LINEAR:             *****     *****     *****
       IF(ITYP.EQ.3) GO TO 12
 
-C     IF   ליHEךHשך MHOחOנOלאCHיK       *****     *****     *****
+C  IF LINEAR MULTIPOLE                   *****     *****     *****
       IF(ITYP.EQ.2) GO TO 11
 
-
-C     IF   Y - MATPידA                  *****     *****     *****
+C  IF Y-MATRIX                          *****     *****     *****
       IF(ITYP.EQ.5) GO TO 13
 
-C     IF  ליHEךHשך הBץXנOלאCHיK         *****     *****     *****
+C  IF LINEAR DOUBLE MULTIPOLE            *****     *****     *****
       IVAR=NODEEL(NATADR+3)
       ITYPE=IVAR
       NB=2-1
       NF=3-1
       GO TO 14
 
-C     ליHEךHשך  MHOחOנOלאCHיK:          *****     *****     *****
+C  LINEAR MULTIPOLE:          *****     *****     *****
 
    11 IDE=NODEEL(NATADR+1)
       IVAR=NODEEL(NATADR+IDE+6)
@@ -104,7 +103,7 @@ C     ליHEךHשך  MHOחOנOלאCHיK:          *****     *****     *****
       NF=NODEEL(NATADR+1)+4-1
       GO TO 14
 
-C     Y - MATPידA                       *****     *****     ******
+C  Y-MATRIX                       *****     *****     ******
 
    13 IDE=NODEEL(NP+1)
       IVAR=NODEEL(NP+IDE+6)
@@ -115,40 +114,41 @@ C     Y - MATPידA                       *****     *****     ******
       NP=NP+8+IDE
       GO TO 14
 
-C     HEליHEךHשך  MHOחOנOלאCHיK         *****     *****     *****
+C  NON-LINEAR MULTIPOLE         *****     *****     *****
    12 IDE=MPOINT(I10+7)
       IVAR=NODEEL(NATADR+IDE+3+1)
       CALL LIBMD1(NAME,IVAR)
       NB=2-1
       NF=MPOINT(I10+7)+1-1
 
-C     ץCTAHOBKA AהPECOB 1-חO י נOCלEהHEחO ץתלOB B תABיCיMOCTי OT ITYP
-C     נPOBEהEHA BשûE
-C     DO נO ץתלAM B üל-TE:              *****     *****     *****
+C  ADDRESS OF FIRST AND LAST NODES BASED ON ITYP
+C  PREVIOUS CHECK
+
+C  LOOP THROUGH NODES IN ELEMENT:              *****     *****     *****
    14 DO 10 I12=NB,NF,1
-C     HOMEP ץתלA                        *****     *****     *****
+C  NODE HOMEP                            *****     *****     *****
       INUZ=NODEEL(NATADR+I12)
       IF (INUZ.EQ.0) GO TO 10
       IF (ITYP.NE.3) GO TO 35
 
-C     OנPEהEליM Tינ ץתלA                *****     *****     *****
+C  DETERMINE NODE TYPE                   *****     *****     *****
 
       ITYPE=MT(I12)
 
-C     BHEûHיE ץתלש HE HץMEPץEM          *****     *****     *****
+C  CHECK IF NODES ARE WITHIN THE NUMBERED RANGE          *****     *****     *****
 
       ITIME3=NF-MPOINT(I10+8)
       IF (I12.LE.ITIME3) GO TO 35
 
-C     BHץTPEHHיE - HץMEPץEM             *****     *****     *****
+C  PROCESSING - NUMBERED RANGE           *****     *****     *****
 
       LUK=LUK+1
       INUZ=LUK
       NODEEL(NATADR+I12)=LUK
 
-C     OנOתHAEM Tינ ץתלA י OנPEהEליM ECTר לי üTOT ץתEל B
-C     OהHOM ית תAנOלHסEMשX MACCיBOB.
-C     ECלי HET - BHECEM
+C  DETERMINE NODE TYPE AND CHECK IF THIS NODE IS ALREADY 
+C  FILLED IN ONE OF THE FILLED ARRAYS.
+C  IF NOT - CONTINUE
   35  IF(ITYPE.EQ.0)  CALL FIND(KOL(1),LCDIM,INUZ)
       IF(ITYPE.EQ.0)  GO TO 10
       IF(ITYPE.EQ.1)  CALL FIND(KOL(2),LVDIM,INUZ)
@@ -159,17 +159,17 @@ C
    10 CONTINUE
    17 CONTINUE
    01 CONTINUE
-C     ץHי‏TOציM (נPיCBOיM 0) ץתלש B LCDIM י LVDIM ECלי OHי ECTר B NLDIM
-C     י B LCDIM ECלי ECTר B LVDIM
-C
+C  DESTROY (SET TO 0) NODES IN LCDIM AND LVDIM IF THEY EXIST IN NLDIM
+C  AND IN LCDIM IF THEY EXIST IN LVDIM
+
       CALL DOWN(KOL(3),NLDIM,KOL(2),LVDIM)
       CALL DOWN(KOL(3),NLDIM,KOL(1),LCDIM)
       CALL DOWN(KOL(2),LVDIM,KOL(1),LCDIM)
-C
-C     נEPEניûEM נOO‏EPEהHO ית LCDIM,LVDIM,NLDIM B INOUZ HA‏יHAס C
-C     MIN üלEMEHTOB MACCיBOB
-C
-C     KSCN=KOל-BO ץתלOB B CXEME
+
+C  REWRITE IN SEQUENCE FROM LCDIM, LVDIM, NLDIM TO INOUZ STARTING WITH
+C  MINIMUM ELEMENTS OF THE ARRAYS
+
+C  KSCN = NUMBER OF NODES IN CIRCUIT
 C
       KSCH=0
       CALL RANGER(KSCH,NOUZ,LCDIM,KOL(1),NAL(1))
@@ -177,12 +177,12 @@ C
       CALL RANGER(KSCH,NOUZ,NLDIM,KOL(3),NAL(3))
       KMOD=LUK-LUK0
       KSCH=KSCH-KMOD
-C  CהBיח ץתלOB HA LUK0-KSCH BלEBO
+C  SHIFT NODES TO LUK0-KSCH POSITION
       IDEL=LUK0-KSCH
       DO 40 I40=1,LUK0
       IZNN=NOUZ(I40)
    40 IF(IZNN.GT.LUK0)NOUZ(I40)=IZNN-IDEL
-C נPEOגPAתOBAHיE HץMEPAדיך
+C CONVERSION OF NUMERATIONS
       DO 70 NU=1,LUK0
       I20END=KSCH+KMOD
       DO 75 I20=1,I20END
@@ -192,14 +192,14 @@ C נPEOגPAתOBAHיE HץMEPAדיך
       GO TO 70
    80 INOUZ1(NU)=I20
    70 CONTINUE
-C NOUZ(I)=NUM POLZ(BH.H.1)
-C INOUZ1(I)=BH.H.1(HץM.נOלרת)
+C NOUZ(I)=NUMBER OF USE (BH.H.1)
+C INOUZ1(I)=BH.H.1(USER TYPE)
 C
-C KMOD=KOל-BO ץתלOB B MOה.
-C KSCH=KOל-BO ץתלOB B CXEME
+C KMOD=NUMBER OF NODES IN MODULE.
+C KSCH=NUMBER OF NODES IN CIRCUIT
 C
-C     נEPEKOהיPOBKA TOנOלOחי‏ECKOך יHזOPMAדיי
-C     דיKל נO TינAM üלEMEHTOB
+C TRANSFER TOPOLOGICAL INFORMATION
+C LOOP OVER ELEMENT TYPES
       I00END=NMPNT*20
       DO 87 I00=1,I00END,20
       NFIRST=MPOINT(I00+9)
@@ -247,7 +247,7 @@ C 900 FORMAT(2X,'SORTUZ : NODEEL(',I3,'+',I3,')=',I5)
       WRITE(6, 833) (KOL(IP),IP=1,3)
       WRITE(6, 836) (NAL(IR),IR=1,3)
       WRITE(6, 840)
-      WRITE(6, 850) (IN,NODEEL(IN),NODEEL(IN),IN=1,LUK0)
+      WRITE(6, 850) (IIN,NODEEL(IIN),NODEEL(IIN),IIN=1,LUK0)
   800 FORMAT(10X,'RESULTS OF WORK: SORTUZ:')
   810 FORMAT(2X,'NOUZ(',I3,')=',I4)
   830 FORMAT(2X,'INOUZ1(',I3,')=',I4)
@@ -263,7 +263,7 @@ C 900 FORMAT(2X,'SORTUZ : NODEEL(',I3,'+',I3,')=',I5)
 
 
       SUBROUTINE FIND(NEND,NNDIM,NUM)
-C     B MACCיBE NNDIM י‎ETCס BEלי‏יHA NUM.ECלי EE HET-BניûEM
+C     IN THE ARRAY NNDIM, SEARCHES FOR THE VALUE NUM. IF IT IS NOT FOUND, WRITES IT.
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       INTEGER*4 NEND,NUM,NNDIM(100)
       IF(NEND.EQ.0) GO TO 15
@@ -277,7 +277,7 @@ C     B MACCיBE NNDIM י‎ETCס BEלי‏יHA NUM.ECלי EE HET-BניûEM
 
 
       SUBROUTINE DOWN(ED,DOMIN,EI,INSERT)
-C     ץHי‏TOצAאTCס üלEMEHTש INSERT'A KOTOPשE ECTר B DOMIN'E
+C     DESTROYING ELEMENTS OF THE INSERT WHICH EXIST IN THE DOMAIN
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       INTEGER*4 DOMIN(100),INSERT(100),ED,EI
       DO 10 ID=1,ED
@@ -293,11 +293,11 @@ C     ץHי‏TOצAאTCס üלEMEHTש INSERT'A KOTOPשE ECTר B DOMIN'E
 
 
       SUBROUTINE RANGER(KS,INZ,NDIM,END,EXIST)
-C     BשגיPAET ית NDIM'A B INZ üלEMEHTש HA‏יHAס C MIN
+C     SELECTS ELEMENTS FROM NDIM TO INZ STARTING FROM MIN
 C
-C     END - נEPEOנPEהEלסETCס . נPי BXOהE END - Oג‎EE KOל-BO ץתלOB הAHHO
-C TינA הO יCKלא‏EHיס DOWN'OM , נPי BשXOהE צE - הEךCTBיTEלרHOE KOל-BO
-C ץתלOB הAHHOחO TינA /CM. BשתOB/
+C     END - IS REDEFINED. AT THE ENTRY, END - THE TOTAL NUMBER OF NODES
+C  OF THE GIVEN TYPE BEFORE EXCLUSION BY DOWN, AT EXIT - THE ACTIVE
+C  NUMBER OF NODES OF THE GIVEN TYPE /SEE. OUTPUT/
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       LOGICAL EXIST
       INTEGER*4 INZ(100),NDIM(100),KS,END

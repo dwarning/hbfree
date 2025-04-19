@@ -5,7 +5,7 @@ c
 c Released under GPL v 2.0
 c
 
-
+      PROGRAM HBL
 
 c*********************************************************************
 c expected command line options
@@ -13,7 +13,7 @@ c	usage: hb[.exe] <infile> [<outfile> -f<freq-table> -p<p-freq-table> -u
 c     <init> -a]
 c	       infile         - HBP input file
 c	       outfile        - HBP output file, optional, stdout if not set
-c	      freq-table     - output variables in frequency domain
+c	       freq-table     - output variables in frequency domain
 c	       p-freq-table   - "pulsed" output variables in frequency domain 
 c	       uinit          - file of input variables (not supported now)
 c	       -a             - about
@@ -23,13 +23,13 @@ c
 c
 C*********************************************************************
 C*                                                                   *
-C*   MAIN PROGRAMM = SPEC'HOB'( BEPCיס 2.0 ),    11.11.87            *
+C*   MAIN PROGRAMM = SPEC'HOB'( Version 2.0 ),    11.11.87           *
 C*                                                                   *
-C*     הבפב נןףלוהמוחן עוהבכפיעןקבמיס  -  28.04.92                   *
+C*      DATE LAST EDITED  -  28.04.92                                *
 C*      last edited August-2002                                      *
 C*********************************************************************
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      include 'circuit.i'
+c      include 'circuit.i'
       COMMON/PRINT /   KPRLEN,KPRSRT,KPRNKR,KPRLIN,KPRSOL,KPRVAR,       
      +          KPRGRF,KPRQUP 
       COMMON/NEWTON/   EPSSOL,EPSDU,EPSMIN,MAXDU,LIMIT
@@ -60,7 +60,7 @@ C these numbers are not checked yet for circuit ... :-(
 
       COMMON/BLIFF/IFF(7,4),KIFF,NNIFF(4,8),KNNIFF,PNIFF(8),FNE1,FNE2
 
-C  יתםומומיו ןפ 30.01.91    יתםומיל ףועהאכ ח.ק.
+C  CHANGE FROM 01/30/91 CHANGED BY G.V. SERDIUK
 C$LARGE: BUFFER
       COMMON/MATY/     BUFFER (6000),BUFLEN
       DOUBLE COMPLEX          BUFFER
@@ -99,7 +99,7 @@ C$LARGE: BUFFER
       character*256 infile, outfile
       character*256 cl_param
 
-C  ףם. נןנעבקכץ קשûו ןפ 30.01.91  ףועהאכ ח.ק.
+C  SEE CORRECTION ABOVE FROM 30.01.91 BY SERDYUK G.V.  
       IFIND1(I,M,NU)=(I+(M-1)*NU)
       IFIND2(I,J,M,NU,MF)=NU*MF+I+(J-1)*NU+(M-1)*NU*NU
       BUFLEN =6000
@@ -169,9 +169,9 @@ c not default value - open file
 
 
 C =========================================================
-C ##!##  BEתהE B נAKETE U=UMAX/2 KPOME U נPי OMEGA=0. AHAלOחי‏HO VECTJ.
+C ##!##  HERE IN PACKET U=UMAX/2 KPOME U WHEN OMEGA=0. ANALOGICAL VECTJ.
 C
-C ***‏TEHיE BXOהHOחO תAהAHיס
+C ***READING THE INTRODUCTION TASK
       WRITE (6,460)
       PRINT    460
 C
@@ -182,8 +182,8 @@ C *********************************************************
 
       WRITE (6, 460)
 C
-C    npass - ־ֵֽֿp ׀poxֱִֿ ׀ֿ ׀pַֿpֱֵֽֽ ֿװ 2000 CONTINUE
-C                                       ִֿ 300 CONTINUE
+C    npass - pass number through the program from 2000 CONTINUE
+C                                              to  300 CONTINUE
 C                                          ..... GO TO 2000
 C                                        28.02.92
       npass=0 
@@ -270,17 +270,17 @@ C
 C
 C
 C +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-C     C‏יפשקבמיו י תבניףר מב‏בלרמשט נעיגליצומיך מבנעסצומיך 
-C     ית זבךלב ף עבףûיעומיום ".UIN"
+C     READING AND WRITING OF INITIAL STRESS APPROXIMATIONS  
+C     FROM A FILE WITH THE EXTENSION ".UIN"
       IF(npass.ne.1.or.kitu.ne.3) GOTO 60
 C
-C     נעיףקןומיו ףיםקןלרמןך נועוםוממןך WWW2 תמב‏ומיס יםומי 
-C     זבךלב קטןהמןחן תבהבמיס.  
+C     ASSIGNING THE SYMBOLIC VARIABLE WWW2 THE NAME OF  
+C     THE INPUT FILE.  
 C      INQUIRE (10, NAME=WWW2)
 C      WW3='.UIN'
 C      CALL NACH(WW3, FS1, WWW2)
-C     נ/נ NACH נעיףקןיפ ףיםקןלרמןך נועוםוממןך FS1 יםס קטןהמןחן 
-C     זבךלב ף עבףûיעומיום .UIN 
+C     THE SUBROUTINE NACH ASSIGNS THE NAME OF THE INPUT  
+C     FILE WITH THE EXTENSION .UIN TO THE SYMBOLIC VARIABLE FS1
 C    so far - initial aproximation file wil have name UIN.UIN.
 C we will return to this later
 C NACH is removed
@@ -316,8 +316,8 @@ C *********************************************************
 C
 C
 C +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-C       תבניףר זבךלב מב‏בלרמשט נעיגליצומיך מבנעסצומיך 
-C                  ף עבףûיעומיום  " *UIN "
+C       WRITING THE FILE OF INITIAL STRESS APPROXIMATIONS  
+C                  WITH THE EXTENSION "*UIN"
       IF(NPASS.EQ.1.AND.KITU.EQ.3) OPEN(12,file=fs1)
       IF(NPASS.EQ.1.AND.KITU.EQ.3) WRITE(12,UINIT)     
       IF(NPASS.EQ.1.AND.KITU.EQ.3) KITU=2
@@ -335,7 +335,7 @@ C
       DO 90 IRC=2,KN
       DO 90 I=1,K123
       S(I,IRC)=2.D0*S(I,IRC)
-C    נPיBEהEM K הEךCTBץא‎EMץ תHA‏EHיא
+C    BRING TO THE ACTUAL VALUE  
    90 S(I,IRC)=S(I,IRC)/DSQRT(2.D0)
 C  90 CONTINUE
   110 CONTINUE
@@ -359,8 +359,8 @@ C
 C
   150 CONTINUE
 C
-C    וףלי יף‏וענבמ ליםיפ יפועבדיך ליגן םופןה מE
-C    ףטןהיפףס םש מו קש‏יףלסום כב‏וףפקוממשו נןכבתבפולי
+C    IF THE ITERATION LIMIT IS EXCEEDED OR THE METHOD  
+C    DOES NOT CONVERGE, WE DO NOT CALCULATE QUALITY INDICATORS  
       IF(ITERMC.EQ.3.OR.ITERMC.EQ.4) GOTO 1050
 C
 C
@@ -389,10 +389,10 @@ C      IF(KOLVAR.EQ.0)
   320 FORMAT(/3X,'KNC=',I3,5X,'KN=',I3)
   350 FORMAT(I8,2X,20I5)
   400 FORMAT(10X,'RESULTS OF Y-MATRICES FORMING   ')
-  410 FORMAT(10X,'FREQUNCY',E12.5)
+  410 FORMAT(10X,'FREQUENCY',E12.5)
   415 FORMAT(2X,'VECTJ(',I3,I4,')=',E12.5,2X,E12.5)
   420 FORMAT(10E12.5)
-  430 FORMAT(5X,' FREQUNCY',I3,' COMBINATION(',I3,',',I3,')',           
+  430 FORMAT(5X,' FREQUENCY',I3,' COMBINATION(',I3,',',I3,')',           
      + ' VALUE    ',E13.6)
   440 FORMAT(2X,'U(',I3,')=',E13.6,1X,E13.6)
   450 FORMAT(20X,'***************** END *************************')

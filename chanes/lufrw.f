@@ -9,31 +9,31 @@ c
 
       SUBROUTINE LUFRW(ALU,B,NTOT,N,NF,NEND,FLAG)
 C**************************************************************
-C*       נ/נ נPסMOחO יCKלא‏EHיס                               *
+C*       SUBROUTINE FORWARD ELIMINATION                      *
 C*                                                            *
-C*       B-BEKTOP CBOגOהHשX ‏לEHOB                            *
+C*       B - VECTOR OF FREE TERMS (RIGHT-HAND SIDE)          *
 C*                                                            *
 C**************************************************************
 C$LARGE: ALU,B
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       DOUBLE COMPLEX ALU(NTOT,NTOT),B(NTOT)
       INTEGER FLAG
-C  נPOBEPKי BXOהHשX הAHHשX
+C  CHECKING INPUT DATA
       FLAG=0
       IF((NF.GT.N).OR.(NEND.GT.N)) FLAG=5
       IF(NF.GT.NEND) FLAG=4
       IF((NF.GT.NTOT).OR.(NEND.GT.NTOT).OR.(N.GT.NTOT)) FLAG=3
       IF((NF.LT.1).OR.(NEND.LT.0).OR.(N.LT.1)) FLAG=2
       IF(NTOT.LT.1) FLAG=1
-C  יCKלא‏EHיE:ECלי NEND=NF-1,TO BEהץ‎יX üלEMEHTOB - 0
-C  (HOPMAלרHOE OKOH‏AHיE.BOתBPAT)  (!) FLAG=4 (!)
+C  EXCEPTION: IF NEND = NF - 1, THEN THERE ARE NO PIVOT ELEMENTS
+C  (NORMAL TERMINATION. RETURN)  (!) FLAG = 4 (!)
       IF(NEND-NF+1.EQ.0) RETURN
       IF(FLAG.NE.0) WRITE (6, 55) FLAG
       IF(FLAG.NE.0) RETURN
-C  ECלי N=1,TO HEOגXOהיMO BשנOלHיTר TOלרKO  B(N)=B(N)/ALU(N,N)
+C  IF N = 1, THEN IT IS NECESSARY TO PERFORM ONLY  B(N) = B(N) / ALU(N,N)
       IF(N.EQ.1) GO TO 45
-C  נPסMOE יCKלא‏EHיE
-C  ECלי NEND=N,TO NEND=NEND-1
+C  DIRECT ELIMINATION  
+C  IF NEND = N, THEN NEND = NEND - 1
       NE=NEND
       IF(NEND.EQ.N) NE=NEND-1
       DO 40 JCOL=NF,NE
@@ -43,9 +43,9 @@ C  ECלי NEND=N,TO NEND=NEND-1
       B(IROW)=B(IROW)-ALU(IROW,JCOL)*B(JCOL)
    50 CONTINUE
    40 CONTINUE
-C  נOüTOMץ BMECTO NEND B נPEהשהץ‎EM KOMMEHTAPיי יCנOלרתOBAלי NE.
-C  י E‎E נOTOMץ,‏TO HABOהיTCס OûיגKA: NEND ץMEHרûAETCס HA
-C  EהיHידץ י נEPEהAETCס הAלרûE.
+C  THEREFORE, IN THE PREVIOUS COMMENT, WE USED NE INSTEAD OF NEND.  
+C  ALSO BECAUSE AN ERROR OCCURS: NEND IS DECREMENTED BY  
+C  ONE AND THEN PASSED FURTHER ON.
    45 IF(NEND.EQ.N) B(N)=B(N)/ALU(N,N)
       RETURN
    55 FORMAT('  LUFRW: '/'  INPUT DATA ERROR. FLAG=',I4)

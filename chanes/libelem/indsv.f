@@ -10,8 +10,8 @@ c
 
        SUBROUTINE INDSV(OM,P1,L1,P2,L2,P3,L3)
 C
-C     MOהEלר פעוט קתביםמן-ימהץכפיקמן-ףקסתבממשט 
-C     הקץטנןלאףמיכןק (לימוךמבס) 
+C     MODEL OF THREE MUTUALLY INDUCTIVELY COUPLED  
+C     TWO-PORT NETWORKS (LINEAR)  
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       DOUBLE PRECISION OM,P1,P2,P3
@@ -27,32 +27,32 @@ C
       DOUBLE COMPLEX A,B,C,D,E,F
       DOUBLE COMPLEX Z1,Z2,Z3,ZM1,ZM2,ZM3,Z 
 
-C     נבעבםופעש ןג‎יו מב ףטוםץ:G1,G2,G3
-C     ימהיקיהץבלרמשו נבעבםופעש:
-C                Z1 = R1 + j*OM*LL1 - כןםנלוכף נןלמןחן
-C     ףןנעןפיקלומיס קופקי ףןהועצב‎וך הקץטנןלאףמיכ Z1.    
-C                Z2 = R2 + j*OM*LL2 - כןםנלוכף נןלמןחן 
-C     ףןנעןפיקלומיס קופקי ףןהועצב‎וך הקץטנןלאףמיכ Z2. 
-C                Z3 = R3 + j*OM*LL3 - כןםנלוכף נןלמןחן 
-C     ףןנעןפיקלומיס קופקי ףןהועצב‎וך הקץטנןלאףמיכ Z3. 
-C                M1 - קתביםמבס ימהץכפיקמןףפר הקץטנןלאףמיכןק
-C                    Z1 י Z2.
-C                M2 - קתביםמבס ימהץכפיקמןףפר הקץטנןלאףמיכןק
-C                    Z2 י Z3.
-C                M3 - קתביםמבס ימהץכפיקמןףפר הקץטנןלאףמיכןק
-C                    Z3 י Z1.
-C                K1 - כןüזזידיומפ ףקסתי הקץטנןלאףמיכןק
-C                    Z1 י Z2.
-C                K2 - כןüזזידיומפ ףקסתי הקץטנןלאףמיכןק
-C                    Z2 י Z3.
-C                K3 - כןüזזידיומפ ףקסתי הקץטנןלאףמיכןק
-C                    Z3 י Z1.
-C            FLAG1 = 0. - הקץטנןלאףמיכי Z1 י Z2 קכלא‏ומש ףןחלבףןקבמן
-C                    1. - הקץטנןלאףמיכי Z1 י Z2 קכלא‏ומש קףפעו‏מן
-C            FLAG2 = 0. - הקץטנןלאףמיכי Z2 י Z3 קכלא‏ומש ףןחלבףןקבמן 
-C                    1. - הקץטנןלאףמיכי Z2 י Z3 קכלא‏ומש קףפעו‏מן
-C            FLAG3 = 0. - הקץטנןלאףמיכי Z3 י Z1 קכלא‏ומש ףןחלבףןקבמן 
-C                    1. - הקץטנןלאףמיכי Z3 י Z1 קכלא‏ומש קףפעו‏מן
+C     PARAMETERS COMMON TO THE SCHEME: G1, G2, G3  
+C     INDIVIDUAL PARAMETERS:  
+C                Z1 = R1 + j*OM*LL1 - COMPLEX TOTAL  
+C     IMPEDANCE OF THE BRANCH CONTAINING TWO-PORT Z1.  
+C                Z2 = R2 + j*OM*LL2 - COMPLEX TOTAL  
+C     IMPEDANCE OF THE BRANCH CONTAINING TWO-PORT Z2.  
+C                Z3 = R3 + j*OM*LL3 - COMPLEX TOTAL  
+C     IMPEDANCE OF THE BRANCH CONTAINING TWO-PORT Z3.  
+C                M1 - MUTUAL INDUCTANCE OF TWO-PORTS  
+C                    Z1 AND Z2.  
+C                M2 - MUTUAL INDUCTANCE OF TWO-PORTS  
+C                    Z2 AND Z3.  
+C                M3 - MUTUAL INDUCTANCE OF TWO-PORTS  
+C                    Z3 AND Z1.  
+C                K1 - COUPLING COEFFICIENT OF TWO-PORTS  
+C                    Z1 AND Z2.  
+C                K2 - COUPLING COEFFICIENT OF TWO-PORTS  
+C                    Z2 AND Z3.  
+C                K3 - COUPLING COEFFICIENT OF TWO-PORTS  
+C                    Z3 AND Z1.  
+C            FLAG1 = 0. - TWO-PORTS Z1 AND Z2 CONNECTED IN PHASE  
+C                    1. - TWO-PORTS Z1 AND Z2 CONNECTED OUT OF PHASE  
+C            FLAG2 = 0. - TWO-PORTS Z2 AND Z3 CONNECTED IN PHASE  
+C                    1. - TWO-PORTS Z2 AND Z3 CONNECTED OUT OF PHASE  
+C            FLAG3 = 0. - TWO-PORTS Z3 AND Z1 CONNECTED IN PHASE  
+C                    1. - TWO-PORTS Z3 AND Z1 CONNECTED OUT OF PHASE  
 C
 
       G1=P2(1)
@@ -165,14 +165,14 @@ C
 
 100   CONTINUE
       WRITE (6,30)
-30    FORMAT(2X,52('$')/       2X,'$$                ן û י ג כ ב        
-     +             $$'/        2X,'$$    קן קטןהמןם תבהבמיי. 10-12 ימהיק
-     +יהץבלרמשו    $$'/       2X,'$$    נבעבםופעש מב םןהולר ימהץכפיקמן-ף
-     +קסתבממשט    $$'/       2X,'$$    הקץטנןלאףמיכןק םןחץפ נעימיםבפר פן
-     +לרכן       $$'/       2X,'$$    ףלוהץא‎יו תמב‏ומיס:               
-     +          $$'/       2X,'$$    0. - הקץטנןלאףמיכי קכלא‏ומש ףןחלבףן
-     +קבמן.    $$'/       2X,'$$    1. - הקץטנןלאףמיכי קכלא‏ומש קףפעו‏מן
-     +.       $$'/       2X,52('$'))
+30    FORMAT(2X,52('$')/      2X,'$$                E R R O R           
+     +             $$'/       2X,'$$    IN THE INPUT DATA. 10-12 INDIVID
+     +UAL          $$'/      2X,'$$    PARAMETERS FOR THE INDUCTIVELY-ףO
+     +UPLED       $$'/      2X,'$$    TWO-PORT NETWORKS CAN ONLY HAVE   
+     +           $$'/      2X,'$$    THE FOLLOWING VALUES:              
+     +          $$'/      2X,'$$    0. - TWO-PORTS CONNECTED IN PHASE.  
+     +         $$'/      2X,'$$    1. - TWO-PORTS CONNECTED OUT OF PHASE
+     +.       $$'/      2X,52('$'))
 
       RETURN
 

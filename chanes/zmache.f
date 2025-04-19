@@ -10,12 +10,12 @@ c
 
       SUBROUTINE MACHEP   (EPSIM)
 C
-C   ð/ð BùþéCìEHéñ MAûéHHOçO üðCéìOH.
+C   SUBROUTINE FOR COMPUTING MACHINE EPSILON.
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       DOUBLE PRECISION EPSIM
 C      print 5
-C    5 format(2x,'ð/ð MACHEP')
+C    5 format(2x,'ROUTINE MACHEP')
 
       EPSIM=1.D0
    10 CONTINUE
@@ -23,10 +23,10 @@ C    5 format(2x,'ð/ð MACHEP')
 
 C      print 15, epsim
 
-C      IF((EPSIM+1.0).NE.1.) GOTO 10
+      IF((EPSIM+1.0).NE.1.) GOTO 10
            
 C      EPSIM=2.*EPSIM
-      EPSIM=.1084202172D-18 
+C      EPSIM=.1084202172D-18 
    
 C      print 15, epsim
 C   15 format(2x,'EPSIM=',E16.10)

@@ -59,8 +59,8 @@ C      IF(NAME(2).EQ.NAMES(17)) CALL CUSD1 (IVAR)
       IF(NAME(2).EQ.NAMES(16)) CALL BIPTR1(IVAR)
   160 CONTINUE
 
-C  SCHT=‰ÈO‰ ˚OTTKÈ
-C  JUNC =‰ÈO‰ ‚E˙ HEÏÈH. EMKOCTÈ
+C  SCHT = SCHOTTKY DIODE  
+C  JUNC = DIODE WITHOUT NONLINEAR CAPACITANCE  
       RETURN
 C2222222222222222222222222222222222222222222222222222222222222222222222
       ENTRY LIBMD2(NAME,OM,N1,L1,N2,L2,N3,L3)
@@ -113,7 +113,7 @@ C    *                                           L2,P(N3),L3)
       IF(NAME(2).EQ.NAMES( 8))CALL ICUJ2 (OM,P(N1),L1,P(N2),            
      +                               L2,P(N3),L3)
 C      IF(NAME(2).EQ.NAMES(17))CALL CUSD2 (OM,P(N1),L1,P(N2),
-C     *                                           L2,P(N3),L3)
+C     +                                           L2,P(N3),L3)
  250  CONTINUE
 
       IF(NAME(1).NE.NAMES(15)) GOTO 260
@@ -174,7 +174,7 @@ C    *                                           L3,B1,KNC2,NR,*300)
       IF(NAME(2).EQ.NAMES( 8))CALL ICUJ3 (NG,P(N1),L1,P(N2),L2,P(N3),   
      +                                        L3,B1,KNC2,NR,*300)
 C      IF(NAME(2).EQ.NAMES(17))CALL CUSD3 (NG,P(N1),L1,P(N2),L2,P(N3),
-C     *                                           L3,B1,KNC2,NR,*300)
+C     +                                           L3,B1,KNC2,NR,*300)
   350 CONTINUE
 
       IF(NAME(1).NE.NAMES(15)) GOTO 360
@@ -183,7 +183,7 @@ C     *                                           L3,B1,KNC2,NR,*300)
   360 CONTINUE
 
       RETURN
-  300 RETURN1
+  300 RETURN 1
 C4444444444444444444444444444444444444444444444444444444444444444444444
       ENTRY LIBMD4(NAME,NG,N1,L1,N2,L2,N3,L3,B1,KNC2,NR,*)
       IF(NAME(1).NE.NAMES(1))GOTO 410
@@ -230,7 +230,7 @@ C    *                                           L3,B1,KNC2,NR,*300)
       IF(NAME(2).EQ.NAMES( 8))CALL ICUJ4 (NG,P(N1),L1,P(N2),L2,P(N3),   
      +                                        L3,B1,KNC2,NR,*300)
 C      IF(NAME(2).EQ.NAMES(17))CALL CUSD4 (NG,P(N1),L1,P(N2),L2,P(N3),
-C     *                                           L3,B1,KNC2,NR,*300)
+C     +                                           L3,B1,KNC2,NR,*300)
  450  CONTINUE
 
       IF(NAME(1).NE.NAMES(15))GOTO 460
@@ -284,7 +284,7 @@ C    *                 (NOI,NOU,EXIST,KOI,KOUV,KOPV,NR1V,NB1V)
       IF(NAME(2).EQ.NAMES( 8))CALL ICUJ5                 (NOI,NOU,EXIST,
      +KOI,KOUV,KOPV,NR1V,NB1V)
 C      IF(NAME(2).EQ.NAMES(17))CALL CUSD5
-C     *                 (NOI,NOU,EXIST,KOI,KOUV,KOPV,NR1V,NB1V)
+C     +                 (NOI,NOU,EXIST,KOI,KOUV,KOPV,NR1V,NB1V)
   550 CONTINUE
 
       IF(NAME(1).NE.NAMES(15))GOTO 560

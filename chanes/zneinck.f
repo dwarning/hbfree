@@ -9,8 +9,8 @@ c
 
       SUBROUTINE NEINCK(N,EPSIM,IDIM,SCALEF,SCALEU,U,ICODE)
 
-C      ðPOéúBOäéT ðPOBEPKõ é HAþAìøHùE õCTAHOBKé
-C      ðAPAMEPTOB ðPOçPAMMù SOLVE
+C     Performs validation and initial setup
+C     of the parameters for the SOLVE program
 
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       COMMON/TYPVAL/   TYPU,TYPI
@@ -24,7 +24,7 @@ C      ðAPAMEPTOB ðPOçPAMMù SOLVE
       DOUBLE PRECISION             U(1)
       DOUBLE PRECISION             NORSTP,NOR1
 
-C  ðPOBEPKA BEìéþéHù N - PAúMEPHOCTé CéCTEMù
+C  Validation of the value of N - the dimensionality of the system
       IF (N.GE.1) GO TO 5
       ICODE=-1
       RETURN
@@ -32,14 +32,14 @@ C  ðPOBEPKA BEìéþéHù N - PAúMEPHOCTé CéCTEMù
       ICODE=-2
       RETURN
    10 CONTINUE
-C ðPOBEPKA õCTAHOBKé MACûTAâOB
+C Checking the scale settings
       IF(TYPU.LE.0.D0) TYPU=1.D0
       IF(TYPI.LE.0.D0) TYPI=1.D0
       NDIV2=N/2
       DO 20 I=1,NDIV2
       SCALEF(I)=1.D0/TYPI
    20 SCALEU(I)=1.D0/TYPU
-C  õCTAHOBKA ðAPAMETPOB METOäA
+C Setting the parameters of the method
 C  EPSSOL
       IF(EPSSOL.LE.0) EPSSOL=EPSIM**(1.D0/3.D0)
 C  EPSDU
@@ -58,7 +58,7 @@ C  MAXDU
       NOR1=DSQRT(NOR1)
       MAXDU=1000.D0*DMAX1(NORSTP,NOR1)
    30 CONTINUE
-C  ðPEäEì KOìéþECTBA éTEPAãéê
+C  Limit on the number of iterations
       IF(LIMIT.LE.0.OR.LIMIT.GT.LIMMAX) LIMIT=LIMMAX
       RETURN
 C     DEBUG SUBCHK,INIT

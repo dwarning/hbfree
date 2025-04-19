@@ -9,9 +9,9 @@ c
 
       SUBROUTINE LUBACK(ALU,B,NTOT,N,NEND,FLAG)
 C**************************************************************
-C*             / O‚PATHOÍ O‰CTAHOBKÈ                       *
+C*             Subroutine for Path Traversal                  *
 C*                                                            *
-C*          BEKTOP B - È BXO‰HOÍ, È B˘XO‰HOÍ                  *
+C*          Vector B - both input and output                  *
 C**************************************************************
 C$LARGE: ALU, B
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
@@ -23,14 +23,14 @@ C$LARGE: ALU, B
       IF(NTOT.LT.1)  FLAG=1
       IF(FLAG.NE.0) WRITE(6, 65)   FLAG
       IF(FLAG.NE.0)RETURN
-C ECÏÈ N=1,TO O‚PATHOE ÈCKÏ‡˛EHÈE HEHıˆHO
+C If N=1, then path traversal exclusion is not necessary
       IF(N.EQ.1) RETURN
-C  T.K. U ÈMEET E‰ÈHÈ˛Hı‡ ‰ÈAÁOHAÏ¯,TO U(N,N)*X(N)=B(N)
+C Since U has a unique diagonal, U(N,N)*X(N) = B(N)
 C  X(N)=B(N)
       NM1=N-1
       DO 60 JC=1,NM1
       JCOL=N-JC+1
-C  TEM CAM˘M OPÁAHÈ˙OBAH „ÈKÏ JCOL=N,2
+C This changes the organization of the loop JCOL = N, 2
       IROWLM=JCOL-1
       IF(IROWLM.GT.NEND)IROWLM=NEND
       DO 70 IROW=1,IROWLM

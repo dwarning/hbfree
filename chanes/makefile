@@ -15,11 +15,11 @@ PROG	=	../hbl
 #gfortran
 F77	=	gfortran
 FFLAGS = -Wall -Wextra -Wuninitialized \
-		-g \
-		-malign-double \
-		-O \
+		-O2 \
 		-fdec-char-conversions \
-		-std=legacy
+		-std=legacy \
+		-malign-double
+#		-g
 
 #ifx (prep.: source /opt/intel/oneapi/setvars.sh)
 #F77	=	ifx
@@ -32,75 +32,75 @@ OBJ_DIR = obj
 
 
 F_SRC =  \
-	SPAGged/charint.f	\
-	SPAGged/decode.f 	\
-	SPAGged/detsyn.f 	\
-	SPAGged/former.f 	\
-	SPAGged/frequen.f 	\
-	SPAGged/ftmas2.f 	\
-	SPAGged/harm.f  	\
-	SPAGged/initi.f 	\
-	SPAGged/inkoor.f 	\
-	SPAGged/koord.f  	\
-	SPAGged/krdchk.f	\
-	SPAGged/lena.f  	\
-	SPAGged/len.f 		\
-	SPAGged/lineq1.f 	\
-	SPAGged/luback.f 	\
-	SPAGged/lucan.f 	\
-	SPAGged/lufrw.f 	\
-	SPAGged/luslv.f 	\
-	SPAGged/main.f  \
-	SPAGged/otchm.f \
-	SPAGged/packm.f \
-	SPAGged/regul.f \
-	SPAGged/restor.f	\
-	SPAGged/sort.f  \
-	SPAGged/sortuz.f	\
-	SPAGged/stback.f	\
-	SPAGged/stepfr.f	\
-	SPAGged/sumdif.f	\
-	SPAGged/suprim.f	\
-	SPAGged/topo.f	\
-	SPAGged/topoin.f	\
-	SPAGged/zgradie.f	\
-	SPAGged/ziny.f	\
-	SPAGged/zlserch.f	\
-	SPAGged/zmache.f	\
-	SPAGged/znef.f	\
-	SPAGged/zneinck.f	\
-	SPAGged/znejac.f	\
-	SPAGged/znewsol.f	\
-	SPAGged/zstop0.f	\
-	SPAGged/zstop.f 
+	SPAGged/charint.for	\
+	SPAGged/decode.for 	\
+	SPAGged/detsyn.for 	\
+	SPAGged/former.for 	\
+	SPAGged/frequen.for 	\
+	SPAGged/ftmas2.for 	\
+	SPAGged/harm.for  	\
+	SPAGged/initi.for 	\
+	SPAGged/inkoor.for 	\
+	SPAGged/koord.for  	\
+	SPAGged/krdchk.for	\
+	SPAGged/lena.for  	\
+	SPAGged/len.for 	\
+	SPAGged/lineq1.for 	\
+	SPAGged/luback.for 	\
+	SPAGged/lucan.for 	\
+	SPAGged/lufrw.for 	\
+	SPAGged/luslv.for 	\
+	SPAGged/main.for  \
+	SPAGged/otchm.for \
+	SPAGged/packm.for \
+	SPAGged/regul.for \
+	SPAGged/restor.for	\
+	SPAGged/sort.for  \
+	SPAGged/sortuz.for	\
+	SPAGged/stback.for	\
+	SPAGged/stepfr.for	\
+	SPAGged/sumdif.for	\
+	SPAGged/suprim.for	\
+	SPAGged/topo.for	\
+	SPAGged/topoin.for	\
+	SPAGged/zgradie.for	\
+	SPAGged/ziny.for	\
+	SPAGged/zlserch.for	\
+	SPAGged/zmache.for	\
+	SPAGged/znef.for	\
+	SPAGged/zneinck.for	\
+	SPAGged/znejac.for	\
+	SPAGged/znewsol.for	\
+	SPAGged/zstop0.for	\
+	SPAGged/zstop.for 
 
 LIB_DIR = ./libelem
 
 LIB_SRC = \
-	SPAGged/biptr.f \
-	SPAGged/cbarr.f \
-	SPAGged/cdiff.f \
-	SPAGged/clin.f \
-	SPAGged/cpoly.f \
-	SPAGged/curt.f \
-	SPAGged/cusd.f \
-	SPAGged/discont.f \
-	SPAGged/icujunc.f \
-	SPAGged/icupoly.f \
-	SPAGged/indsv.f \
-	SPAGged/junc.f \
-	SPAGged/lib0.f \
-	SPAGged/liblin.f \
-	SPAGged/libmod.f \
-	SPAGged/lin.f \
-	SPAGged/mdsch.f \
-	SPAGged/mpl.f \
-	SPAGged/poly5.f \
-	SPAGged/shleif.f \
-	SPAGged/stab.f \
-	SPAGged/svlutl.f \
-	SPAGged/test.f \
-	SPAGged/ytab.f 
+	SPAGged/biptr.for \
+	SPAGged/cbarr.for \
+	SPAGged/cdiff.for \
+	SPAGged/clin.for \
+	SPAGged/cpoly.for \
+	SPAGged/curt.for \
+	SPAGged/cusd.for \
+	SPAGged/discont.for \
+	SPAGged/icujunc.for \
+	SPAGged/icupoly.for \
+	SPAGged/indsv.for \
+	SPAGged/junc.for \
+	SPAGged/lib0.for \
+	SPAGged/liblin.for \
+	SPAGged/libmod.for \
+	SPAGged/lin.for \
+	SPAGged/mdsch.for \
+	SPAGged/mpl.for \
+	SPAGged/poly5.for \
+	SPAGged/shleif.for \
+	SPAGged/stab.for \
+	SPAGged/svlutl.for \
+	SPAGged/test.for \
+	SPAGged/ytab.for 
 
 F_OBJ = \
 	$(OBJ_DIR)/charint.o \
@@ -176,10 +176,10 @@ LIB_OBJ = \
 $(PROG): $(F_OBJ) $(LIB_OBJ)
 		$(F77) $(LDLAGS) -o $@ $^
 		
-$(F_OBJ): $(OBJ_DIR)/%.o: SPAGged/%.f
+$(F_OBJ): $(OBJ_DIR)/%.o: SPAGged/%.for
 		$(F77) -c $(FFLAGS) -o $@ $< 
 
-$(LIB_OBJ): $(OBJ_DIR)/%.o: SPAGged/%.f
+$(LIB_OBJ): $(OBJ_DIR)/%.o: SPAGged/%.for
 		$(F77) -c $(FFLAGS) -o $@ $< 
 
 touch:

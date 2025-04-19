@@ -9,7 +9,7 @@ c
 
 
       SUBROUTINE REGUL(NK,DFDX,F,N)
-C   נ/נ PEחץלסPיתAדיי MATPידש סKOגיAHA. 
+C   Subroutine for regulation of the Jacobian matrix.
 C$LARGE:DFDX,F
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       DOUBLE PRECISION  DFDX         , F
