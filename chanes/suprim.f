@@ -13,9 +13,7 @@ C                                                                 *
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       EQUIVALENCE (K3,KOL(3))
       include 'circuit.i'
-C      COMMON/POINTR/NMPNT,NNODE,NPARAM,LENNOD,LENPAR,NNETPR,LENNTP
-C      COMMON/POINT/MPOINT(1)/NODEL/NODEEL(1)
-C      COMMON/PARAMS/PARAM(1)
+
       COMMON/KOLNAL/KOL(4),NAL(4)
       LOGICAL NAL
       COMMON/BLK1/KR,KR1,KC,KC1,NNR,NNR1,MN,MN1

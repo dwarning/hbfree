@@ -15,7 +15,6 @@ C     THE VALUE ND OR ND+1)
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       include 'circuit.i'
-C      COMMON/POINT/M(1)/NODEL/N(1)/POINTR/NMPNT,NOT,NP,LN,LP,NT,LT
       INTEGER M,N,S,END
       IF(ND.EQ.0) RETURN
       S=S

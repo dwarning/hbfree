@@ -14,10 +14,6 @@ C ***
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       include 'charint.i'
       include 'circuit.i'
-C       COMMON/NODEL/   NODEEL(500)
-C       COMMON/POINT/   MPOINT(500)
-C       COMMON/PARAMS/  PARAM (2000)
-C       COMMON/POINTR/  NMPNT,NNODE,NPARAM,LENNOD,LENPAR,NNETPR,LENNTP
 
        COMMON/FRE/        F(2)
        COMMON/BLK1/    KR,KR1,KC,KC1,NNR,NNR1,MN,MN1

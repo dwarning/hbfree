@@ -10,13 +10,12 @@ c
 
       SUBROUTINE STBACK(U,NREC,Y,VJ,ISIZE_MAXNODE,S)
 C*********************************************************************
-C     SUBROUTINE FOR CALCULATING THE SOLUTION OF THE SYSTEM OF EQUATIONS FOR THE POTENTIAL FUNCTION AT
-C     THE BOUNDARY NODES
+C     SUBROUTINE FOR CALCULATING THE SOLUTION OF THE SYSTEM OF EQUATIONS
+C     FOR THE POTENTIAL FUNCTION AT THE BOUNDARY NODES
 C          (ITERATIVE METHOD FOR LU-DECOMPOSITION TRANSFORMATION)
 C*********************************************************************
 
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-C      COMMON/SOLUTE/  S(70,20)
 c$LARGE: VJ,Y
 
 C      COMMON/FORMY/   VJ(70),Y(70,70)
@@ -24,7 +23,6 @@ C      COMMON/FORMY/   VJ(70),Y(70,70)
       DOUBLE COMPLEX Y (ISIZE_MAXNODE,ISIZE_MAXNODE)
       DOUBLE COMPLEX VJ(ISIZE_MAXNODE)
 
-C      COMMON/NAPR/    U
       DOUBLE COMPLEX U(1)
 C everywhere else U(1) is double precision , but here is double complex
 C it is intentionally size is 1/2 of original (sure)

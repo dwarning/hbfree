@@ -39,7 +39,6 @@ c      include 'circuit.i'
       COMMON/FRE/      F(2)
       COMMON/KOLNAL/   KOL,NAL
       COMMON/MEP/      MEPHF,FLGMNW
-C      COMMON/NAPR/     UIN
 
       INTEGER ISIZE_UIN
       PARAMETER (ISIZE_MAXVAR = 1000)

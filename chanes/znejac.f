@@ -20,11 +20,7 @@ C                                                                 *
       EQUIVALENCE      (K3,KOL(3))
       include 'circuit.i'
       include 'funcsize.i'
-C      COMMON/POINTR/   NMPNT,NNODE,NPARAM,LENNOD,LENPAR,NNETPR,LENNTP
       COMMON/KOLNAL/   KOL(4),NAL(4)
-C      COMMON/POINT/    MPOINT(1)
-C      COMMON/NODEL/    NODEEL(1)
-C      COMMON/PARAMS/   PARAM(1)
 
       COMMON/MATY/     BUFFER (6000),BUFLEN
       DOUBLE COMPLEX          BUFFER
