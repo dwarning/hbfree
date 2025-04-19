@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -10,8 +10,8 @@ c
       SUBROUTINE INITI(U,YY,VECTJ,ISIZE_MAXNODE,IERR)
 
 C*********************************************************************
-C  SUBROUTINE 'START' - CALLING FOR THE PROCESSING, CALCULATION OF 
-C  THE FREQUENCY GRID AND FORMATION OF Y AND J ON THE FREQUENCY GRID. 
+C  SUBROUTINE 'START' - CALLING FOR THE PROCESSING, CALCULATION OF
+C  THE FREQUENCY GRID AND FORMATION OF Y AND J ON THE FREQUENCY GRID.
 C  IN CASE OF A LINEAR SCHEME
 C*                    - CALCULATES THE SOLUTION OF THE EQUATIONS
 C*********************************************************************
@@ -24,10 +24,10 @@ C      COMMON/MATY/    J(15,20),Y(15,15,20)
 C     COMPLEX          Y,J
 
       DOUBLE PRECISION U(1)
-      
+
       DOUBLE COMPLEX YY(ISIZE_MAXNODE,ISIZE_MAXNODE)
       DOUBLE COMPLEX VECTJ(ISIZE_MAXNODE)
-      
+
       COMMON/MATY/     BUFFER (6000), BUFLEN
       DOUBLE COMPLEX          BUFFER
       INTEGER*4        BUFLEN
@@ -46,7 +46,7 @@ C     COMPLEX          Y,J
       LOGICAL          NAL(4)
       COMMON /BLMNI/   MNI(2,20),KMNI
       DOUBLE PRECISION             OM,PI
-      COMMON/PRINT/    KPRLEN,KPRSRT,KPRNKR,KPRLIN,KPRSOL,              
+      COMMON/PRINT/    KPRLEN,KPRSRT,KPRNKR,KPRLIN,KPRSOL,
      +   KPRVAR,KPRGRF,KPRQUP
       INTEGER IERR
 
@@ -89,21 +89,21 @@ C            - CALCULATION OF THE SOLUTION OF THE EQUATIONS
       IF(NAL(3).OR.NAL(4)) then
         IERR=0
         RETURN
-      endif 
-       
+      endif
+
 C      WRITE(IP, 1020)
       DO 50 IRRO=1,KN
       IRR=IRRO
    50 CALL STBACK (U,IRR)
 
-      IERR=1  
+      IERR=1
       RETURN
 
 C***** LARGE GRID MN1 (MORE THAN 200) *****************************
   100 WRITE(IP, 1000)
 
-      IERR =2 
-      RETURN 
+      IERR =2
+      RETURN
 
 C***** KNC > KNCMAX - EXIT INTO THE FORBIDDEN AREA *******************
   101 WRITE(IP, 1010) MNMAX

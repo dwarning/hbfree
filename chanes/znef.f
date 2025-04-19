@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -16,7 +16,7 @@ C                                                                 *
 C******************************************************************
 C                                                                 *
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      include 'circuit.i'      
+      include 'circuit.i'
       include 'funcsize.i'
       EQUIVALENCE (K3,KOL(3))
 C      COMMON/POINTR/NMPNT,NNODE,NPARAM,LENNOD,LENPAR,NNETPR,LENNTP
@@ -263,9 +263,9 @@ C
 C***********************************************************************
    49 FORMAT (/3X,'INPUT DATA ERROR:'        /3X,'KNR=',I5,5X,'KNC=',I5)
 
-   48 FORMAT (//9X,' CIRCUIT CAN NOT BE ANALYSED:'         /3X,' NUMBER 
-     +OF EQUATIONS EXCEEDS MAXIMUM.'         /3X,' NUMBER OF NODES=',I5 
-     +       /3X,' NUMBER OF FREQUENCIES=',I5       /3X,' MAX SIZE=',I5 
+   48 FORMAT (//9X,' CIRCUIT CAN NOT BE ANALYSED:'         /3X,' NUMBER
+     +OF EQUATIONS EXCEEDS MAXIMUM.'         /3X,' NUMBER OF NODES=',I5
+     +       /3X,' NUMBER OF FREQUENCIES=',I5       /3X,' MAX SIZE=',I5
      +  )
 C1232 FORMAT(2X,'ZNN(',I3,')=',E13.6,2X,E13.6)
       END

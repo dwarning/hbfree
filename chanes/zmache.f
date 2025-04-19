@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -24,10 +24,10 @@ C    5 format(2x,'ROUTINE MACHEP')
 C      print 15, epsim
 
       IF((EPSIM+1.0).NE.1.) GOTO 10
-           
+
 C      EPSIM=2.*EPSIM
-C      EPSIM=.1084202172D-18 
-   
+C      EPSIM=.1084202172D-18
+
 C      print 15, epsim
 C   15 format(2x,'EPSIM=',E16.10)
 

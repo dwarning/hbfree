@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -46,7 +46,7 @@ C Initialization of the matrices Y and the vector VJ
       CALL ZINY(Y,VJ,ISIZE_MAXNODE)
 C      print *,'after ZINY'
 C      print *,(VJ(ikkk),ikkk=1,20)
-      
+
       IF(.NOT.NAL(1)) GO TO 20
 
 C     LIN.CONST.-ÊOPMÈPOBAHÈE
@@ -56,9 +56,9 @@ C   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 C      WRITE(6,2)((III,JJJ,Y(III,JJJ),JJJ=1,KKK),III=1,KKK)
 C   1  FORMAT(2X,' Y   STEPFR ',I2,' KOL(1),KOL(2),KOL(3),KKK=',4I3)
 C   2  FORMAT(2X,'Y(',I3,',',I3,')=',1X,E13.6,1X,E13.6)
-C      WRITE(6,3) (III, VJ(III),III=1,KKK)      
+C      WRITE(6,3) (III, VJ(III),III=1,KKK)
 C   3  FORMAT(2X,'STEPFR VJ(',I3,')=',E13.6,',',E13.6)
-      
+
       IF(KOL(1).EQ.0) GO TO 10
       NF=1
       NEND=KOL(1)
@@ -75,7 +75,7 @@ C  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 C      write (6,*) 'Y matrix'
 C      do ii=1,n
 C            write (6,120) (Y(ii,jj), jj=1,n)
-C      enddo      
+C      enddo
 C120   format (2x,'(',1x,e12.5,1x,e12.5,')')
 
 
@@ -140,7 +140,7 @@ C
 C Packing and writing Y to MD
       CALL PACK2 (NREC,Y,VJ,ISIZE_MAXNODE)
 
-C Transfer of result to the function and reductions in the /MATY/ block, 
+C Transfer of result to the function and reductions in the /MATY/ block,
 C storing Y and J. Reduced linear subckt of the entire frequency range.
       K3=KOL(3)
       K12=KOL(1)+KOL(2)

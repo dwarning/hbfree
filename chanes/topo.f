@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -10,7 +10,7 @@ c
 
       SUBROUTINE TOPO(S,ND)
 C
-C     SUBROUTINE FOR SHIFTING N NODES (MOVE FROM THE POSITION S TO 
+C     SUBROUTINE FOR SHIFTING N NODES (MOVE FROM THE POSITION S TO
 C     THE VALUE ND OR ND+1)
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)

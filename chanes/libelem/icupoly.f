@@ -1,14 +1,14 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
 
 
 C******** ITUN ON VAX I=I0+....+I5(U-U0)**5 ******************
-C    USED FOR MODELING ITUN'S  
+C    USED FOR MODELING ITUN'S
 C    ANYWHERE.
       SUBROUTINE ICUPL1(IVAR)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
@@ -46,7 +46,7 @@ C     DEBUG SUBTRACE
 
       SUBROUTINE ICUPL3(NG,P1,L1,P2,L2,P3,L3,B1,KNC2,NR,*)
 C
-C      SUBROUTINE FOR THE MATHEMATICAL MODEL  
+C      SUBROUTINE FOR THE MATHEMATICAL MODEL
 C      OF A POLYNOMIAL ITUN.
 C
 C

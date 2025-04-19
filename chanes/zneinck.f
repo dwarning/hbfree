@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -18,7 +18,7 @@ C     of the parameters for the SOLVE program
       DOUBLE PRECISION             SCALEF(1),SCALEU(1)
       COMMON/NEWTON/   EPSSOL,EPSDU,EPSMIN,MAXDU,LIMIT
       DOUBLE PRECISION             EPSSOL,EPSDU,EPSMIN,MAXDU
-      COMMON/PRINT /   KPRLEN,KPRSRT,KPRNKR,KPRLIN,KPRSOL,KPRVAR,       
+      COMMON/PRINT /   KPRLEN,KPRSRT,KPRNKR,KPRLIN,KPRSOL,KPRVAR,
      +          KPRGRF,KPRQUP
       INTEGER          LIMMAX/1000/
       DOUBLE PRECISION             U(1)

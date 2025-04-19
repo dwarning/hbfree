@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -69,7 +69,7 @@ C
       CALL MSL(W1,T,H,EP,WEF1,EPE1,Z1)
       CALL MSL(W2,T,H,EP,WEF2,EPE2,Z2)
       WRITE (6,6) Z1,Z2,EPE1,EPE2,WEF1,WEF2
-   6  FORMAT(2X,' STEP: Z1=',E12.5,'  Z2=',E12.5/2X,' EPE1=',E12.5,'  
+   6  FORMAT(2X,' STEP: Z1=',E12.5,'  Z2=',E12.5/2X,' EPE1=',E12.5,'
      +EPE2=',E12.5,'  WEF1=',E12.5,'  WEF2=',E12.5)
 C   S-MATRIX FOR STEADY-STATE CURRENT MODE
       IF(OM.NE.0.0D0) GOTO 7

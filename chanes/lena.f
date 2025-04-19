@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -10,7 +10,7 @@ c
 
         SUBROUTINE LENA
 C ***
-C *** THE PROGRAM CONTAINS THE ARRAY "A"  
+C *** THE PROGRAM CONTAINS THE ARRAY "A"
 C ***
 C
 C
@@ -20,46 +20,46 @@ C
       CHARACTER*4 FNE1,FNE2
 C
 C
-C      ARRAY "A" IS A PREPARATION FOR THE FORM "MPOINT"  
+C      ARRAY "A" IS A PREPARATION FOR THE FORM "MPOINT"
        INTEGER*4   A (20,50)
-C                         KA - MAX. NUMBER OF TYPES OF ELEMENTS  
+C                         KA - MAX. NUMBER OF TYPES OF ELEMENTS
       DATA A/
-     +4HR   ,4H    ,4H    ,4H    ,0,1, 5,2,0,0,1,0, 1,0,0,0,0,0,0,0, 
+     +4HR   ,4H    ,4H    ,4H    ,0,1, 5,2,0,0,1,0, 1,0,0,0,0,0,0,0,
      +4HL   ,4H    ,4H    ,4H    ,0,1, 5,2,0,0,1,0, 1,0,0,0,0,0,0,0,
-     +4HC   ,4H    ,4H    ,4H    ,0,1, 5,2,0,0,1,0, 1,0,0,0,0,0,0,0, 
-     +4HE   ,4H    ,4H    ,4H    ,0,2,10,2,0,0,1,0, 4,0,0,0,0,0,0,2, 
-     +4HJ   ,4H    ,4H    ,4H    ,0,2,10,2,0,0,1,0, 4,0,0,0,0,0,0,2, 
-     +4HP2  ,4H    ,4H    ,4H    ,0,2,10,2,0,0,1,0, 7,0,0,0,0,0,0,2, 
-     +4HVD  ,4HSCHT,4H    ,4H    ,0,3,10,3,1,0,2,0, 8,0,0,0,0,1,1,0, 
-     +4HGN  ,4HLIN ,4H    ,4H    ,0,3, 9,2,0,0,1,0, 1,0,0,0,0,1,1,0, 
-     +4HGN  ,4HPOLY,4H    ,4H    ,0,3, 9,2,0,0,1,0, 7,0,0,0,0,1,1,0, 
-     +4HGN  ,4HJUNC,4H    ,4H    ,0,3, 9,2,0,0,1,0, 4,0,0,0,0,1,1,0, 
-     +4HFET ,4HCURT,4H    ,4H    ,0,3,13,6,3,0,1,0,17,0,0,0,0,2,2,0, 
-     +4HICU ,4HJUNC,4H    ,4H    ,0,3,11,4,0,0,1,0, 5,0,0,0,0,1,1,0, 
-     +4HICU ,4HPOLY,4H    ,4H    ,0,3,11,4,0,0,1,0, 7,0,0,0,0,1,1,0, 
-     +4HCN  ,4HDIFF,4H    ,4H    ,0,3, 9,2,0,0,1,0, 5,0,0,0,0,2,2,0, 
-     +4HCN  ,4HBARR,4H    ,4H    ,0,3, 9,2,0,0,1,0, 4,0,0,0,0,2,2,0, 
-     +4HCN  ,4HLIN ,4H    ,4H    ,0,3, 9,2,0,0,1,0, 1,0,0,0,0,2,2,0, 
-     +4HCN  ,4HPOLY,4H    ,4H    ,0,3, 9,2,0,0,1,0, 7,0,0,0,0,2,2,0, 
-     +4HLIB0,4HLL0 ,4H    ,4H    ,0,2,12,4,0,0,1,0, 2,0,0,0,0,0,0,0, 
-     +4HYTAB,4H    ,4H    ,4H    ,0,5, 0,0,0,0,1,0, 0,0,0,0,0,0,0,1, 
-     +4HSTAB,4H    ,4H    ,4H    ,0,5, 0,0,0,0,1,0, 0,0,0,0,0,0,0,1, 
-     +4HLIB ,4HMPL ,4H    ,4H    ,0,2,12,4,0,0,2,0, 7,0,0,0,0,0,0,0, 
-     +4HLIB ,4HLANG,4H    ,4H    ,0,2,12,4,0,0,2,0,12,0,0,0,0,0,0,0, 
-     +4HLIB ,4HSMPL,4H    ,4H    ,0,2,12,4,0,0,2,0,11,0,0,0,0,0,0,0, 
-     +4HBIP ,4HTR  ,4H    ,4H    ,0,3,14,7,4,0,1,0,23,0,0,0,0,2,2,0, 
-     +4HSHL ,4HKZ  ,4H    ,4H    ,0,2,10,2,0,0,2,0, 3,0,0,0,0,0,0,0, 
+     +4HC   ,4H    ,4H    ,4H    ,0,1, 5,2,0,0,1,0, 1,0,0,0,0,0,0,0,
+     +4HE   ,4H    ,4H    ,4H    ,0,2,10,2,0,0,1,0, 4,0,0,0,0,0,0,2,
+     +4HJ   ,4H    ,4H    ,4H    ,0,2,10,2,0,0,1,0, 4,0,0,0,0,0,0,2,
+     +4HP2  ,4H    ,4H    ,4H    ,0,2,10,2,0,0,1,0, 7,0,0,0,0,0,0,2,
+     +4HVD  ,4HSCHT,4H    ,4H    ,0,3,10,3,1,0,2,0, 8,0,0,0,0,1,1,0,
+     +4HGN  ,4HLIN ,4H    ,4H    ,0,3, 9,2,0,0,1,0, 1,0,0,0,0,1,1,0,
+     +4HGN  ,4HPOLY,4H    ,4H    ,0,3, 9,2,0,0,1,0, 7,0,0,0,0,1,1,0,
+     +4HGN  ,4HJUNC,4H    ,4H    ,0,3, 9,2,0,0,1,0, 4,0,0,0,0,1,1,0,
+     +4HFET ,4HCURT,4H    ,4H    ,0,3,13,6,3,0,1,0,17,0,0,0,0,2,2,0,
+     +4HICU ,4HJUNC,4H    ,4H    ,0,3,11,4,0,0,1,0, 5,0,0,0,0,1,1,0,
+     +4HICU ,4HPOLY,4H    ,4H    ,0,3,11,4,0,0,1,0, 7,0,0,0,0,1,1,0,
+     +4HCN  ,4HDIFF,4H    ,4H    ,0,3, 9,2,0,0,1,0, 5,0,0,0,0,2,2,0,
+     +4HCN  ,4HBARR,4H    ,4H    ,0,3, 9,2,0,0,1,0, 4,0,0,0,0,2,2,0,
+     +4HCN  ,4HLIN ,4H    ,4H    ,0,3, 9,2,0,0,1,0, 1,0,0,0,0,2,2,0,
+     +4HCN  ,4HPOLY,4H    ,4H    ,0,3, 9,2,0,0,1,0, 7,0,0,0,0,2,2,0,
+     +4HLIB0,4HLL0 ,4H    ,4H    ,0,2,12,4,0,0,1,0, 2,0,0,0,0,0,0,0,
+     +4HYTAB,4H    ,4H    ,4H    ,0,5, 0,0,0,0,1,0, 0,0,0,0,0,0,0,1,
+     +4HSTAB,4H    ,4H    ,4H    ,0,5, 0,0,0,0,1,0, 0,0,0,0,0,0,0,1,
+     +4HLIB ,4HMPL ,4H    ,4H    ,0,2,12,4,0,0,2,0, 7,0,0,0,0,0,0,0,
+     +4HLIB ,4HLANG,4H    ,4H    ,0,2,12,4,0,0,2,0,12,0,0,0,0,0,0,0,
+     +4HLIB ,4HSMPL,4H    ,4H    ,0,2,12,4,0,0,2,0,11,0,0,0,0,0,0,0,
+     +4HBIP ,4HTR  ,4H    ,4H    ,0,3,14,7,4,0,1,0,23,0,0,0,0,2,2,0,
+     +4HSHL ,4HKZ  ,4H    ,4H    ,0,2,10,2,0,0,2,0, 3,0,0,0,0,0,0,0,
      +4HSHL ,4HXX  ,4H    ,4H    ,0,2,10,2,0,0,2,0, 3,0,0,0,0,0,0,0,
      +4HDISC,4H    ,4H    ,4H    ,0,2,10,2,0,0,2,0, 3,0,0,0,0,0,0,0,
-     +4HINDS,4H    ,4H    ,4H    ,0,2,14,6,0,0,1,0,12,0,0,0,0,0,0,0, 
+     +4HINDS,4H    ,4H    ,4H    ,0,2,14,6,0,0,1,0,12,0,0,0,0,0,0,0,
      +440*0/
 C
-C      WHEN ENTERING A NEW TYPE OF ELEMENTS, IT IS NECESSARY TO MAKE  
-C      ADDITIONS TO THE INSTRUCTION FILE INSTIL.TXT (SUBDIRECTORY YINSTR)  
-C      AND TO CHAPTER5.REP (SUBDIRECTORY REPORT)  
-C  
-C      ELEMENT TYPES '4HBIP TR', 'SHL KZ', 'SHL XX'  
-C      ARE NOT USED (OR NO LONGER USED).  
+C      WHEN ENTERING A NEW TYPE OF ELEMENTS, IT IS NECESSARY TO MAKE
+C      ADDITIONS TO THE INSTRUCTION FILE INSTIL.TXT (SUBDIRECTORY YINSTR)
+C      AND TO CHAPTER5.REP (SUBDIRECTORY REPORT)
+C
+C      ELEMENT TYPES '4HBIP TR', 'SHL KZ', 'SHL XX'
+C      ARE NOT USED (OR NO LONGER USED).
 C
       KA=28
 C
@@ -126,9 +126,9 @@ C  ELEMENT TYPE "INDS"     SUBROUTINE INDSV         (file INDSV)
 C
 C
       DATA IFF/
-     +4HP2  ,4H    ,4H    ,4H    ,2,0,0, 
-     +4HP2  ,4H    ,4H    ,4H    ,5,0,0, 
-     +4HE   ,4H    ,4H    ,4H    ,2,0,0, 
+     +4HP2  ,4H    ,4H    ,4H    ,2,0,0,
+     +4HP2  ,4H    ,4H    ,4H    ,5,0,0,
+     +4HE   ,4H    ,4H    ,4H    ,2,0,0,
      +4HJ   ,4H    ,4H    ,4H    ,2,0,0
      +/
 

@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -10,9 +10,9 @@ c
 
       SUBROUTINE INKOOR (MAXSYN,MNMAX,F1,F2,*,*)
 C
-C  *****  ORDERING OF ARRAYS MN AND MN1,  
-C  *****  FILLING THE COORDINATE ARRAYS,  
-C  *****  OBTAINING THE EXPANDED FREQUENCY GRID,  
+C  *****  ORDERING OF ARRAYS MN AND MN1,
+C  *****  FILLING THE COORDINATE ARRAYS,
+C  *****  OBTAINING THE EXPANDED FREQUENCY GRID,
 C  *****  FILLING THE ARRAYS WR AND WS.
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
@@ -36,7 +36,7 @@ C take sizes from 'funcsize.i'
       B2DIM = B2_SIZE
       NDIM  = MAXKN
       NDIM1 = MAXKN1
-      
+
       PI=4*DATAN(1.0D0)
       OMEGA1=2.0D0*PI*F1
       OMEGA2=2.0D0*PI*F2
@@ -68,7 +68,7 @@ C  *****  CHANGE OF FREQUENCIES F1 AND F2, IF F2 = 0
       OMEGA2=OMEGA
       MEPHF=1
       FLGMNW=1
-C  *****  EXCLUSION OF IDENTICAL ROWS OF THE MATRIX  
+C  *****  EXCLUSION OF IDENTICAL ROWS OF THE MATRIX
 C  *****  AND COMPRESSION OF THE LIST MN AFTER EXCLUSION
 C
  1030 I=2
@@ -82,7 +82,7 @@ C
       MN(1,J)=MN(1,J+1)
  1060 MN(2,J)=MN(2,J+1)
       GO TO 1040
-C  *****  ADDITION OF THE CONSTANT COMPONENT,  
+C  *****  ADDITION OF THE CONSTANT COMPONENT,
 C  *****  IF IT IS ABSENT IN THE LIST MN
  1065 IF(MN(1,1).EQ.0.AND.MN(2,1).EQ.0) GO TO 1100
       DO 1080 I=1,KN
@@ -123,7 +123,7 @@ C  *****  IF IT IS ABSENT IN THE LIST MN
       CALL SORT (MN1,KN1)
       DO 73 I=1,KN1
    73 W1(I)=MN1(1,I)*OMEGA1+MN1(2,I)*OMEGA2
-C  *****  CALCULATION OF THE NUMBER OF NONZERO ROWS  
+C  *****  CALCULATION OF THE NUMBER OF NONZERO ROWS
 C  *****  ON THE EXPANDED FREQUENCY GRID - KNR1
       KNR1=1
       IF (KN.LT.2) GO TO 2010
@@ -148,7 +148,7 @@ C  *****  SELECTION OF LIMITS MIN AND MAX FOR KNC
 C  *****  FILLING THE COORDINATE ARRAYS
       CALL KOORD (MN,KR,KC,NNR,KNR,KN,KNC,IR,NDIM)
 
-C++++++++++++++++++++++++  CHANGES FROM 12.05.91  SERDYUK G.V.  
+C++++++++++++++++++++++++  CHANGES FROM 12.05.91  SERDYUK G.V.
 C                          (TOTAL 3 CHANGES)
       ivald= krdchk (MN,KR,KC,NNR,KNR,KN,KNC,IR,NDIM)
       if(ivald.ne.0) then
@@ -157,7 +157,7 @@ C                          (TOTAL 3 CHANGES)
       endif
 C ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-C  *****  FILLING THE COORDINATE ARRAYS  
+C  *****  FILLING THE COORDINATE ARRAYS
 C  *****  FOR THE EXPANDED FREQUENCY GRID
       CALL KOORD (MN1,KR1,KC1,NNR1,KNR1,KN1,KNC,NDIM,NDIM1)
 C++++++++++++++++++++++++  CHANGES FROM 12.05.91  SERDYUK G.V.
@@ -208,9 +208,9 @@ C
 
       RETURN 2
 C++++++++++++++++++++++++  CHANGES FROM 12.05.91  SERDYUK G.V.
- 5010 format(2x,' INKOOR: ERROR OF REPRESENTATION OF MAIN GRID.',       
+ 5010 format(2x,' INKOOR: ERROR OF REPRESENTATION OF MAIN GRID.',
      +   ' CODE =',i3)
- 5020 format(2x,' INKOOR: ERROR OF REPRESENTATION OF AUX  GRID.',       
+ 5020 format(2x,' INKOOR: ERROR OF REPRESENTATION OF AUX  GRID.',
      +   ' CODE =',i3)
 C++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       END

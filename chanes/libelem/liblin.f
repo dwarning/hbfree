@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -25,27 +25,27 @@ C    *    11X,'NA2=',I5,' LE2=',I5,' NA3=',I5,' LE3=',I5,' NPOL=',I5)
 C
 C
       IF(NAME(1).NE.NAMES(3))GOTO 10
-      IF(NAME(2).EQ.NAMES(4))CALL LINE1(OM,PARAM(NA1),LE1,PARAM(NA2),   
+      IF(NAME(2).EQ.NAMES(4))CALL LINE1(OM,PARAM(NA1),LE1,PARAM(NA2),
      +                               LE2,PARAM(NA3),LE3)
    10 CONTINUE
-      IF(NAME(1).EQ.NAMES(1))CALL RFFIPN(OM,PARAM(NA1),LE1,PARAM(NA2),  
+      IF(NAME(1).EQ.NAMES(1))CALL RFFIPN(OM,PARAM(NA1),LE1,PARAM(NA2),
      +                                LE2,PARAM(NA3),LE3)
-      IF(NAME(1).EQ.NAMES(2))CALL EMF   (OM,PARAM(NA1),LE1,PARAM(NA2),  
+      IF(NAME(1).EQ.NAMES(2))CALL EMF   (OM,PARAM(NA1),LE1,PARAM(NA2),
      +                                LE2,PARAM(NA3),LE3)
-      IF(NAME(1).EQ.NAMES(5))CALL JDRIVE(OM,PARAM(NA1),LE1,PARAM(NA2),  
+      IF(NAME(1).EQ.NAMES(5))CALL JDRIVE(OM,PARAM(NA1),LE1,PARAM(NA2),
      +                                LE2,PARAM(NA3),LE3)
-      IF(NAME(1).EQ.NAMES(6))CALL YTAB(OM,PARAM(NA1),LE1,PARAM(NA2),    
+      IF(NAME(1).EQ.NAMES(6))CALL YTAB(OM,PARAM(NA1),LE1,PARAM(NA2),
      +                              LE2,PARAM(NA3),LE3,NPOL)
-      IF(NAME(1).EQ.NAMES(7))CALL STAB(OM,PARAM(NA1),LE1,PARAM(NA2),    
+      IF(NAME(1).EQ.NAMES(7))CALL STAB(OM,PARAM(NA1),LE1,PARAM(NA2),
      +                              LE2,PARAM(NA3),LE3,NPOL)
-      IF(NAME(1).EQ.NAMES(8).AND.NAME(2).EQ.NAMES(9)) CALL LANG(OM,     
-     +                               PARAM(NA1),LE1,PARAM(NA2),         
+      IF(NAME(1).EQ.NAMES(8).AND.NAME(2).EQ.NAMES(9)) CALL LANG(OM,
+     +                               PARAM(NA1),LE1,PARAM(NA2),
      +                           LE2,PARAM(NA3),LE3,NPOL)
-      IF(NAME(1).EQ.NAMES(8).AND.NAME(2).EQ.NAMES(13)) CALL SMPL(OM,    
-     +                                PARAM(NA1),LE1,PARAM(NA2),        
+      IF(NAME(1).EQ.NAMES(8).AND.NAME(2).EQ.NAMES(13)) CALL SMPL(OM,
+     +                                PARAM(NA1),LE1,PARAM(NA2),
      +                            LE2,PARAM(NA3),LE3,NPOL)
-      IF(NAME(1).EQ.NAMES(8).AND.NAME(2).EQ.NAMES(14)) CALL MP(OM,      
-     +                              PARAM(NA1),LE1,PARAM(NA2),          
+      IF(NAME(1).EQ.NAMES(8).AND.NAME(2).EQ.NAMES(14)) CALL MP(OM,
+     +                              PARAM(NA1),LE1,PARAM(NA2),
      +                          LE2,PARAM(NA3),LE3,NPOL)
 C      IF(NAME(1).EQ.NAMES(10).AND.NAME(2).EQ.NAMES(11)) CALL SHLEIF(OM,
 C     +                                    PARAM(NA1),LE1,PARAM(NA2),
@@ -58,7 +58,7 @@ C     +                                    NAME(2))
 C      IF(NAME(1).EQ.NAMES(15))CALL DISCONT(OM,PARAM(NA1),LE1,PARAM(NA2),
 C     +                                    LE2,PARAM(NA3),LE3,NPOL)
 
-      IF(NAME(1).EQ.NAMES(16)) CALL INDSV(OM,PARAM(NA1),LE1,PARAM(NA2), 
+      IF(NAME(1).EQ.NAMES(16)) CALL INDSV(OM,PARAM(NA1),LE1,PARAM(NA2),
      +                                     LE2,PARAM(NA3),LE3)
 C
       RETURN

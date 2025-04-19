@@ -1,14 +1,14 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
 
 
 C************ ITUN DRAIN-SOURCE MODEL 1 PTBSH CURTICE ******************
-C Quadratic approximation of the I-V characteristic for the field-effect transistor  
+C Quadratic approximation of the I-V characteristic for the field-effect transistor
 C
 C Isi(Uzi, Usi) = BETTA * (Uzi + VT)^2 * (1 + LAMDA * Usi) * TANH(ALF * Usi)
 C

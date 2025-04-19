@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -35,7 +35,7 @@ C      COMMON/PARAMS/PARAM(1)
       COMMON/SUBC/SUBY(15,15),SUBJ(15)
 
 
-C      PRINT *, 'ENTER LNFORM' 
+C      PRINT *, 'ENTER LNFORM'
 C      print *,(vj(ikkk),ikkk=1,20)
 
       VARABL=0
@@ -55,7 +55,7 @@ C
 C     IF NO ELEMENT OF THE GIVEN TYPE EXISTS - SKIP
       IF(MPOINT(I10+4).EQ.0)GO TO10
 C
-C     IT MAY BE THAT ONE OF THE ELEMENTS OF THIS TYPE DOES NOT CHANGE, 
+C     IT MAY BE THAT ONE OF THE ELEMENTS OF THIS TYPE DOES NOT CHANGE,
 C     AND THE FORMATION - IS CHANGED. SKIP
       IF(VARABL.NE.0.AND.MPOINT(I10+14).EQ.0)GO TO 10
 
@@ -162,7 +162,7 @@ C END OF DO - BY ELEMENT TYPES.
       SUBROUTINE LIN2P(OM,N,PN,PT,PE,S,NR,Y,J,ISIZE_MAXNODE)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       include 'circuit.i'
-      
+
       DOUBLE PRECISION   OM
       LOGICAL S
       DIMENSION NAMES(4),N(4)
@@ -174,7 +174,7 @@ C      COMMON/FORMY/J(70),Y(70,70)
       INTEGER ISIZE_MAXNODE
       DOUBLE COMPLEX Y(ISIZE_MAXNODE,ISIZE_MAXNODE)
       DOUBLE COMPLEX J(ISIZE_MAXNODE)
-      
+
       CHARACTER*4 NAMES/'R   ','L   ','C   ','G   '/,N
 
       IF(N(1).EQ.NAMES(1))YS=DCMPLX(1.D0/PE,0.0D0)
@@ -220,7 +220,7 @@ C     WRITE(6, 15) KK,KK,Y(KK,KK)
 
 c      COMMON/POINT/MPOINT(1)/NODEL/NODEEL(1)
       COMMON/SUBC/SUBY(15,15),SUBJ(15)
-      
+
 C      COMMON/FORMY/VEKTJ(70),Y(70,70)
       INTEGER ISIZE_MAXNODE
       DOUBLE COMPLEX Y(ISIZE_MAXNODE,ISIZE_MAXNODE)
@@ -239,7 +239,7 @@ C    2 FORMAT (2X,'LINNP:'/('  SUBY(',I3,',',I3,')=',E13.6,2X,E13.6))
 C ...OR Y-MATRIX OF THE LINEAR PART OF NONLINEAR ELEMENTS.
       ENTRY NONLIN(IS,NR,S,Y,VECTJ,ISIZE_MAXNODE)
       END=MPOINT(IS+7)
-      
+
       INPUT=.TRUE.
 C CALCULATE THE COMPLETE COMPRESSION MATRIX (IF THE FREQUENCY < 0.)
     3 IF(S) GO TO 5
@@ -266,7 +266,7 @@ C  110 FORMAT(2X,'END=',I4,' NR=',I4,' NODEEL(',I4,')=',I4,' I20=',I4)
       IF(NODEEL(NR+I20).NE.0) GO TO 20
       DO 30 I30=1,END
 C      WRITE(6,120) I30, I20, SUBY(I30,I30), SUBY(I20,I30)
-C  120 FORMAT(2X,'I30',I4,' I20',I4,' SUBY=',2(1X,2(1X,E13.6)))      
+C  120 FORMAT(2X,'I30',I4,' I20',I4,' SUBY=',2(1X,2(1X,E13.6)))
    30 SUBY(I30,I30)=SUBY(I30,I30)-SUBY(I20,I30)
 C      WRITE(6,130) SUBY(I30,I30)
 C  130 FORMAT(2X,'SUBY-SUBY=',2(1X,E13.6))
@@ -283,9 +283,9 @@ C FORMATION (APPROPRIATELY)
       IF(JY.EQ.0)GO TO 50
 
 C ATTENTION! MINED 28.02.92
-      
+
       if(i40.ne.i50.and.iy.eq.jy) then
-                              write(6,43) 
+                              write(6,43)
    43 format(2x,' ####### LINNP : LOOP IS DETECTED  #######')
                                goto 50
       end if

@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -66,19 +66,19 @@ C
        G1=1.D0+G*(F*1.D-09/FR)**2.D0
        CALL Z00P(W,H,T,ER,ZOP)
        ZO=ZOP-(ZOP-ZO)/G1
-       EER=ER-(ER-EER)/G1    
-C       
+       EER=ER-(ER-EER)/G1
+C
  918  CONTINUE
       IF(SKL2.EQ.1.D0) GOTO 120
       GOTO 121
  120  WRITE(6,100)EER,ZO,F
  100  FORMAT(8X,'EER=',F5.2,4X,'Zo=',F6.2,' OHM',4X,'F=',E11.4,' HZ')
  121  CONTINUE
-C 
+C
 C
       BETT=OM*DSQRT(EER)/CC
       OLAM=6.2831852D0/BETT
-C 
+C
       DGR=360.D0*FL/OLAM
       IF(SKL2.EQ.1.D0)GOTO 130
       GOTO 131
@@ -89,11 +89,11 @@ C
 C
 
       IF(ALFA.GT.0.D0)GOTO 34
-C 
+C
 C      CALCULATION OF LOSSES
 C  LOSSES IN A MICROSTRIP LINE (Np/m)
 C
-    
+
       IF(T.EQ.0.D0) T=0.1D-08
       RO=5.8D-07
       F=OM/6.2831852D0
@@ -221,7 +221,7 @@ C
       ENDIF
       RETURN
       END
- 
+
           SUBROUTINE SMPL(OM,P1,L1,P2,L2,P3,L3,N)
 C
 C     MODEL OF COUPLED MICROSTRIP LINES
@@ -279,7 +279,7 @@ C
 C
       EREE=CE/CEB
       EREO=CO/COB
-C 
+C
       ZOE=1.D0/(CC*DSQRT(CE*CEB))
       ZOO=1.D0/(CC*DSQRT(CO*COB))
 C
@@ -345,8 +345,8 @@ C
      +E CK=',E11.4,/10X,'INCREASE IN LENGTH DFLE=',E11.4,1X,'INCREASE IN
      + LENGTH DFLO=',E11.4)
  4155 CONTINUE
-      GOTO 4156    
- 4141 CONTINUE     
+      GOTO 4156
+ 4141 CONTINUE
       DFLE=0.0D0
       DFLO=0.0D0
  4156 CONTINUE

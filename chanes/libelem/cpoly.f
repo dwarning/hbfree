@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -41,7 +41,7 @@ C     DEBUG SUBTRACE
 
       SUBROUTINE CPOLY3(NG,P1,L1,P2,L2,P3,L3,B1,KNC2,NR,*)
 C
-C      SUBROUTINE FOR THE MATHEMATICAL MODEL OF BARRIER CAPACITANCE  
+C      SUBROUTINE FOR THE MATHEMATICAL MODEL OF BARRIER CAPACITANCE
 C          =DEPENDENCY OF I(U)
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)

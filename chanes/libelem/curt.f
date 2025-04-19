@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -58,7 +58,7 @@ C
       DO 10 I=1,8
       DO 10 K=1,8
    10 Y(K,I)=ZERO
-C     
+C
       Y(1,1)=CR(G2)
       Y(1,5)=-CR(G2)
       Y(2,2)=CR(G1)
@@ -77,7 +77,7 @@ C
       Y(6,3)= Y(3,6)
       Y(6,4)= Y(4,6)
       Y(6,6)= CR(G3)+CI(C13)
-      
+
 C
       RETURN
       END
@@ -121,7 +121,7 @@ C
       B1(K,1)=UN1(U)+UN2(U)*B1(K,2)
       GOTO 9
 C
-C     IF U > VBI0 = VBI - UEPS, THEN THE CAPACITANCE IS CALCULATED BY  
+C     IF U > VBI0 = VBI - UEPS, THEN THE CAPACITANCE IS CALCULATED BY
 C     THE FORMULA C(U) = C(VBI0) + DC/DU(U=VBI0) * (U - VBI0)
 C
     5 B1(K,1)=UN1(U)+UN2(VBI0)*(1.D0+(U-VBI0)/(2.D0*UEPS))*B1(K,2)

@@ -1,14 +1,14 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
 
 
 
-      SUBROUTINE STOP(N,X,DX,F,FNOR,G,SX,SF,IRETCD,ITER,MAXTKN,         
+      SUBROUTINE STOP(N,X,DX,F,FNOR,G,SX,SF,IRETCD,ITER,MAXTKN,
      +       KMAXDU,TERMCD)
 C
 C   SUBROUTINE FOR DETERMINING THE REASON FOR STOPPING.
@@ -16,7 +16,7 @@ C     * TERMCD=0 - NO STOP;
 C       ...
 
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      COMMON/PRINT /   KPRLEN,KPRSRT,KPRNKR,KPRLIN,KPRSOL,KPRVAR,       
+      COMMON/PRINT /   KPRLEN,KPRSRT,KPRNKR,KPRLIN,KPRSOL,KPRVAR,
      +          KPRGRF,KPRQUP
       COMMON/NEWTON/   EPSSOL,EPSDU,EPSMIN,MAXDU,LIMIT
       DOUBLE PRECISION             EPSSOL,EPSDU,EPSMIN,MAXDU
@@ -86,7 +86,7 @@ C   DEFINITION OF THE REQUIRED DECREASE IN FNOR
       TERM=0.D0
       DO 80 I=1,N
       SINV=1/SX((I+1)/2)
-      TERM=DMAX1(TERM,DABS(G(I))*DMAX1(X(I)      ,SINV)/                
+      TERM=DMAX1(TERM,DABS(G(I))*DMAX1(X(I)      ,SINV)/
      + DMAX1(FNOR,DFLOAT(N)/2.D0))
 C     REMOVED PRINT 222 C WITH FORMAT 8.12.89. KOSCHMANOVA N.W. *****
   80  CONTINUE
@@ -105,25 +105,25 @@ C   NOTHING HAPPENED
      +TION WITH ERROR <= ',E13.6 ,' ( < ',E13.6,' )'/       '  1/2 OF SQ
      +UARED L-2 NORM OF ERROR =',E13.6 )
  102  FORMAT('     AT ',I5,' -T ITERATION MAX STEP=',E13.6,' ( <',E13.6,
-     +')'/       '  ERROR =',E13.6/       '  1/2 OF SQUARED L-2 NORM OF 
+     +')'/       '  ERROR =',E13.6/       '  1/2 OF SQUARED L-2 NORM OF
      +ERROR =',E13.6)
- 103  FORMAT('     AT ',I5,' -TH ITERATION CAN NOT MAKE GOOD STEP'/     
+ 103  FORMAT('     AT ',I5,' -TH ITERATION CAN NOT MAKE GOOD STEP'/
      +  '  > ',E13.6/       '  1/2 OF SQUARED L-2 NORM OF ERROR =',E13.6
      +)
  104  FORMAT('     ITERATION LIMIT:',I4,' IS REACHED.'/       '  ERROR =
-     +',E13.6,'( > ',E13.6,' );'/       '  STEP =',E13.6,'( > ',E13.6,' 
+     +',E13.6,'( > ',E13.6,' );'/       '  STEP =',E13.6,'( > ',E13.6,'
      +).')
  105  FORMAT('     AT ',I4,' ITERATION , IT IS MADE'/       '  5 STEPS O
      +F LENGTH ',E13.6/       '  ERROR =',E13.6,' ( > ',E13.6,' ).')
  106  FORMAT('  IT IS LOCAL MINIMUM :  '/       '              ITERATION
      +                        ',I4/       '              GRADIENT OF ERR
-     +OR NORM        ',E13.6,                                           
+     +OR NORM        ',E13.6,
      +    '(<',E13.6 ,')'/       '              1/2 SQUARED  L-2 ERROR N
-     +ORM   ',E13.6/       '               ERROR                        
+     +ORM   ',E13.6/       '               ERROR
      +',E13.6/       '               REQUIRED                     ',E13.
      +6)
 
- 107  FORMAT(' ERROR  =',E13.6,', STEP=',E13.6,', SPEED OF DECREASING=' 
+ 107  FORMAT(' ERROR  =',E13.6,', STEP=',E13.6,', SPEED OF DECREASING='
      +      , E13.6)
 
 

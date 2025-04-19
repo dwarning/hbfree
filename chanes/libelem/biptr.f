@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -33,7 +33,7 @@ C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       COMMON/SUBC/      Y(15,15),J(15)
       DOUBLE PRECISION              P1(L1),P2(L2),P3(L3)
-      DOUBLE COMPLEX           Y,J,                  CR,CI,GB,GK,GE,    
+      DOUBLE COMPLEX           Y,J,                  CR,CI,GB,GK,GE,
      +              ZERO
 
 
@@ -100,7 +100,7 @@ C
 C
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      DOUBLE PRECISION              P1(L1),P2(L2),P3(L3),               
+      DOUBLE PRECISION              P1(L1),P2(L2),P3(L3),
      +   B1(KNC2,NR),                  IE0,IK0,NE,NK,ARGMAX
       DATA              ARGMAX/40.0D0/
 C
@@ -192,7 +192,7 @@ C
 C
 C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      DOUBLE PRECISION              P1(L1),P2(L2),P3(L3),               
+      DOUBLE PRECISION              P1(L1),P2(L2),P3(L3),
      +   B1(KNC2,NR),                  IE0,IK0,NE,NK,ARGMAX,ARGMIN
       DATA              ARGMAX/40.0D0/,ARGMIN/-120.0D0/
 C

@@ -1,7 +1,7 @@
 c
 c Copyright (c) 1996-2004 by Gennady Serdyuk.  All rights reserved.
 c gserdyuk@mail.ru
-c 
+c
 c Released under GPL v 2.0
 c
 
@@ -18,20 +18,20 @@ C
 
       integer err,sum1,sum2,sum3
 
-C     CHECKING THE REPRESENTATION OF SPARSE MATRICES FOR  
-C     STORING RESULTS  
-C  
-C     LIST OF FORMAL PARAMETERS - SAME AS IN KOORD  
-C  
-C     IDENTIFIERS OF VARIABLES AND ARRAYS:  
-C  
-C          KNC - LENGTH OF ONE-DIMENSIONAL FFT;  
-C          NNR - ARRAY OF ROW NUMBERS OF NONZERO ELEMENTS;  
-C          KNR - NUMBER OF NONZERO ROWS;  
-C          KR  - ARRAY OF COLUMN NUMBERS OF NONZERO  
-C                ELEMENTS IN EACH NONZERO ROW;  
-C          KC  - ARRAY CONTAINING THE NUMBER OF  
-C                NONZERO ELEMENTS IN EACH ROW;  
+C     CHECKING THE REPRESENTATION OF SPARSE MATRICES FOR
+C     STORING RESULTS
+C
+C     LIST OF FORMAL PARAMETERS - SAME AS IN KOORD
+C
+C     IDENTIFIERS OF VARIABLES AND ARRAYS:
+C
+C          KNC - LENGTH OF ONE-DIMENSIONAL FFT;
+C          NNR - ARRAY OF ROW NUMBERS OF NONZERO ELEMENTS;
+C          KNR - NUMBER OF NONZERO ROWS;
+C          KR  - ARRAY OF COLUMN NUMBERS OF NONZERO
+C                ELEMENTS IN EACH NONZERO ROW;
+C          KC  - ARRAY CONTAINING THE NUMBER OF
+C                NONZERO ELEMENTS IN EACH ROW;
 
       err=0
 
@@ -73,7 +73,7 @@ c  KR(i+1) > KR(i)
 c   KR(i) > 0
 c
 c  end_for
-C                -------- !!!  NOT IMPLEMENTED AT THE MOMENT !!!  
+C                -------- !!!  NOT IMPLEMENTED AT THE MOMENT !!!
 
       krdchk=err
       return
