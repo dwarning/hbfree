@@ -10,6 +10,10 @@ hbl.exe
 s2h.exe
 *.log
 
+spice2hbl/y.tab.h
+spice2hbl/obj/shpars.c
+
+
 *.bak
 chanes/SPAGged
 chanes/*.log
