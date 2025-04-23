@@ -401,80 +401,101 @@ C      IF(KOLVAR.EQ.0)
       END
 
       SUBROUTINE wrtraw(Isize_maxnode,K123,Kn,W,S,Pi,Infile)
-C*** Start of declarations inserted by SPAG
-      INTEGER irc
-C*** End of declarations inserted by SPAG
-      INTEGER Isize_maxnode , K123 , Kn
+      INTEGER irc, Isize_maxnode , K123 , Kn
       DOUBLE PRECISION W(20) , wircpi , Pi
       DOUBLE COMPLEX S(Isize_maxnode,20)
-      CHARACTER*256 Infile
-      INTEGER i, jrc , inend , ifend
-      CHARACTER*8 outfile
+      CHARACTER*64 Infile, line
+      INTEGER i , jrc , inend , ifend, hblnode, lenname , nvar
+      CHARACTER*9 rawfile / '         '/
+      CHARACTER*15 nodefile / '               '/
+      CHARACTER*6 spicenode(20)
+      INTEGER dt(8)
+      CHARACTER*10 b(3)
 
       inend = 0
       ifend = 0
       DO i = 1 , 12
-         IF ( Infile(i:i).EQ.'.' ) inend = i
+         IF ( Infile(i:i).EQ.'.' ) THEN
+            inend = i
+            EXIT
+         ENDIF
          IF ( Infile(i:i).NE.' ' ) ifend = i
       ENDDO
       IF ( inend.EQ.0 ) THEN
-C        IF (ifend.GT.8) STOP ' NAME ZU LANG'
-         outfile(1:ifend) = Infile(1:ifend)
-         outfile(ifend+1:ifend+4) = '.raw'
+         IF (ifend.GT.5) STOP ' NAME TOO LONG'
+         rawfile(1:ifend) = Infile(1:ifend)
+         rawfile(ifend+1:ifend+4) = '.raw'
+         nodefile(1:ifend) = Infile(1:ifend)
+         nodefile(ifend+1:ifend+10) = '.ckt.nodes'
       ELSE
-C        IF (inend.GT.9) STOP ' NAME ZU LANG'
-         outfile(1:inend-1) = Infile(1:inend-1)
-         outfile(inend-4:inend) = '.raw'
+         IF (inend.GT.6) STOP ' NAME TOO LONG'
+         rawfile(1:inend-1) = Infile(1:inend-1)
+         rawfile(inend:inend+4) = '.raw'
+         nodefile(1:inend-1) = Infile(1:inend-1)
+         nodefile(inend:inend+9) = '.ckt.nodes'
       ENDIF
 
-C      OPEN (15,FILE='di1.ckt.nodes',STATUS='OLD')
-C      DO i = 1 , 12
-C         READ (15,'(A20)',END=1500) line
-C         PRINT * , line
-C      ENDDO
-C 1500 CONTINUE
+      OPEN (15, FILE=trim(nodefile),STATUS='OLD')
+      nvar = 0
+      DO i = 1 , K123+5
+         READ (15,'(A20)',END=1500) line
+         IF (i.GT.5) THEN
+            nvar = nvar + 1
+            READ (line,'(I1,TR1,A)') hblnode, spicenode(nvar)
+            IF (hblnode .eq. 0) THEN
+C              SKIP GND NODE
+               nvar = nvar - 1
+            ENDIF
+         ENDIF
+      ENDDO
+ 1500 CONTINUE
+ 
+      call date_and_time(b(1), b(2), b(3), dt)
 
-      OPEN (16,FILE=outfile)
-
+      OPEN (16, FILE=trim(rawfile))
+ 
       WRITE (16,'(A)') 'Title: spice test'
-      WRITE (16,'(A)') 'Date:  Wed Sep  6 18:56:32 2000'
+      WRITE (16, 170) dt(3), dt(2), dt(1), dt(5), dt(6), dt(7)
       WRITE (16,'(A)') 'Plotname:  Harmonic Balance Simulation'
       WRITE (16,'(A)') 'Flags: complex'
-      WRITE (16,'(A,I4)') 'No. Variables: ' , K123 + 1
+      WRITE (16,'(A,I4)') 'No. Variables: ' , nvar+1
       WRITE (16,'(A,I4)') 'No. Points: ' , 3*Kn
       WRITE (16,'(A)') 'Command:  version 3f5'
-
+ 
       WRITE (16,'(A)') 'Variables:'
       WRITE (16,*) '     0    frequency    frequency'
-      DO i = 1 , K123
-         WRITE (16,140) i , i
-
- 140     FORMAT (3X,I4,'    V(',I1,')    voltage')
+      DO i = 1 , nvar
+         lenname = index(spicenode(i),achar(9))-1
+         WRITE (16,140) i , spicenode(i)(1:lenname)
+ 140     FORMAT (3X,I4,'    V(', A, ')    voltage')
       ENDDO
-
+ 
       WRITE (16,'(A)') 'Values:'
       jrc = 0
       DO irc = 1 , Kn
          wircpi = W(irc)/(2.D0*Pi)
          WRITE (16,150) jrc , wircpi , 0.0
-         DO i = 1 , K123
+         DO i = 1 , nvar
             WRITE (16,160) 0.0 , 0.0
          ENDDO
          jrc = jrc + 1
          WRITE (16,150) jrc , wircpi , 0.0
-         DO i = 1 , K123
+         DO i = 1 , nvar
             WRITE (16,160) dreal(S(i,irc)) , dimag(S(i,irc))
          ENDDO
          jrc = jrc + 1
          WRITE (16,150) jrc , wircpi , 0.0
-         DO i = 1 , K123
+         DO i = 1 , nvar
             WRITE (16,160) 0.0 , 0.0
          ENDDO
          jrc = jrc + 1
       ENDDO
-
+ 
+      CLOSE (15)
       CLOSE (16)
  150  FORMAT (1X,I4,4X,SP,E20.13,',',SP,E20.13)
  160  FORMAT (9X,SP,E20.13,',',SP,E20.13)
+ 170  FORMAT ('Date: ',I2.2,'.',I2.2,'.',I4, ' ',I2.2, ':', I2.2, ':',
+     & I2.2)
 
       END
