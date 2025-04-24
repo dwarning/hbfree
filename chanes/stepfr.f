@@ -49,7 +49,7 @@ C      print *,(VJ(ikkk),ikkk=1,20)
 
       IF(.NOT.NAL(1)) GO TO 20
 
-C     LIN.CONST.-ÊOPMÈPOBAHÈE
+C     LIN.CONST. - FORMATION
       CALL LNFORM (OM,Y,VJ,ISIZE_MAXNODE)
 
 C   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

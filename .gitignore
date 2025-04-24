@@ -36,6 +36,7 @@ chanes/fpt_output
 *.elems
 *.nodes
 
+hbfree_exmpls/test_ext
 hbfree_exmpls/.spiceinit
 hbfree_exmpls/*.raw
 hbfree_exmpls/*.sp
