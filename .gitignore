@@ -21,6 +21,7 @@ chanes/*.log
 chanes/*.mod
 chanes/*.f90
 chanes/*.out
+chanes/chanes_tree.txt
 chanes/*.htm
 chanes/_pf_data
 *.fig
