@@ -15,8 +15,8 @@ PROG	=	../hbl
 ifeq ($(FC),intel)
 #ifx (prep.: source /opt/intel/oneapi/setvars.sh)
 	F77	=	ifx
-	FFLAGS = -O2
-	#FFLAGS = -warn all,noerrors,nointerfaces -O2
+	#FFLAGS = -O2
+	FFLAGS = -warn all,noerrors,nointerfaces,noexternals,nointerfaces,nounused -O2
 	#FFLAGS = -g -check uninit
 	#LDLAGS = -g -check uninit
 else
