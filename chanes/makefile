@@ -17,7 +17,7 @@ ifeq ($(FC),intel)
 	F77	=	ifx
 	#FFLAGS = -O2
 	FFLAGS = -warn all,noerrors,nointerfaces,noexternals,nointerfaces,nounused -O2
-	#FFLAGS = -g -check uninit
+	#FFLAGS = -g -check uninit -O1
 	#LDLAGS = -g -check uninit
 else
 #gfortran
