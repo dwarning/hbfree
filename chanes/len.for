@@ -899,7 +899,7 @@ C
             IF ( nnnnn.GT.Lennod ) GOTO 350
             Nodeel(Nnode+1) = knot(1)
             Nodeel(Nnode+2) = knot(2)
-C       KNOT(1),KNOT(2) - Yúìù BKìàþEHéñ
+C       KNOT(1),KNOT(2) - CONNECTED NODES
             Nodeel(Nnode+3) = ipr
 C       IPR - VARIATION INDICATOR. MAY BE ABSENT
 C             IN THE "NAMELIST" LIST
@@ -909,7 +909,7 @@ C       IDOP - GROUP MEMBERSHIP NUMBER. MAY
 C              BE ABSENT IN THE "NAMELIST" LIST.
 C
             IF ( Kprlen.GE.1 ) WRITE (ip,33) knot(1) , knot(2)
- 33         FORMAT (22X,'Yúìù BKì.=',I2,',',I2)
+ 33         FORMAT (22X,'NODES CONN.=',I2,',',I2)
 C
 C     CONTROL PRINTING OF THE "NODEEL" STRING
             IF ( Kprlen.GT.2 ) THEN
